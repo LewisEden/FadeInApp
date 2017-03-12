@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+	before_action :set_project, only: [:show, :edit, :update, :destory]
+
 	def index
 		@projects = Project.all
 	end
@@ -8,33 +10,39 @@ class ProjectsController < ApplicationController
 	end
 
 	def create
-		@project = Project.create(project_params)
-		redirect_to projects_path
+		if @project = Project.create(project_params)
+			redirect_to projects_path
+		else
+			render :new
+		end
 	end
 
 	def show
-		@project = Project.find(params[:id])
 	end
 
 	def edit
-		@project = Project.find(params[:id])
 	end
 
 	def update
-		@project = Project.find(params[:id])
-		@project.update(project_params)
-		redirect_to(project_path(@project))
+		if @project.update(project_params)
+			redirect_to(project_path(@project))
+		else
+			render :edit
+		end
 	end
 
 	def destroy
-		@project = Project.find(params[:id])
 		@project.destroy
-		redirect_to projects_path
+		redirect_to root_path
 	end
 
 	private
 
 	def project_params
 		params.require(:project).permit(:image, :genre, :duration, :title, :synopsis, :director, :writer, :actor, :editor, :composer, :cinematographer, :makeup)
+	end
+
+	def set_project
+		:project = Project.find(params[:id])
 	end
 end

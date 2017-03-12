@@ -1,16 +1,3 @@
 = link_to "Cancel", root_path
 
-= simple_form_for @project do |f|
-	= f.input :image
-	= f.input :genre, collection: ["Action", "Adventure", "Comedy", "Crime", "Drama", "Horror", "Sci-fi"]
-	= f.input :duration, collection: ["Very short", "Short", "Long", "Feature"]
-	= f.input :title
-	= f.input :synopsis
-	= f.input :director, input_html: { value: 0, min: 0}
-	= f.input :writer, input_html: { value: 0, min: 0}
-	= f.input :actor, input_html: { value: 0, min: 0}
-	= f.input :editor, input_html: { value: 0, min: 0}
-	= f.input :composer, input_html: { value: 0, min: 0}
-	= f.input :cinematographer, input_html: { value: 0, min: 0}
-	= f.input :makeup, input_html: { value: 0, min: 0}
-	= f.button :submit
+= render 'form'
