@@ -1,4 +1,5 @@
-= link_to "Cancel", root_path
+= link_to "Cancel", projects_path
+= link_to "Delete", project_path(@project), method: :delete, data: { confirm: "Are you sure you want to delete this project?" }
 
 = simple_form_for @project do |f|
 	= f.input :image
