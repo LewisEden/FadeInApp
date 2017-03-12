@@ -1,0 +1,8 @@
+=image_tag @project.image.url(:medium)
+=@project.genre
+=@project.duration
+=@project.title
+=@project.synopsis
+
+= link_to "Back", root_path
+= link_to "Edit", edit_project_path(@project)

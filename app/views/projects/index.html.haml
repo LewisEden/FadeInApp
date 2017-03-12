@@ -1,1 +1,11 @@
 %h1 FadeInApp
+
+= link_to "Create Project", new_project_path
+
+-@projects.each do |project|
+	=image_tag project.image.url(:medium)
+	=project.genre
+	=project.duration
+	=project.title
+	=project.synopsis
+	= link_to "View Project", project_path(project)
