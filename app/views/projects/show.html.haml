@@ -3,6 +3,16 @@
 =@project.duration
 =@project.title
 =@project.synopsis
+=@project.director
+=@project.writer
+=@project.actor
+=@project.editor
+=@project.composer
+=@project.cinematographer
+=@project.makeup
+=@project.user.user_name
 
 = link_to "Back", root_path
-= link_to "Edit", edit_project_path(@project)
+
+-if @project.user.id == current_user.id
+	= link_to "Edit", edit_project_path(@project)

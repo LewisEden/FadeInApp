@@ -30,6 +30,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'haml'
 gem 'paperclip', '~> 5.0.0'
 gem 'simple_form'
+gem 'devise'
+gem 'haml-rails', '~> 0.9'
+gem 'html2haml'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

@@ -1,0 +1,16 @@
+- if @user == current_user
+	= link_to 'Edit Profile', edit_profile_path(@user.user_name)
+
+= @user.bio
+= @user.first_name
+= @user.last_name
+= @user.school
+
+-@projects.each do |project|
+	= image_tag project.image.url(:medium)
+	= project.genre
+	= project.duration
+	= project.title
+	= project.synopsis
+	= link_to "View Project", project_path(project)
+	= link_to project.user.user_name, profile_path(project.user.user_name)

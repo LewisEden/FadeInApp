@@ -1,4 +1,7 @@
 class Project < ApplicationRecord
+	belongs_to :user
+
+	validates :user_id, presence: true
 	validates :image, presence: true
 	validates :genre, presence: true
 	validates :duration, presence: true

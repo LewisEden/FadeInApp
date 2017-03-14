@@ -1,0 +1,7 @@
+= simple_form_for @user, url: {action: "update"}, html: { multipart: true} do |f|
+	= f.input :avatar
+	= f.input :bio
+	= f.input :first_name
+	= f.input :last_name
+	= f.input :school, collection: ["Dunraven School"]
+	= f.submit "Update Profile"

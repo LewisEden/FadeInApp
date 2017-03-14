@@ -1,16 +1,20 @@
 class ProjectsController < ApplicationController
-	before_action :set_project, only: [:show, :edit, :update, :destory]
-
+	before_action :authenticate_user!
+	before_action :set_project, only: [:show, :edit, :update, :destroy]
+	before_action :owned_post, only: [:edit, :update, :destroy]
+	
 	def index
 		@projects = Project.all
 	end
 
 	def new
-		@project = Project.new
+		@project = current_user.projects.build
 	end
 
 	def create
-		if @project = Project.create(project_params)
+		@project = current_user.projects.build(project_params)
+
+		if @project.save
 			redirect_to projects_path
 		else
 			render :new
@@ -44,5 +48,11 @@ class ProjectsController < ApplicationController
 
 	def set_project
 		@project = Project.find(params[:id])
+	end
+
+	def owned_post
+		unless current_user == @project.user
+			redirect_to root_path
+		end
 	end
 end
