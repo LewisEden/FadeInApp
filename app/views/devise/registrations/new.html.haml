@@ -1,11 +1,64 @@
-%h2 Sign up
-= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = f.error_notification
-  .form-inputs
-    = f.input :email, required: true, autofocus: true
-    = f.input :user_name, required: true
-    = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
-    = f.input :password_confirmation, required: true
-  .form-actions
-    = f.button :submit, "Sign up"
-= render "devise/shared/links"
+.container
+  .row
+    .col-md-12
+      %ul.stepper.stepper-horizontal
+        %li.active
+          %a{:href => "#!"}
+            %span.circle 1
+            %span.label Register
+        %li
+          %a{:href => "#!"}
+            %span.circle 2
+            %span.label Select role
+        %li
+          %a{:href => "#!"}
+            %span.circle 3
+            %span.label Some details
+  / Naked Form
+  .card-block
+    / Header
+    .text-center
+      %h3
+        %i.fa.fa-lock
+        Register:
+      %hr.mt-2.mb-2/
+    / Body
+    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = f.error_notification
+      .md-form
+        %i.fa.fa-user.prefix
+        = f.input :user_name, required: true, autofocus: true
+      .md-form
+        %i.fa.fa-envelope.prefix
+        = f.input :email, required: true
+      .md-form
+        %i.fa.fa-lock.prefix
+        = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+      .md-form
+        %i.fa.fa-lock.prefix
+        = f.input :password_confirmation, required: true
+      .text-center
+        = f.button :submit, "Sign up", input_html: { class: 'btn.btn-view' }
+        = render "devise/shared/links"
+          
+          
+          
+    .md-form
+      %i.fa.fa-user.prefix
+      %input#form2.form-control{:type => "text"}/
+      %label{:for => "form2"} Your username
+    .md-form
+      %i.fa.fa-envelope.prefix
+      %input#form3.form-control{:type => "email"}/
+      %label{:for => "form2"} Your email
+    .md-form
+      %i.fa.fa-lock.prefix
+      %input#form4.form-control{:type => "password"}/
+      %label{:for => "form4"} Your password
+    .md-form
+      %i.fa.fa-lock.prefix
+      %input#form4.form-control{:type => "password"}/
+      %label{:for => "form4"} Confirm password
+    .text-center
+      %button.btn.btn-cyan Log In
+      %button.btn.btn-view Sign Up

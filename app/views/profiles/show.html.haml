@@ -1,15 +1,129 @@
+- title "Portfolio | FADE IN"
+
 - if @user == current_user
-	= link_to 'Edit Profile', edit_profile_path(@user.user_name)
+  = link_to edit_profile_path(@user.user_name), :class => "btn btn-view" do
+    %i.fa.fa-pencil
+    Edit Profile
 
-= @user.bio
-= @user.first_name
-= @user.last_name
-= @user.school
+  
+.row
+  .col-sm-4.mb-r
+    .card-wrapper
+      #card-1.card-rotating.effect__click
+        / Front Side
+        .face.front
+          / Image
+          .card-up
+            %img.img-fluid{:src => "https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%2859%29.jpg"}/
+          / Avatar
+          .avatar
+            = image_tag @user.avatar, :class => "img-fluid"
+          / Content
+          .card-block
+            %h4 
+              = @user.first_name
+              = @user.last_name
+            %p
+              = @user.school
+            / Triggering button
+            %a.rotate-btn{"data-card" => "card-1"}
+              %i.fa.fa-repeat
+              Click here to rotate
+        / /.Front Side
+        / Back Side
+        .face.back
+          / Content
+          %h4 About me
+          %hr/
+          %p
+            = @user.bio
+          %hr/
+          / Social Icons
+          %ul.inline-ul
+            %li
+              %a.icons-sm.fb-ic
+                %i.fa.fa-facebook
+            %li
+              %a.icons-sm.tw-ic
+                %i.fa.fa-twitter
+            %li
+              %a.icons-sm.gplus-ic
+                %i.fa.fa-google-plus
+            %li
+              %a.icons-sm.li-ic
+                %i.fa.fa-linkedin
+          / Triggering button
+          %a.rotate-btn{"data-card" => "card-1"}
+            %i.fa.fa-undo
+            Click here to rotate back
+        / /.Back Side
 
--@projects.each do |project|
-	= image_tag project.image.url(:medium)
-	= project.genre
-	= project.duration
-	= project.title
-	= project.synopsis
-	= link_to "View Project", project_path(project)
+.card-group
+  -@projects.each do |project|
+    .card
+      = image_tag project.image.url(:medium), :class => "img-fluid"
+      .card-block
+        - if project.genre == "Action"
+          //Action
+          %i.red-text.fa.fa-fighter-jet
+          %h5.red-text.display-inline
+            = project.genre
+          %i.red-text.fa.fa-clock-o
+          %h5.red-text.display-inline
+            = project.duration
+        - elsif project.genre == "Adventure"
+          //Adventure
+          %i.green-text.fa.fa-envira
+          %h5.green-text.display-inline
+            = project.genre
+          %i.green-text.fa.fa-clock-o
+          %h5.green-text.display-inline
+            = project.duration
+        - elsif project.genre == "Comedy"
+          //Comedy
+          %i.cyan-text.fa.fa-smile-o
+          %h5.cyan-text.display-inline
+            = project.genre
+          %i.cyan-text.fa.fa-clock-o
+          %h5.cyan-text.display-inline
+            = project.duration
+        - elsif project.genre == "Crime"
+          //Crime
+          %i.orange-text.fa.fa-gavel
+          %h5.orange-text.display-inline
+            = project.genre
+          %i.orange-text.fa.fa-clock-o
+          %h5.orange-text.display-inline
+            = project.duration
+        - elsif project.genre == "Drama"
+          //Drama
+          %i.amber-text.fa.fa-group
+          %h5.amber-text.display-inline
+            = project.genre
+          %i.amber-text.fa.fa-clock-o
+          %h5.amber-text.display-inline
+            = project.duration
+        - elsif project.genre == "Horror"
+          //Horror
+          %i.brown-text.fa.fa-warning
+          %h5.brown-text.display-inline
+            = project.genre
+          %i.brown-text.fa.fa-clock-o
+          %h5.brown-text.display-inline
+            = project.duration
+        - else
+          //Si-fi
+          %i.teal-text.fa.fa-rocket
+          %h5.teal-text.display-inline
+            = project.genre
+          %i.teal-text.fa.fa-clock-o
+          %h5.teal-text.display-inline
+            = project.duration
+        %h4.card-title.project-title
+          = project.title
+        %p.card-text
+          = project.synopsis
+        
+        = link_to project_path(project), :class => "btn btn-rounded btn-view btn-sm float-right display-inline" do
+          %span.hidden-sm-down View Project
+        = link_to project.user.user_name, profile_path(project.user.user_name)

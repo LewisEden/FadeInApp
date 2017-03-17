@@ -1,0 +1,97 @@
+%header
+  / Sidebar navigation
+  %ul#slide-out.side-nav.fixed.sn-bg-1.custom-scrollbar
+    / Logo
+    %li
+      .logo-wrapper.waves-effect
+        = link_to root_path do
+          %img.img-fluid.flex-center{:src => "../assets/logo_a.png"}/
+    / /. Logo
+    / Search Form
+    %li
+      %form.search-form{:role => "search"}
+        .form-group.waves-effect
+          %input.form-control{:placeholder => "Search", :type => "text"}/
+    / /.Search Form
+    / Side navigation links
+    %li
+      %ul.collapsible.collapsible-accordion
+        %li
+          = link_to projects_path, :class => "collapsible-header waves-effect arrow-r" do
+            %i.fa.fa-chevron-right
+            Projects
+        %li
+          %a.collapsible-header.waves-effect.arrow-r
+            %i.fa.fa-bullseye>
+            Challenges
+        %li
+          %a.collapsible-header.waves-effect.arrow-r
+            %i.fa.fa-eye>
+            Watch
+        %li
+          %a.collapsible-header.waves-effect.arrow-r
+            %i.fa.fa-ticket>
+            Redeem
+        %li
+          - if user_signed_in?
+            = link_to profile_path(current_user.user_name), :class => "collapsible waves-effect arrow-r" do
+              %i.fa.fa-photo
+              Portfolio
+          - else
+            %a.collapsible-header.waves-effect.arrow-r
+              %i.fa.fa-photo
+              Portfolio
+        %li
+          %a.collapsible-header.waves-effect.arrow-r
+            %i.fa.fa-newspaper-o>
+            Resources
+        %li
+          %a.collapsible-header.waves-effect.arrow-r
+            %i.fa.fa-calendar>
+            Calendar
+        %li
+          %a.collapsible-header.waves-effect.arrow-r
+            %i.fa.fa-folder>
+            Files
+        %li
+          %a.collapsible-header.waves-effect.arrow-r
+            %i.fa.fa-gear>
+            Settings
+    / /. Side navigation links
+    .sidenav-bg.mask-strong
+  / /. Sidebar navigation
+  / Navbar
+  %nav.navbar.fixed-top.navbar-toggleable-md.navbar-dark.scrolling-navbar.double-nav
+    / SideNav slide-out button
+    .float-xs-left
+      %a.button-collapse{"data-activates" => "slide-out", :href => "#"}
+        %i.fa.fa-bars
+    / Breadcrumb
+    .breadcrumb-dn.mr-auto
+      %p
+        %b "Happiness lies in the joy of achievement and the thrill of creative effort."
+        \- Franklin D. Roosevelt
+    %ul.nav.navbar-nav.ml-auto.flex-row
+      %li.nav-item
+        %a.nav-link
+          %i.fa.fa-envelope
+          %span.hidden-sm-down Contact
+      %li.nav-item
+        %a.nav-link
+          %i.fa.fa-comments-o
+          %span.hidden-sm-down Support
+      - if user_signed_in?
+        %li.nav-item
+          = link_to destroy_user_session_path, method: :delete, :class => "nav-link" do
+            %i.fa.fa-sign-out
+            %span.hidden-sm-down Sign Out
+      - else
+        %li.nav-item
+          = link_to new_user_session_path, :class => "nav-link" do
+            %i.fa.fa-sign-in
+            %span.hidden-sm-down Sign In
+        %li.nav-item
+          = link_to new_user_registration_path, :class => "nav-link" do
+            %i.fa.fa-user
+            %span.hidden-sm-down Sign Up
+  / /.Navbar

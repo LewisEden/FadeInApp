@@ -1,16 +1,14 @@
 !!!
 %html
-	%head
-		%meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-		%title FadeInApp
-		= csrf_meta_tags
-		= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-		= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-	%body
-		%p
-			= notice
-		%p
-			= alert
-		= render 'layouts/navbar'
-		= yield
-		= render 'layouts/footer'
+  %head
+    %title= content_for?(:title) ? content_for(:title) : "FADE IN"
+    = render 'layouts/rails_default'
+    %link{:href => "../assets/icon.png", :rel => "shortcut icon", :type => "image/png"}/
+  %body.fixed-sn.white-skin
+    = render 'layouts/header'
+    - flash.each do |message_type, message|
+      %div{:class => "alert alert-#{message_type}"}= message
+    %main= yield
+    = render 'layouts/footer'
+
+

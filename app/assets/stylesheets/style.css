@@ -1,0 +1,25 @@
+/* YOUR CUSTOM STYLES */
+.display-inline {
+	display: inline-block;
+	margin: 0 1px;
+}
+
+.left-padded {
+	margin-left: 15px;
+}
+
+.staff-pick {
+  padding-top: 3.8rem; 
+}
+
+.project-title {
+	font-weight: bold;
+}
+
+.cp-right {
+	float:right;
+}
+
+.card {
+    min-width: 25%;
+}
