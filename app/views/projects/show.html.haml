@@ -1,20 +1,88 @@
 - title "Project | FADE IN"
 
-=image_tag @project.image.url(:medium)
-=@project.genre
-=@project.duration
-=@project.title
-=@project.synopsis
-=@project.director
-=@project.writer
-=@project.actor
-=@project.editor
-=@project.composer
-=@project.cinematographer
-=@project.makeup
-=@project.user.user_name
-
-= link_to "Back", root_path
-
 -if @project.user.id == current_user.id
-	= link_to "Edit", edit_project_path(@project)
+  = link_to "Edit", edit_project_path(@project), :class => "btn btn-orange btn-rounded display-inline btn-sm"
+  %hr
+
+.card-group
+  .card
+    = image_tag @project.image.url(:medium), :class => "img-fluid"
+    .card-block
+      - if @project.genre == "Action"
+        //Action
+        %i.red-text.fa.fa-fighter-jet
+        %h5.red-text.display-inline
+          = @project.genre
+        %i.red-text.fa.fa-clock-o
+        %h5.red-text.display-inline
+          = @project.duration
+      - elsif @project.genre == "Adventure"
+        //Adventure
+        %i.green-text.fa.fa-envira
+        %h5.green-text.display-inline
+          = @project.genre
+        %i.green-text.fa.fa-clock-o
+        %h5.green-text.display-inline
+          = @project.duration
+      - elsif @project.genre == "Comedy"
+        //Comedy
+        %i.cyan-text.fa.fa-smile-o
+        %h5.cyan-text.display-inline
+          = @project.genre
+        %i.cyan-text.fa.fa-clock-o
+        %h5.cyan-text.display-inline
+          = @project.duration
+      - elsif @project.genre == "Crime"
+        //Crime
+        %i.orange-text.fa.fa-gavel
+        %h5.orange-text.display-inline
+          = @project.genre
+        %i.orange-text.fa.fa-clock-o
+        %h5.orange-text.display-inline
+          = @project.duration
+      - elsif @project.genre == "Drama"
+        //Drama
+        %i.amber-text.fa.fa-group
+        %h5.amber-text.display-inline
+          = @project.genre
+        %i.amber-text.fa.fa-clock-o
+        %h5.amber-text.display-inline
+          = @project.duration
+      - elsif @project.genre == "Horror"
+        //Horror
+        %i.brown-text.fa.fa-warning
+        %h5.brown-text.display-inline
+          = @project.genre
+        %i.brown-text.fa.fa-clock-o
+        %h5.brown-text.display-inline
+          = @project.duration
+      - else
+        //Si-fi
+        %i.teal-text.fa.fa-rocket
+        %h5.teal-text.display-inline
+          = @project.genre
+        %i.teal-text.fa.fa-clock-o
+        %h5.teal-text.display-inline
+          = @project.duration
+      
+      %h4.card-title.project-title
+        = @project.title
+      
+      %p.card-text
+        = @project.synopsis
+      
+      =@project.director
+      =@project.writer
+      =@project.actor
+      =@project.editor
+      =@project.composer
+      =@project.cinematographer
+      =@project.makeup
+
+%hr
+.chip
+  Leader:
+  = image_tag @project.user.avatar, :class => "img-fluid"
+  = link_to @project.user.user_name, profile_path(@project.user.user_name), :class => "orange-text"
+
+= link_to "Back", root_path, :class => "btn btn-orange btn-rounded float-right"

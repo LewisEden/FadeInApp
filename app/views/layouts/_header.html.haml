@@ -72,15 +72,15 @@
         %b "Happiness lies in the joy of achievement and the thrill of creative effort."
         \- Franklin D. Roosevelt
     %ul.nav.navbar-nav.ml-auto.flex-row
-      %li.nav-item
-        %a.nav-link
-          %i.fa.fa-envelope
-          %span.hidden-sm-down Contact
-      %li.nav-item
-        %a.nav-link
-          %i.fa.fa-comments-o
-          %span.hidden-sm-down Support
       - if user_signed_in?
+        %li.nav-item
+          %a.nav-link
+            %i.fa.fa-ticket.green-text
+            %l.green-text 30
+        %li.nav-item
+          %a.nav-link
+            %i.fa.fa-comments-o
+            %span.hidden-sm-down Chat
         %li.nav-item
           = link_to destroy_user_session_path, method: :delete, :class => "nav-link" do
             %i.fa.fa-sign-out
