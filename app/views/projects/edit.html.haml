@@ -1,6 +1,4 @@
-- title "Edit Project | FADE IN"
-
-= link_to "Cancel", projects_path
-= link_to "Delete", project_path(@project), method: :delete, data: { confirm: "Are you sure you want to delete this project?" }
+- title "Edit Project - FADE IN"
 
 = render 'form'
+= link_to "Delete", project_path(@project), method: :delete, data: { confirm: "Are you sure you want to delete this project?" }, :class => "btn btn-warning btn-rounded"

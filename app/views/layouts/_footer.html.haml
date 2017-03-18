@@ -1,0 +1,67 @@
+/ Footer
+%footer.page-footer.center-on-small-only
+  / Footer Links
+  .container-fluid
+    .row
+      / First column
+      .col-md-3.offset-1
+        %h5.title About Us
+        %p FADE IN is a collaborative platform which enables students to easily create films, and be rewarded for doing so.
+      / /.First column
+      %hr.hidden-md-up
+        / Second column
+        .col-md-2.offset-1
+          %h5.title FADE IN
+          %ul
+            %li
+              = link_to 'About', page_path('about')
+            %li
+              %a{:href => "#!"} Careers
+            %li
+              %a{:href => "#!"} Press
+            %li
+              = link_to 'FAQ', page_path('faq')
+        / /.Second column
+        %hr.hidden-md-up
+          / Third column
+          .col-md-2
+            %h5.title Discover
+            %ul
+              %li
+                %a{:href => "#!"} Trust & Safety
+              %li
+                %a{:href => "#!"} FADE IN Tickets
+              %li
+                %a{:href => "#!"} Terms & Privacy
+              %li
+                %a{:href => "#!"} Usage
+          / /.Third column
+          %hr.hidden-md-up
+            / Fourth column
+            .col-md-2
+              %h5.title Community
+              %ul
+                %li
+                  %a{:href => "#!"} Join as a creator
+                %li
+                  %a{:href => "#!"} Become a curator
+                %li
+                  %a{:href => "#!"} Advertising
+                %li
+                  %a{:href => "#!"} Partnerships
+            / /.Fourth column
+        / /.Footer Links
+        / Copyright
+        .footer-copyright.center
+          .container-fluid.center
+            \© 2017 Copyright:
+            %a{:href => "http://www.fadeinapp.com"} FADE IN LTD
+        / /.Copyright
+      / /.Footer
+      / SCRIPTS
+      %script{:src => "https://mdbootstrap.com/wp-content/themes/mdbootstrap4/js/compiled.min.js", :type => "text/javascript"}
+      :javascript
+        $(".button-collapse").sideNav();
+            
+        var el = document.querySelector('.custom-scrollbar');
+        Ps.initialize(el);

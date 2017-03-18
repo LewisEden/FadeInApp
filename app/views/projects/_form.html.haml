@@ -1,21 +1,24 @@
-.card-block
-  .text-center
-    %h3
-      %i.fa.fa-plus
-      Create Project
-    %hr.mt-2.mb-2
-    
-  = simple_form_for @project do |f|
-    = f.input :image
-    = f.input :genre, collection: ["Action", "Adventure", "Comedy", "Crime", "Drama", "Horror", "Sci-fi"], input_html: { class: 'browser-default' }
-    = f.input :duration, collection: ["Very short", "Short", "Long", "Feature"], input_html: { class: 'browser-default' }
-    = f.input :title, input_html: { minlength: 3, maxlength: 50, length: '50' }
-    = f.input :synopsis, input_html: { minlength: 100, maxlength: 500, class: 'md-textarea', length: '500' }
-    = f.input :director, input_html: { min: 0, max: 1}
-    = f.input :writer, input_html: { min: 0, max: 5}
-    = f.input :actor, input_html: { min: 0, max: 15}
-    = f.input :editor, input_html: { min: 0, max: 3}
-    = f.input :composer, input_html: { min: 0, max: 3}
-    = f.input :cinematographer, input_html: { min: 0, max: 3}
-    = f.input :makeup, input_html: { min: 0, max: 5}
-    = f.button :submit
+%br
+.card
+  .card-block
+    .form-header.orange.darken-4
+      %h3
+        %i.fa.fa-plus
+        Create Project
+    = simple_form_for @project do |f|
+      = f.input :image
+      .form-inline
+        = f.input :genre, collection: ["Action", "Adventure", "Comedy", "Crime", "Drama", "Horror", "Sci-fi"], input_html: { class: 'browser-default' }
+        = f.input :duration, collection: ["Very short", "Short", "Long", "Feature"], input_html: { class: 'browser-default' }
+      = f.input :title, input_html: { minlength: 3, maxlength: 50, length: '50' }
+      = f.input :synopsis, input_html: { minlength: 100, maxlength: 500, class: 'md-textarea', length: '500' }
+      .form-inline
+        = f.input :director, input_html: { min: 0, max: 1}
+        = f.input :writer, input_html: { min: 0, max: 5}
+        = f.input :actor, input_html: { min: 0, max: 15}
+        = f.input :editor, input_html: { min: 0, max: 3}
+        = f.input :composer, input_html: { min: 0, max: 3}
+        = f.input :cinematographer, input_html: { min: 0, max: 3}
+        = f.input :makeup, input_html: { min: 0, max: 5}
+      = f.button :submit, :class => "btn btn-primary btn-rounded btn-sm"
+      = link_to "Cancel", root_path, :class => "btn btn-secondary btn-rounded"

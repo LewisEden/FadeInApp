@@ -1,12 +1,12 @@
-- title "Project | FADE IN"
+- title @project.title
 
 -if @project.user.id == current_user.id
   = link_to "Edit", edit_project_path(@project), :class => "btn btn-orange btn-rounded display-inline btn-sm"
   %hr
 
-.card-group
+.card-group.col-md-6
   .card
-    = image_tag @project.image.url(:medium), :class => "img-fluid"
+    = image_tag @project.image.url(:medium), :class => "img-fluid img-responsive"
     .card-block
       - if @project.genre == "Action"
         //Action
@@ -64,22 +64,34 @@
         %i.teal-text.fa.fa-clock-o
         %h5.teal-text.display-inline
           = @project.duration
-      
       %h4.card-title.project-title
         = @project.title
-      
       %p.card-text
         = @project.synopsis
-      
-      =@project.director
-      =@project.writer
-      =@project.actor
-      =@project.editor
-      =@project.composer
-      =@project.cinematographer
-      =@project.makeup
-
-%hr
+      %hr
+      %h4 Crew needed
+      - if @project.director > 0
+        %i.fa.fa-fighter-jet
+        =@project.director
+      - if @project.writer > 0
+        %i.fa.fa-pencil
+        =@project.writer
+      - if @project.actor > 0
+        %i.fa.fa-user
+        =@project.actor
+      - if @project.editor > 0
+        %i.fa.fa-desktop
+        =@project.editor
+      - if @project.composer > 0
+        %i.fa.fa-music
+        =@project.composer
+      - if @project.cinematographer > 0
+        %i.fa.fa-video-camera
+        =@project.cinematographer
+      - if @project.makeup > 0
+        %i.fa.fa-paint-brush
+        =@project.makeup
+%br
 .chip
   Leader:
   = image_tag @project.user.avatar, :class => "img-fluid"
