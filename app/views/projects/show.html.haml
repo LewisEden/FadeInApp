@@ -71,26 +71,47 @@
       %hr
       %h4 Crew needed
       - if @project.director > 0
-        %i.fa.fa-fighter-jet
-        =@project.director
+        .view.display-inline
+          %img.img-fluid{:alt => "", :src => "../assets/roles/clapperboard.png", :height => "50", :width => "50"}/
+          .mask
+            .span.badge.badge-danger
+              =@project.director
       - if @project.writer > 0
-        %i.fa.fa-pencil
-        =@project.writer
+        .view.display-inline
+          %img.img-fluid{:alt => "", :src => "../assets/roles/edit.png", :height => "50", :width => "50"}/
+          .mask
+            .span.badge.badge-danger
+              =@project.writer
       - if @project.actor > 0
-        %i.fa.fa-user
-        =@project.actor
+        .view.display-inline
+          %img.img-fluid{:alt => "", :src => "../assets/roles/theater.png", :height => "50", :width => "50"}/
+          .mask
+            .span.badge.badge-danger
+              =@project.actor
       - if @project.editor > 0
-        %i.fa.fa-desktop
-        =@project.editor
+        .view.display-inline
+          %img.img-fluid{:alt => "", :src => "../assets/roles/imac.png", :height => "50", :width => "50"}/
+          .mask
+            .span.badge.badge-danger
+              =@project.editor
       - if @project.composer > 0
-        %i.fa.fa-music
-        =@project.composer
+        .view.display-inline
+          %img.img-fluid{:alt => "", :src => "../assets/roles/music-player.png", :height => "50", :width => "50"}/
+          .mask
+            .span.badge.badge-danger
+              =@project.composer
       - if @project.cinematographer > 0
-        %i.fa.fa-video-camera
-        =@project.cinematographer
+        .view.display-inline
+          %img.img-fluid{:alt => "", :src => "../assets/roles/photo-camera.png", :height => "50", :width => "50"}/
+          .mask
+            .span.badge.badge-danger
+              =@project.cinematographer
       - if @project.makeup > 0
-        %i.fa.fa-paint-brush
-        =@project.makeup
+        .view.display-inline
+          %img.img-fluid{:alt => "", :src => "../assets/roles/paint-brush.png", :height => "50", :width => "50"}/
+          .mask
+            .span.badge.badge-danger
+              =@project.makeup
 %br
 .chip
   Leader:

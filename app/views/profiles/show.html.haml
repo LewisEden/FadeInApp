@@ -4,7 +4,6 @@
   = link_to edit_profile_path(@user.user_name), :class => "btn btn-view" do
     %i.fa.fa-pencil
     Edit Profile
-
   
 .row
   .col-sm-4.mb-r
@@ -19,9 +18,12 @@
           .avatar
             = image_tag @user.avatar, :class => "rounded-circle img-responsive"
           .card-block
-            %h4 
+            %h4
               = @user.first_name
               = @user.last_name
+              - if @user.vip == true
+                .span.badge.badge-warning
+                  VIP
             %p
               = @user.school
             / Triggering button
