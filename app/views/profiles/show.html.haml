@@ -4,20 +4,20 @@
   %li.nav-item
     %a.nav-link.active{"data-toggle" => "tab", :href => "#portfolio", :role => "tab"}
       %i.fa.fa-image
-      Portfolio
+      %span.hidden-sm-down Portfolio
   %li.nav-item
     %a.nav-link{"data-toggle" => "tab", :href => "#accolades", :role => "tab"}
       %i.fa.fa-diamond
-      Accolades
+      %span.hidden-sm-down Accolades
   %li.nav-item
     %a.nav-link{"data-toggle" => "tab", :href => "#friends", :role => "tab"}
       %i.fa.fa-group
-      Friends
+      %span.hidden-sm-down Friends
   - if @user == current_user
     %li.nav-item
       %a.nav-link{"data-toggle" => "tab", :href => "#edit", :role => "tab"}
         %i.fa.fa-cog
-        Settings
+        %span.hidden-sm-down Settings
 %hr
 / Tab panels
 .tab-content

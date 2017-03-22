@@ -18,6 +18,8 @@
                 .span.badge.badge-info
                   VIP
             %p
+              = @user.pref_role
+              %br
               = @user.school
             / Triggering button
             %a.rotate-btn{"data-card" => "card-1"}
@@ -121,5 +123,5 @@
           = project.synopsis
         
         = link_to project_path(project), :class => "btn btn-rounded btn-view btn-sm float-right display-inline" do
-          %span.hidden-sm-down View Project
+          View Project
         = link_to project.user.user_name, profile_path(project.user.user_name)

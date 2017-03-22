@@ -10,7 +10,6 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @user.tickets = 0
   	if @user.update(profile_params)
   		redirect_to profile_path(@user.user_name)
   	else
@@ -21,7 +20,7 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-  	params.require(:user).permit(:avatar, :bio, :first_name, :last_name, :school)
+  	params.require(:user).permit(:avatar, :bio, :first_name, :last_name, :school, :pref_role)
   end
 
   def owned_profile
