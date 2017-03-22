@@ -76,7 +76,12 @@
         %li.nav-item
           %a.nav-link
             %i.fa.fa-ticket.green-text
-            %l.green-text 30
+            - if current_user.tickets == "null"
+              %l.green-text 
+                0
+            - else
+              %l.green-text
+                = current_user.tickets
         %li.nav-item
           %a.nav-link
             %i.fa.fa-comments-o

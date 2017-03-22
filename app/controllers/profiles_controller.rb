@@ -10,6 +10,7 @@ class ProfilesController < ApplicationController
   end
 
   def update
+    @user.tickets = 0
   	if @user.update(profile_params)
   		redirect_to profile_path(@user.user_name)
   	else
