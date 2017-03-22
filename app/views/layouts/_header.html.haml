@@ -22,15 +22,15 @@
             Projects
         %li
           %a.collapsible-header.waves-effect.arrow-r
-            %i.fa.fa-bullseye>
+            %i.fa.fa-bullseye
             Challenges
         %li
           %a.collapsible-header.waves-effect.arrow-r
-            %i.fa.fa-eye>
+            %i.fa.fa-eye
             Watch
         %li
           %a.collapsible-header.waves-effect.arrow-r
-            %i.fa.fa-ticket>
+            %i.fa.fa-ticket
             Redeem
         %li
           - if user_signed_in?
@@ -43,20 +43,25 @@
               Portfolio
         %li
           %a.collapsible-header.waves-effect.arrow-r
-            %i.fa.fa-newspaper-o>
+            %i.fa.fa-newspaper-o
             Resources
         %li
           %a.collapsible-header.waves-effect.arrow-r
-            %i.fa.fa-calendar>
+            %i.fa.fa-calendar
             Calendar
         %li
           %a.collapsible-header.waves-effect.arrow-r
-            %i.fa.fa-folder>
+            %i.fa.fa-folder
             Files
         %li
-          %a.collapsible-header.waves-effect.arrow-r
-            %i.fa.fa-gear>
-            Settings
+          - if user_signed_in?
+            = link_to edit_user_registration_path, :class => "collapsible-header waves-effect arrow-r" do
+              %i.fa.fa-gear
+              Settings
+          -else
+            %a.collapsible-header.waves-effect.arrow-r
+              %i.fa.fa-gear
+              Settings
     / /. Side navigation links
     .sidenav-bg.mask-strong
   / /. Sidebar navigation
@@ -76,7 +81,7 @@
         %li.nav-item
           %a.nav-link
             %i.fa.fa-ticket.green-text
-            - if current_user.tickets == "null"
+            - if current_user.tickets == nil
               %l.green-text 
                 0
             - else

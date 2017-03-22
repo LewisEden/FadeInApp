@@ -9,7 +9,10 @@
             %img.img-fluid{:src => "https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%2859%29.jpg"}/
           / Avatar
           .avatar
-            = image_tag @user.avatar(:medium), :class => "rounded-circle img-responsive"
+            - if @user.avatar_file_name == nil
+              %img{:src => "../assets/icon.png", :class => "rounded-circle img-responsive"}
+            - else
+              = image_tag @user.avatar(:medium), :class => "rounded-circle img-responsive"
           .card-block
             %h4
               = @user.first_name
@@ -17,9 +20,12 @@
               - if @user.vip == true
                 .span.badge.badge-info
                   VIP
+              - if @user.admin == true
+                .span.badge.badge-warning
+                  mod
             %p
               = @user.pref_role
-              %br
+              |
               = @user.school
             / Triggering button
             %a.rotate-btn{"data-card" => "card-1"}

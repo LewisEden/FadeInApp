@@ -7,92 +7,92 @@
 %hr
 .card-group
   -@projects.each do |project|
-    .card
-      = image_tag project.image.url(:medium), :class => "img-fluid"
-      .card-block
-        - if project.genre == "Action"
-          //Action
-          %i.red-text.fa.fa-fighter-jet
-          %h5.red-text.display-inline
-            = project.genre
-          %i.red-text.fa.fa-clock-o
-          %h5.red-text.display-inline
-            = project.duration
-        - elsif project.genre == "Adventure"
-          //Adventure
-          %i.green-text.fa.fa-envira
-          %h5.green-text.display-inline
-            = project.genre
-          %i.green-text.fa.fa-clock-o
-          %h5.green-text.display-inline
-            = project.duration
-        - elsif project.genre == "Comedy"
-          //Comedy
-          %i.cyan-text.fa.fa-smile-o
-          %h5.cyan-text.display-inline
-            = project.genre
-          %i.cyan-text.fa.fa-clock-o
-          %h5.cyan-text.display-inline
-            = project.duration
-        - elsif project.genre == "Crime"
-          //Crime
-          %i.orange-text.fa.fa-gavel
-          %h5.orange-text.display-inline
-            = project.genre
-          %i.orange-text.fa.fa-clock-o
-          %h5.orange-text.display-inline
-            = project.duration
-        - elsif project.genre == "Drama"
-          //Drama
-          %i.amber-text.fa.fa-group
-          %h5.amber-text.display-inline
-            = project.genre
-          %i.amber-text.fa.fa-clock-o
-          %h5.amber-text.display-inline
-            = project.duration
-        - elsif project.genre == "Horror"
-          //Horror
-          %i.brown-text.fa.fa-warning
-          %h5.brown-text.display-inline
-            = project.genre
-          %i.brown-text.fa.fa-clock-o
-          %h5.brown-text.display-inline
-            = project.duration
-        - else
-          //Si-fi
-          %i.teal-text.fa.fa-rocket
-          %h5.teal-text.display-inline
-            = project.genre
-          %i.teal-text.fa.fa-clock-o
-          %h5.teal-text.display-inline
-            = project.duration
-        %h4.card-title.project-title
-          = project.title
-        %p.card-text
-          = project.synopsis
-        - if project.director > 0
-          //director
-          %i.fa.fa-fighter-jet
-        - if project.writer > 0
-          //writer
-          %i.fa.fa-pencil
-        - if project.actor > 0
-          //actor
-          %i.fa.fa-user
-        - if project.editor > 0
-          //editor
-          %i.fa.fa-desktop
-        - if project.composer > 0
-          //composer
-          %i.fa.fa-music
-        - if project.cinematographer > 0
-          //cinematographer
-          %i.fa.fa-video-camera
-        - if project.makeup > 0
-          //makeup
-          %i.fa.fa-paint-brush
-          
-        = link_to project_path(project), :class => "btn btn-rounded btn-view btn-sm float-right display-inline" do
-          View Project
+    - if project.public == true
+      .card
+        = image_tag project.image.url(:medium), :class => "img-fluid"
+        .card-block
+          - if project.genre == "Action"
+            //Action
+            %i.red-text.fa.fa-fighter-jet
+            %h5.red-text.display-inline
+              = project.genre
+            %i.red-text.fa.fa-clock-o
+            %h5.red-text.display-inline
+              = project.duration
+          - elsif project.genre == "Adventure"
+            //Adventure
+            %i.green-text.fa.fa-envira
+            %h5.green-text.display-inline
+              = project.genre
+            %i.green-text.fa.fa-clock-o
+            %h5.green-text.display-inline
+              = project.duration
+          - elsif project.genre == "Comedy"
+            //Comedy
+            %i.cyan-text.fa.fa-smile-o
+            %h5.cyan-text.display-inline
+              = project.genre
+            %i.cyan-text.fa.fa-clock-o
+            %h5.cyan-text.display-inline
+              = project.duration
+          - elsif project.genre == "Crime"
+            //Crime
+            %i.orange-text.fa.fa-gavel
+            %h5.orange-text.display-inline
+              = project.genre
+            %i.orange-text.fa.fa-clock-o
+            %h5.orange-text.display-inline
+              = project.duration
+          - elsif project.genre == "Drama"
+            //Drama
+            %i.amber-text.fa.fa-group
+            %h5.amber-text.display-inline
+              = project.genre
+            %i.amber-text.fa.fa-clock-o
+            %h5.amber-text.display-inline
+              = project.duration
+          - elsif project.genre == "Horror"
+            //Horror
+            %i.brown-text.fa.fa-warning
+            %h5.brown-text.display-inline
+              = project.genre
+            %i.brown-text.fa.fa-clock-o
+            %h5.brown-text.display-inline
+              = project.duration
+          - else
+            //Si-fi
+            %i.teal-text.fa.fa-rocket
+            %h5.teal-text.display-inline
+              = project.genre
+            %i.teal-text.fa.fa-clock-o
+            %h5.teal-text.display-inline
+              = project.duration
+          %h4.card-title.project-title
+            = project.title
+          %p.card-text
+            = project.synopsis
+          - if project.director > 0
+            //director
+            %i.fa.fa-fighter-jet
+          - if project.writer > 0
+            //writer
+            %i.fa.fa-pencil
+          - if project.actor > 0
+            //actor
+            %i.fa.fa-user
+          - if project.editor > 0
+            //editor
+            %i.fa.fa-desktop
+          - if project.composer > 0
+            //composer
+            %i.fa.fa-music
+          - if project.cinematographer > 0
+            //cinematographer
+            %i.fa.fa-video-camera
+          - if project.makeup > 0
+            //makeup
+            %i.fa.fa-paint-brush
+          = link_to project_path(project), :class => "btn btn-rounded btn-view btn-sm float-right display-inline" do
+            View Project
 
       	

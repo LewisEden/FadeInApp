@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322165423) do
+ActiveRecord::Schema.define(version: 20170322193842) do
 
   create_table "projects", force: :cascade do |t|
     t.string   "genre"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20170322165423) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "user_id"
+    t.boolean  "public"
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
@@ -59,6 +60,7 @@ ActiveRecord::Schema.define(version: 20170322165423) do
     t.boolean  "vip"
     t.integer  "tickets"
     t.string   "pref_role"
+    t.boolean  "admin"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["user_name"], name: "index_users_on_user_name", unique: true
