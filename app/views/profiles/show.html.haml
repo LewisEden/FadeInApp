@@ -16,7 +16,7 @@
             %img.img-fluid{:src => "https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%2859%29.jpg"}/
           / Avatar
           .avatar
-            = image_tag @user.avatar, :class => "rounded-circle img-responsive"
+            = image_tag @user.avatar(:medium), :class => "rounded-circle img-responsive"
           .card-block
             %h4
               = @user.first_name

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :projects
   root 'projects#index'
 
-  get ':user_name', to: 'profiles#show', as: :profile
-  get ':user_name/edit', to: 'profiles#edit', as: :edit_profile
-  patch ':user_name/edit', to: 'profiles#update', as: :update_profile
+  get 'user/:user_name', to: 'profiles#show', as: :profile
+  get 'user/:user_name/edit', to: 'profiles#edit', as: :edit_profile
+  patch 'user/:user_name/edit', to: 'profiles#update', as: :update_profile
 end
