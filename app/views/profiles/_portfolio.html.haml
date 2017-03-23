@@ -15,8 +15,12 @@
               = image_tag @user.avatar(:medium), :class => "rounded-circle img-responsive"
           .card-block
             %h4
-              = @user.first_name
-              = @user.last_name
+              - if @user.first_name == nil
+                - if @user.last_name == nil
+                  = @user.user_name
+              - else
+                = @user.first_name
+                = @user.last_name
               - if @user.vip == true
                 .span.badge.badge-info
                   VIP
@@ -24,9 +28,12 @@
                 .span.badge.badge-warning
                   mod
             %p
-              = @user.pref_role
-              |
-              = @user.school
+              - if @user.pref_role == nil
+                Happy FADE IN User
+              - else
+                = @user.pref_role
+                |
+                = @user.school
             / Triggering button
             %a.rotate-btn{"data-card" => "card-1"}
               %i.fa.fa-repeat

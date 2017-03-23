@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322193842) do
+ActiveRecord::Schema.define(version: 20170322215209) do
 
   create_table "projects", force: :cascade do |t|
     t.string   "genre"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20170322193842) do
     t.datetime "image_updated_at"
     t.integer  "user_id"
     t.boolean  "public"
+    t.boolean  "completed"
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 

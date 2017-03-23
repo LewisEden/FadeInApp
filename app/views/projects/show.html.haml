@@ -3,6 +3,9 @@
 -if @project.user.id == current_user.id
   = link_to "Edit", edit_project_path(@project), :class => "btn btn-orange btn-rounded display-inline btn-sm"
   %hr
+  
+  
+  
 
 .card-group.col-md-6
   .card
@@ -115,7 +118,10 @@
 %br
 .chip
   Leader:
-  = image_tag @project.user.avatar, :class => "img-fluid"
+  - if @project.user.avatar_file_name == nil
+    %img.img-fluid{:src => "../assets/icon.png"}
+  - else
+    = image_tag @project.user.avatar, :class => "img-fluid"
   = link_to @project.user.user_name, profile_path(@project.user.user_name), :class => "orange-text"
 
 = link_to "Back", root_path, :class => "btn btn-orange btn-rounded float-right"

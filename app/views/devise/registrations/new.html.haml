@@ -38,14 +38,23 @@
                     Signup:
                 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
                   = f.error_notification
-                  .md-form
-                    = f.input :user_name, required: true, autofocus: true, :class => "form-control"
-                  .md-form
-                    = f.input :email, required: true
-                  .md-form
-                    = f.input :password, required: true, :class => "form-control"
-                  .md-form
-                    = f.input :password_confirmation, required: true
+                  .form-input
+                    .md-form
+                      %i.fa.fa-user.prefix
+                      = f.input_field :user_name, id: "username", required: true, autofocus: true, :class => "form-control"
+                      %label{:for => "username"} Username
+                    .md-form
+                      %i.fa.fa-envelope.prefix
+                      = f.input_field :email, id: "email", required: true, :class => "form-control"
+                      %label{:for => "email"} Email
+                    .md-form
+                      %i.fa.fa-lock.prefix
+                      = f.input_field :password, id: "password", required: true, :class => "form-control"
+                      %label{:for => "password"} Password
+                    .md-form
+                      %i.fa.fa-lock.prefix
+                      = f.input_field :password_confirmation, id: "passwordconfirm", required: true, :class => "form-control"
+                      %label{:for => "passwordconfirm"} Confirm password
                   .text-center
                     = f.button :submit, "Sign up", :class => 'btn btn-primary btn-rounded'
               .modal-footer.text-center
