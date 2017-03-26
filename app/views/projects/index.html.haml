@@ -70,7 +70,7 @@
           %h4.card-title.project-title
             = project.title
           %p.card-text
-            = project.synopsis
+            = truncate(project.synopsis, length: 120)
           - if project.director > 0
             //director
             %i.fa.fa-fighter-jet

@@ -1,11 +1,8 @@
 - title @project.title + " - FADE IN"
 
--if @project.user.id == current_user.id
+-if @project.users.ids.first == current_user.id
   = link_to "Edit", edit_project_path(@project), :class => "btn btn-orange btn-rounded display-inline btn-sm"
   %hr
-  
-  
-  
 
 .card-group.col-md-6
   .card
@@ -75,53 +72,48 @@
       %h4 Crew needed
       - if @project.director > 0
         .view.display-inline
-          %img.img-fluid{:alt => "", :src => "../assets/roles/clapperboard.png", :height => "50", :width => "50"}/
+          %img.img-fluid{:alt => "", :src => "/assets/roles/clapperboard.png", :height => "50", :width => "50"}/
           .mask
             .span.badge.badge-danger
               =@project.director
       - if @project.writer > 0
         .view.display-inline
-          %img.img-fluid{:alt => "", :src => "../assets/roles/edit.png", :height => "50", :width => "50"}/
+          %img.img-fluid{:alt => "", :src => "/assets/roles/edit.png", :height => "50", :width => "50"}/
           .mask
             .span.badge.badge-danger
               =@project.writer
       - if @project.actor > 0
         .view.display-inline
-          %img.img-fluid{:alt => "", :src => "../assets/roles/theater.png", :height => "50", :width => "50"}/
+          %img.img-fluid{:alt => "", :src => "/assets/roles/theater.png", :height => "50", :width => "50"}/
           .mask
             .span.badge.badge-danger
               =@project.actor
       - if @project.editor > 0
         .view.display-inline
-          %img.img-fluid{:alt => "", :src => "../assets/roles/imac.png", :height => "50", :width => "50"}/
+          %img.img-fluid{:alt => "", :src => "/assets/roles/imac.png", :height => "50", :width => "50"}/
           .mask
             .span.badge.badge-danger
               =@project.editor
       - if @project.composer > 0
         .view.display-inline
-          %img.img-fluid{:alt => "", :src => "../assets/roles/music-player.png", :height => "50", :width => "50"}/
+          %img.img-fluid{:alt => "", :src => "/assets/roles/music-player.png", :height => "50", :width => "50"}/
           .mask
             .span.badge.badge-danger
               =@project.composer
       - if @project.cinematographer > 0
         .view.display-inline
-          %img.img-fluid{:alt => "", :src => "../assets/roles/photo-camera.png", :height => "50", :width => "50"}/
+          %img.img-fluid{:alt => "", :src => "/assets/roles/photo-camera.png", :height => "50", :width => "50"}/
           .mask
             .span.badge.badge-danger
               =@project.cinematographer
       - if @project.makeup > 0
         .view.display-inline
-          %img.img-fluid{:alt => "", :src => "../assets/roles/paint-brush.png", :height => "50", :width => "50"}/
+          %img.img-fluid{:alt => "", :src => "/assets/roles/paint-brush.png", :height => "50", :width => "50"}/
           .mask
             .span.badge.badge-danger
               =@project.makeup
-%br
-.chip
-  Leader:
-  - if @project.user.avatar_file_name == nil
-    %img.img-fluid{:src => "../assets/icon.png"}
-  - else
-    = image_tag @project.user.avatar, :class => "img-fluid"
-  = link_to @project.user.user_name, profile_path(@project.user.user_name), :class => "orange-text"
+=@project.users.ids
 
+    
 = link_to "Back", root_path, :class => "btn btn-orange btn-rounded float-right"
+= link_to "Join", request_join_path, :class => "btn btn-orange btn-rounded"

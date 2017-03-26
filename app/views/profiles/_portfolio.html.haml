@@ -133,7 +133,7 @@
         %h4.card-title.project-title
           = project.title
         %p.card-text
-          = project.synopsis
+          = truncate(project.synopsis, length: 120)
         
         = link_to project_path(project), :class => "btn btn-rounded btn-view btn-sm float-right display-inline" do
           View Project

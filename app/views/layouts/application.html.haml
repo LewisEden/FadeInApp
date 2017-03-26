@@ -7,6 +7,8 @@
     %link{:href => "../assets/icon.png", :rel => "shortcut icon", :type => "image/png"}/
   %body.fixed-sn.white-skin
     = render 'layouts/header'
+    - if flash[:notice]
+      .notice= flash[:notice]
     %main= yield
     = render 'layouts/footer'
 

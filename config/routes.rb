@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   get 'user/:user_name', to: 'profiles#show', as: :profile
   get 'user/:user_name/edit', to: 'profiles#edit', as: :edit_profile
   patch 'user/:user_name/edit', to: 'profiles#update', as: :update_profile
+  
+  get 'project/join/:id', to: 'requests#create', as: :request_join
 end

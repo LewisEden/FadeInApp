@@ -13,11 +13,14 @@ class ProjectsController < ApplicationController
 
 	def create
 		@project = current_user.projects.build(project_params)
+		current_user.projects << @project
 
 		if @project.save
+			flash.now[:notice] = "done"
 			redirect_to projects_path
 		else
 			render :new
+			flash.now[:notice] = "something else happened"
 		end
 	end
 
@@ -51,7 +54,7 @@ class ProjectsController < ApplicationController
 	end
 
 	def owned_post
-		unless current_user == @project.user
+		unless current_user.id == @project.users.ids.first
 			redirect_to root_path
 		end
 	end
