@@ -1,0 +1,14 @@
+- @requests.each do |request|
+  - @project = Project.find(request.project_id)
+  - if current_user.id == @project.users.ids.first
+    = request.bio
+    = request.role
+    project id:
+    = request.project_id
+    user id:
+    = request.user_id
+    request id:
+    = request.id
+    = link_to "Accept", request_join_path(request.project_id, request.id), :class => "btn btn-orange btn-rounded"
+    = link_to "Decline", request_destroy_path(request.project_id, request.id), :class => "btn btn-orange btn-rounded"
+  %br

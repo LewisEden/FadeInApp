@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326102834) do
+ActiveRecord::Schema.define(version: 20170327174442) do
 
   create_table "projects", force: :cascade do |t|
     t.string   "genre"
@@ -34,6 +34,17 @@ ActiveRecord::Schema.define(version: 20170326102834) do
     t.boolean  "public"
     t.boolean  "completed"
     t.index ["user_id"], name: "index_projects_on_user_id"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.text     "bio"
+    t.string   "role"
+    t.boolean  "sent",       default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.index ["project_id"], name: "index_requests_on_project_id"
   end
 
   create_table "user_projects", force: :cascade do |t|

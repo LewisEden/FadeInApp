@@ -52,3 +52,4 @@
       = f.input :public, input_html: { checked: true }
       = f.button :submit, :class => "btn btn-primary btn-rounded btn-sm"
       = link_to "Cancel", root_path, :class => "btn btn-secondary btn-rounded"
+      = link_to "Delete", project_path(@project), method: :delete, data: { confirm: "Are you sure you want to delete this project?" }, :class => "btn btn-warning btn-rounded"

@@ -1,0 +1,5 @@
+%h1 form
+= simple_form_for @request, url: request_request_path do |f|
+  = f.input :bio
+  = f.input :role
+  = f.submit

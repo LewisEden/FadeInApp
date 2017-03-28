@@ -112,8 +112,17 @@
           .mask
             .span.badge.badge-danger
               =@project.makeup
-=@project.users.ids
-
+%br
+%h5 The Crew
+- @project.users.each do |user|
+  .chip
+    - if user.pref_role != nil
+      = user.pref_role + ":"
+    - if user.avatar_file_name == nil
+      %img.img-fluid{:src => "../assets/icon.png"}
+    - else
+      = image_tag user.avatar, :class => "img-fluid"
+    = link_to user.user_name, profile_path(user.user_name), :class => "orange-text"
     
 = link_to "Back", root_path, :class => "btn btn-orange btn-rounded float-right"
-= link_to "Join", request_join_path, :class => "btn btn-orange btn-rounded"
+= link_to "Request", request_request_path(@project.id), :class => "btn btn-orange btn-rounded"

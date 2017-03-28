@@ -79,6 +79,9 @@
     %ul.nav.navbar-nav.ml-auto.flex-row
       - if user_signed_in?
         %li.nav-item
+          = link_to request_view_path, :class => "nav-link" do
+            %i.fa.fa-bell-o
+        %li.nav-item
           %a.nav-link
             %i.fa.fa-ticket.green-text
             - if current_user.tickets == nil

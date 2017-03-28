@@ -16,11 +16,11 @@ class ProjectsController < ApplicationController
 		current_user.projects << @project
 
 		if @project.save
-			flash.now[:notice] = "done"
-			redirect_to projects_path
+			flash[:notice] = "it worked!"
+			redirect_to(project_path(@project))
 		else
 			render :new
-			flash.now[:notice] = "something else happened"
+			flash[:notice] = "something else happened"
 		end
 	end
 
