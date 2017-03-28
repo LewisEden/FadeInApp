@@ -14,13 +14,16 @@ class ProjectsController < ApplicationController
 	def create
 		@project = current_user.projects.build(project_params)
 		current_user.projects << @project
+		@projectmade = UserProject.last
+		@projectmade.user_role = @project.leader_role
+		@projectmade.save
 
 		if @project.save
-			flash[:notice] = "it worked!"
+			flash[:success] = "Project successfully created"
 			redirect_to(project_path(@project))
 		else
 			render :new
-			flash[:notice] = "something else happened"
+			flash[:notice] = "Something went wrong"
 		end
 	end
 
@@ -33,6 +36,7 @@ class ProjectsController < ApplicationController
 	def update
 		if @project.update(project_params)
 			redirect_to(project_path(@project))
+			flash[:success] = "Project succesfully updated"
 		else
 			render :edit
 		end
@@ -41,12 +45,13 @@ class ProjectsController < ApplicationController
 	def destroy
 		@project.destroy
 		redirect_to root_path
+		flash[:danger] = "Project successfully deleted"
 	end
 
 	private
 
 	def project_params
-		params.require(:project).permit(:image, :genre, :duration, :title, :synopsis, :director, :writer, :actor, :editor, :composer, :cinematographer, :makeup, :public)
+		params.require(:project).permit(:image, :genre, :duration, :title, :synopsis, :director, :writer, :actor, :editor, :composer, :cinematographer, :makeup, :leader_role, :public)
 	end
 
 	def set_project

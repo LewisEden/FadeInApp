@@ -5,7 +5,7 @@
     %li
       .logo-wrapper.waves-effect
         = link_to root_path do
-          %img.img-fluid.flex-center{:src => "../../assets/logo_a.png"}/
+          %img.img-fluid.flex-center{:src => "/assets/logo_a.png"}/
     / /. Logo
     / Search Form
     %li
@@ -80,7 +80,7 @@
       - if user_signed_in?
         %li.nav-item
           = link_to request_view_path, :class => "nav-link" do
-            %i.fa.fa-bell-o
+            %i.fa.fa-bell.orange-text
         %li.nav-item
           %a.nav-link
             %i.fa.fa-ticket.green-text

@@ -1,9 +1,30 @@
 - title @project.title + " - FADE IN"
 
--if @project.users.ids.first == current_user.id
-  = link_to "Edit", edit_project_path(@project), :class => "btn btn-orange btn-rounded display-inline btn-sm"
-  %hr
 
+.row
+  .col-md-12
+    %ul.stepper.stepper-horizontal
+      %li.active
+        %a{:href => "#!"}
+          %span.circle 1
+          %span.label Planning
+      %li
+        %a
+          %span.circle 2
+          %span.label Pre-Production
+      %li
+        %a{:href => "#!"}
+          %span.circle 3
+          %span.label Production
+      %li
+        %a{:href => "#!"}
+          %span.circle 4
+          %span.label Post-production
+      %li
+        %a{:href => "#!"}
+          %span.circle 5
+          %span.label Completed
+          
 .card-group.col-md-6
   .card
     = image_tag @project.image.url(:medium), :class => "img-fluid img-responsive"
@@ -65,6 +86,9 @@
         %h5.teal-text.display-inline
           = @project.duration
       %h4.card-title.project-title
+        - if @project.users.ids.first == current_user.id
+          = link_to edit_project_path(@project), :class => "btn-flat float-right" do
+            %i.fa.fa-pencil
         = @project.title
       %p.card-text
         = @project.synopsis
@@ -112,17 +136,20 @@
           .mask
             .span.badge.badge-danger
               =@project.makeup
+// - if @project.writer > 0
+//   %img{:src => "/assets/roles/edit.png", :class => "rounded-circle img-responsive red", :height => "100", :width => "100"}
 %br
 %h5 The Crew
 - @project.users.each do |user|
   .chip
-    - if user.pref_role != nil
-      = user.pref_role + ":"
+    - @them = UserProject.where(user_id: user.id, project_id: @project.id)
+    - @them.each do |it|
+      = it.user_role
+      %span :
     - if user.avatar_file_name == nil
-      %img.img-fluid{:src => "../assets/icon.png"}
+      %img.img-fluid{:src => "/assets/icon.png"}
     - else
       = image_tag user.avatar, :class => "img-fluid"
     = link_to user.user_name, profile_path(user.user_name), :class => "orange-text"
-    
 = link_to "Back", root_path, :class => "btn btn-orange btn-rounded float-right"
 = link_to "Request", request_request_path(@project.id), :class => "btn btn-orange btn-rounded"

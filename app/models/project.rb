@@ -15,6 +15,8 @@ class Project < ApplicationRecord
 	validates :composer, presence: true
 	validates :cinematographer, presence: true
 	validates :makeup, presence: true
+	validates :leader_role, presence: true
+	validates :public, presence: true
 
 	has_attached_file :image, styles: { :medium => "640x427#" }
 	validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/

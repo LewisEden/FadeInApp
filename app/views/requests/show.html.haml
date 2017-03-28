@@ -1,14 +1,30 @@
+- title "Notifications - FADE IN"
+
+%h2.display-inline Notifications
+%hr
+
 - @requests.each do |request|
   - @project = Project.find(request.project_id)
+  - @user = User.find(request.user_id)
   - if current_user.id == @project.users.ids.first
-    = request.bio
-    = request.role
-    project id:
-    = request.project_id
-    user id:
-    = request.user_id
-    request id:
-    = request.id
-    = link_to "Accept", request_join_path(request.project_id, request.id), :class => "btn btn-orange btn-rounded"
-    = link_to "Decline", request_destroy_path(request.project_id, request.id), :class => "btn btn-orange btn-rounded"
+    .author-box
+      %h4.h4-responsive.text-center.project-title
+        =@project.title
+      %hr
+      .row
+        / Avatar
+        .col-12.col-sm-2
+          = image_tag @user.avatar(:medium), :class => "rounded-circle img-responsive"
+        / Author Data
+        .col-12.col-sm-10
+          %p
+            %strong
+              =@user.first_name
+              =@user.last_name
+              |
+              = request.role
+          %p 
+            = request.bio
+          = link_to "Accept", request_join_path(request.project_id, request.id), :class => "btn btn-orange btn-rounded"
+          = link_to "Decline", request_destroy_path(request.project_id, request.id), :class => "btn btn-orange btn-rounded"
   %br

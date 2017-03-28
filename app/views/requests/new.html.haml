@@ -1,5 +1,5 @@
-%h1 form
+%h2 Request to join project
 = simple_form_for @request, url: request_request_path do |f|
   = f.input :bio
-  = f.input :role
+  = f.input_field :role, collection: ["Actor", "Director", "Editor", "Cinematographer", "Composer"], as: :radio_buttons
   = f.submit

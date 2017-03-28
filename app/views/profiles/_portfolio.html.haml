@@ -10,7 +10,7 @@
           / Avatar
           .avatar
             - if @user.avatar_file_name == nil
-              %img{:src => "../assets/icon.png", :class => "rounded-circle img-responsive"}
+              %img{:src => "/assets/icon.png", :class => "rounded-circle img-responsive"}
             - else
               = image_tag @user.avatar(:medium), :class => "rounded-circle img-responsive"
           .card-block

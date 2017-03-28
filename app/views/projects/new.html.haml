@@ -49,6 +49,7 @@
               %img.img-fluid{:src => "../assets/roles/paint-brush.png", :height => "50", :width => "50"}
               = f.input :makeup, label: false, input_html: { min: 0, max: 5, value: 0 }
       %br
+      = f.input :leader_role, collection: ["Actor", "Cinematographer", "Director", "Writer", "Editor", "Makeup", "Composer"], input_html: { class: 'browser-default' }
       = f.input :public, input_html: { checked: true }
       = f.button :submit, :class => "btn btn-primary btn-rounded btn-sm"
       = link_to "Cancel", root_path, :class => "btn btn-secondary btn-rounded"

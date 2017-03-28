@@ -13,11 +13,14 @@ class RequestsController < ApplicationController
     
     if @project.users.ids.include?(@request.user_id)
       redirect_to profile_path(current_user.user_name)
+      flash[:danger] = "You can't request to join your own project"
     else
       if @request.save
-        redirect_to root_path
+        redirect_to project_path
+        flash[:success] = "You have successfully sent an application to: " + @project.title
       else
         redirect_to project_path
+        flash[:danger] = "Could not send an application"
       end
     end
   end
@@ -30,7 +33,7 @@ class RequestsController < ApplicationController
   def destroy
     @request = Request.find(params[:request_id])
     @request.destroy
-    redirect_to root_path
+    redirect_to request_view_path
   end
 
   def update
@@ -42,8 +45,12 @@ class RequestsController < ApplicationController
       redirect_to root_path
     else
       @user.projects << @project
+      @userprojects = UserProject.last
+      @userprojects.user_role = @request.role
+      @userprojects.save
       @request.destroy
       redirect_to request_view_path
+      flash[:success] = @user.user_name + " has been added to " + @project.title
     end
   end
   

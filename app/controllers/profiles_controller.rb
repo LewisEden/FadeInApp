@@ -12,8 +12,10 @@ class ProfilesController < ApplicationController
   def update
   	if @user.update(profile_params)
   		redirect_to profile_path(@user.user_name)
+  		flash[:success] = "Portfolio successfully updated"
   	else
   		render :edit
+  		flash[:danger] = "Something went wrong"
   	end
   end
 
