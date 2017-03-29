@@ -51,3 +51,99 @@
     color: #468847;
     text-align: left;
  }
+ 
+ /**/
+ 
+.role-selector input{
+  margin: 0px;
+  padding: 0px;
+  -webkit-appearance: 0px;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+label:before, label:after{
+  display: none;
+}
+ 
+.messages {
+    margin-bottom: 0px !important;
+ }
+ 
+.Actor {
+  background-image:url(/assets/roles/theater.png);
+}
+
+.Director {
+  background-image:url(/assets/roles/clapperboard.png);
+}
+
+.Editor {
+  background-image:url(/assets/roles/imac.png);
+}
+
+.Vfx {
+  background-image:url(/assets/roles/fuse.png);
+}
+
+.Writer {
+  background-image:url(/assets/roles/edit.png);
+}
+
+.Cinematographer {
+  background-image:url(/assets/roles/photo-camera.png);
+}
+
+.Composer {
+  background-image:url(/assets/roles/music-player.png);
+}
+
+.Makeup {
+  background-image:url(/assets/roles/paint-brush.png);
+}
+
+.role-selector input:active +.options-roles {
+  opacity: .9;
+}
+
+.role-selector input:checked +.options-roles {
+  -webkit-filter: none;
+  -moz-filter: none;
+  filter: none;
+}
+
+.options-roles {
+  cursor:pointer;
+  background-size:contain;
+  background-repeat:no-repeat;
+  display:inline-block;
+  width:100px !important;
+  height:70px !important;
+  -webkit-transition: all 100ms ease-in;
+  -moz-transition: all 100ms ease-in;
+  transition: all 100ms ease-in;
+  -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+  -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+  filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+
+.options-roles:hover {
+  -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+  -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+  filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+
+/**/
+ 
+@media (min-width: 992px) {
+   .card-home {
+      max-width: 25%;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 1440px) {
+   .card-home {
+      min-width: 33%;
+      max-width: 33%;
+  }
+}

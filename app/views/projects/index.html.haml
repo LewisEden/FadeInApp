@@ -8,7 +8,7 @@
 .card-group
   -@projects.each do |project|
     - if project.public == true
-      .card
+      .card.card-home
         = image_tag project.image.url(:medium), :class => "img-fluid"
         .card-block
           - if project.genre == "Action"
@@ -92,6 +92,9 @@
           - if project.makeup > 0
             //makeup
             %i.fa.fa-paint-brush
+          - if project.vfx > 0
+            //vfx
+            %i.fa.fa-bomb
           = link_to project_path(project), :class => "btn btn-rounded btn-view btn-sm float-right display-inline" do
             View Project
 

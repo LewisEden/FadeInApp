@@ -14,13 +14,19 @@
       .row
         / Avatar
         .col-12.col-sm-2
-          = image_tag @user.avatar(:medium), :class => "rounded-circle img-responsive"
+          - if @user.avatar_file_name != nil
+            = image_tag @user.avatar(:medium), :class => "rounded-circle img-responsive"
+          - else
+            %img{:src => "/assets/icon.png", :class => "rounded-circle img-responsive"}
         / Author Data
         .col-12.col-sm-10
           %p
             %strong
-              =@user.first_name
-              =@user.last_name
+              - if @user.first_name == nil || @user.last_name == nil
+                =@user.user_name
+              - else
+                =@user.first_name
+                =@user.last_name
               |
               = request.role
           %p 

@@ -1,6 +1,5 @@
 - title @project.title + " - FADE IN"
 
-
 .row
   .col-md-12
     %ul.stepper.stepper-horizontal
@@ -86,56 +85,66 @@
         %h5.teal-text.display-inline
           = @project.duration
       %h4.card-title.project-title
-        - if @project.users.ids.first == current_user.id
+        - if(@project.users.ids.first == current_user.id || current_user.admin == true)
           = link_to edit_project_path(@project), :class => "btn-flat float-right" do
             %i.fa.fa-pencil
         = @project.title
       %p.card-text
         = @project.synopsis
       %hr
-      %h4 Crew needed
-      - if @project.director > 0
-        .view.display-inline
-          %img.img-fluid{:alt => "", :src => "/assets/roles/clapperboard.png", :height => "50", :width => "50"}/
-          .mask
-            .span.badge.badge-danger
-              =@project.director
-      - if @project.writer > 0
-        .view.display-inline
-          %img.img-fluid{:alt => "", :src => "/assets/roles/edit.png", :height => "50", :width => "50"}/
-          .mask
-            .span.badge.badge-danger
-              =@project.writer
-      - if @project.actor > 0
-        .view.display-inline
-          %img.img-fluid{:alt => "", :src => "/assets/roles/theater.png", :height => "50", :width => "50"}/
-          .mask
-            .span.badge.badge-danger
-              =@project.actor
-      - if @project.editor > 0
-        .view.display-inline
-          %img.img-fluid{:alt => "", :src => "/assets/roles/imac.png", :height => "50", :width => "50"}/
-          .mask
-            .span.badge.badge-danger
-              =@project.editor
-      - if @project.composer > 0
-        .view.display-inline
-          %img.img-fluid{:alt => "", :src => "/assets/roles/music-player.png", :height => "50", :width => "50"}/
-          .mask
-            .span.badge.badge-danger
-              =@project.composer
-      - if @project.cinematographer > 0
-        .view.display-inline
-          %img.img-fluid{:alt => "", :src => "/assets/roles/photo-camera.png", :height => "50", :width => "50"}/
-          .mask
-            .span.badge.badge-danger
-              =@project.cinematographer
-      - if @project.makeup > 0
-        .view.display-inline
-          %img.img-fluid{:alt => "", :src => "/assets/roles/paint-brush.png", :height => "50", :width => "50"}/
-          .mask
-            .span.badge.badge-danger
-              =@project.makeup
+      - if(@project.director == 0) && (@project.writer == 0) && (@project.actor == 0) && (@project.editor == 0) && (@project.cinematographer == 0) && (@project.makeup == 0) && (@project.vfx == 0)
+        - @filled = true
+        Crew has been filled.
+      - else
+        %h4 Crew needed
+        - if @project.director > 0
+          .view.display-inline
+            %img.img-fluid{:alt => "", :src => "/assets/roles/clapperboard.png", :height => "50", :width => "50"}/
+            .mask
+              .span.badge.badge-danger
+                =@project.director
+        - if @project.writer > 0
+          .view.display-inline
+            %img.img-fluid{:alt => "", :src => "/assets/roles/edit.png", :height => "50", :width => "50"}/
+            .mask
+              .span.badge.badge-danger
+                =@project.writer
+        - if @project.actor > 0
+          .view.display-inline
+            %img.img-fluid{:alt => "", :src => "/assets/roles/theater.png", :height => "50", :width => "50"}/
+            .mask
+              .span.badge.badge-danger
+                =@project.actor
+        - if @project.editor > 0
+          .view.display-inline
+            %img.img-fluid{:alt => "", :src => "/assets/roles/imac.png", :height => "50", :width => "50"}/
+            .mask
+              .span.badge.badge-danger
+                =@project.editor
+        - if @project.composer > 0
+          .view.display-inline
+            %img.img-fluid{:alt => "", :src => "/assets/roles/music-player.png", :height => "50", :width => "50"}/
+            .mask
+              .span.badge.badge-danger
+                =@project.composer
+        - if @project.cinematographer > 0
+          .view.display-inline
+            %img.img-fluid{:alt => "", :src => "/assets/roles/photo-camera.png", :height => "50", :width => "50"}/
+            .mask
+              .span.badge.badge-danger
+                =@project.cinematographer
+        - if @project.makeup > 0
+          .view.display-inline
+            %img.img-fluid{:alt => "", :src => "/assets/roles/paint-brush.png", :height => "50", :width => "50"}/
+            .mask
+              .span.badge.badge-danger
+                =@project.makeup
+        - if @project.vfx > 0
+          .view.display-inline
+            %img.img-fluid{:alt => "", :src => "/assets/roles/fuse.png", :height => "50", :width => "50"}/
+            .mask
+              .span.badge.badge-danger
+                =@project.vfx
 // - if @project.writer > 0
 //   %img{:src => "/assets/roles/edit.png", :class => "rounded-circle img-responsive red", :height => "100", :width => "100"}
 %br
@@ -145,11 +154,22 @@
     - @them = UserProject.where(user_id: user.id, project_id: @project.id)
     - @them.each do |it|
       = it.user_role
-      %span :
+      %span -
     - if user.avatar_file_name == nil
       %img.img-fluid{:src => "/assets/icon.png"}
     - else
       = image_tag user.avatar, :class => "img-fluid"
     = link_to user.user_name, profile_path(user.user_name), :class => "orange-text"
 = link_to "Back", root_path, :class => "btn btn-orange btn-rounded float-right"
-= link_to "Request", request_request_path(@project.id), :class => "btn btn-orange btn-rounded"
+- @project.users.each do |u|
+  - if u.id == current_user.id
+    - @inproject = true
+- @what = Request.where(user_id: current_user.id, project_id: @project.id)
+- @what.each do |lol|
+  - if(lol.user_id == current_user.id) && (lol.project_id == @project.id)
+    - @requestpending = true
+- if (@inproject == nil && @filled == nil) && @requestpending != true
+  = link_to "Request to join", request_request_path(@project.id), :class => "btn btn-orange btn-rounded"
+- if @requestpending == true
+  .span.badge.badge-danger
+    Request is pending

@@ -1,6 +1,7 @@
 class RequestsController < ApplicationController
   
   def new
+    @project = Project.find(params[:id])
     @request = Request.new()
   end
   
@@ -48,6 +49,26 @@ class RequestsController < ApplicationController
       @userprojects = UserProject.last
       @userprojects.user_role = @request.role
       @userprojects.save
+      if @userprojects.user_role == "Actor"
+        @project.actor -= 1
+      elsif @userprojects.user_role == "Director"
+        @project.director -= 1
+      elsif @userprojects.user_role == "Editor"
+        @project.editor -= 1
+      elsif @userprojects.user_role == "Composer"
+        @project.composer -= 1
+      elsif @userprojects.user_role == "cinematographer"
+        @project.cinematographer -= 1
+      elsif @userprojects.user_role == "Writer"
+        @project.writer -= 1
+      elsif @userprojects.user_role == "VFX"
+        @project.vfx -= 1
+      end
+      @project.save
+      if(@project.director == 0 && @project.actor == 0 && @project.writer == 0 && @project.editor == 0 && @project.cinematographer == 0 && @project.composer == 0 && @project.makeup == 0 && @project.vfx == 0)
+        @project.public = false
+      end
+      @project.save
       @request.destroy
       redirect_to request_view_path
       flash[:success] = @user.user_name + " has been added to " + @project.title

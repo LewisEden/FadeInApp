@@ -48,8 +48,12 @@
             .col
               %img.img-fluid{:src => "/assets/roles/paint-brush.png", :height => "50", :width => "50"}
               = f.input :makeup, label: false, input_html: { min: 0, max: 5 }
+            .col
+              %img.img-fluid{:src => "/assets/roles/fuse.png", :height => "50", :width => "50"}
+              = f.input :vfx, label: false, input_html: { min: 0, max: 2 }
       %br
-      = f.input :public, input_html: { checked: true }
+      - if @project.public == false
+        = f.input :public, input_html: { checked_value: true, unchecked_value: false }
       = f.button :submit, :class => "btn btn-primary btn-rounded btn-sm"
       = link_to "Cancel", root_path, :class => "btn btn-secondary btn-rounded"
       = link_to "Delete", project_path(@project), method: :delete, data: { confirm: "Are you sure you want to delete this project?" }, :class => "btn btn-warning btn-rounded"

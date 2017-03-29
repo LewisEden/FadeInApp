@@ -45,13 +45,13 @@ class ProjectsController < ApplicationController
 	def destroy
 		@project.destroy
 		redirect_to root_path
-		flash[:danger] = "Project successfully deleted"
+		flash[:success] = "Project successfully deleted"
 	end
 
 	private
 
 	def project_params
-		params.require(:project).permit(:image, :genre, :duration, :title, :synopsis, :director, :writer, :actor, :editor, :composer, :cinematographer, :makeup, :leader_role, :public)
+		params.require(:project).permit(:image, :public, :genre, :duration, :title, :synopsis, :director, :writer, :actor, :editor, :composer, :cinematographer, :makeup, :vfx, :leader_role)
 	end
 
 	def set_project
@@ -59,7 +59,7 @@ class ProjectsController < ApplicationController
 	end
 
 	def owned_post
-		unless current_user.id == @project.users.ids.first
+		unless(current_user.id == @project.users.ids.first || current_user.admin == true)
 			redirect_to root_path
 		end
 	end

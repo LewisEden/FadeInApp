@@ -28,28 +28,31 @@
         .container-fluid
           .row
             .col
-              %img.img-fluid{:src => "../assets/roles/clapperboard.png", :height => "50", :width => "50"}
+              %img.img-fluid{:src => "/assets/roles/clapperboard.png", :height => "50", :width => "50"}
               = f.input :director, label: false, input_html: { min: 0, max: 1, value: 0 }
             .col
-              %img.img-fluid{:src => "../assets/roles/edit.png", :height => "50", :width => "50"}
+              %img.img-fluid{:src => "/assets/roles/edit.png", :height => "50", :width => "50"}
               = f.input :writer, label: false, input_html: { min: 0, max: 5, value: 0 }
             .col
-              %img.img-fluid{:src => "../assets/roles/theater.png", :height => "50", :width => "50"}
+              %img.img-fluid{:src => "/assets/roles/theater.png", :height => "50", :width => "50"}
               = f.input :actor, label: false, input_html: { min: 0, max: 15, value: 0 }
             .col
-              %img.img-fluid{:src => "../assets/roles/imac.png", :height => "50", :width => "50"}
+              %img.img-fluid{:src => "/assets/roles/imac.png", :height => "50", :width => "50"}
               = f.input :editor, label: false, input_html: { min: 0, max: 3, value: 0 }
             .col
-              %img.img-fluid{:src => "../assets/roles/music-player.png", :height => "50", :width => "50"}
+              %img.img-fluid{:src => "/assets/roles/music-player.png", :height => "50", :width => "50"}
               = f.input :composer, label: false, input_html: { min: 0, max: 3, value: 0 }
             .col
-              %img.img-fluid{:src => "../assets/roles/photo-camera.png", :height => "50", :width => "50"}
+              %img.img-fluid{:src => "/assets/roles/photo-camera.png", :height => "50", :width => "50"}
               = f.input :cinematographer , label: false, input_html: { min: 0, max: 3, value: 0 }
             .col
-              %img.img-fluid{:src => "../assets/roles/paint-brush.png", :height => "50", :width => "50"}
+              %img.img-fluid{:src => "/assets/roles/paint-brush.png", :height => "50", :width => "50"}
               = f.input :makeup, label: false, input_html: { min: 0, max: 5, value: 0 }
+            .col
+              %img.img-fluid{:src => "/assets/roles/fuse.png", :height => "50", :width => "50"}
+              = f.input :vfx, label: false, input_html: { min: 0, max: 2, value: 0 }
       %br
-      = f.input :leader_role, collection: ["Actor", "Cinematographer", "Director", "Writer", "Editor", "Makeup", "Composer"], input_html: { class: 'browser-default' }
-      = f.input :public, input_html: { checked: true }
+      = f.input :leader_role, collection: ["Actor", "Cinematographer", "Director", "Writer", "Editor", "Makeup", "Composer", "VFX"], input_html: { class: 'browser-default' }
+      = f.input :public, input_html: { checked: true, checked_value: true, unchecked_value: false}
       = f.button :submit, :class => "btn btn-primary btn-rounded btn-sm"
       = link_to "Cancel", root_path, :class => "btn btn-secondary btn-rounded"

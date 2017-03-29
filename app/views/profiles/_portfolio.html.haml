@@ -26,7 +26,7 @@
                   VIP
               - if @user.admin == true
                 .span.badge.badge-warning
-                  mod
+                  admin
             %p
               - if @user.pref_role == nil
                 Happy FADE IN User
@@ -66,12 +66,14 @@
             %i.fa.fa-undo
             Click here to rotate back
         / /.Back Side
-
+  .col.mb-r
+    .embed-responsive.embed-responsive-16by9
+      %iframe.embed-responsive-item{:allowfullscreen => "", :src => "https://www.youtube.com/embed/yJ-Z_DW0AuE"}
 %h3 My projects
 %hr
 .card-group
   -@projects.each do |project|
-    .card
+    .card.card-home
       = image_tag project.image.url(:medium), :class => "img-fluid"
       .card-block
         - if project.genre == "Action"
@@ -134,6 +136,11 @@
           = project.title
         %p.card-text
           = truncate(project.synopsis, length: 120)
-        
+        - project.users.each do |user|
+          - @them = UserProject.where(user_id: @user.id, project_id: project.id)
+          - @them.each do |it|
+            - if it.user_id == user.id
+              My role:
+              = it.user_role
         = link_to project_path(project), :class => "btn btn-rounded btn-view btn-sm float-right display-inline" do
           View Project
