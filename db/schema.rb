@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170329090102) do
+ActiveRecord::Schema.define(version: 20170330114809) do
 
   create_table "projects", force: :cascade do |t|
     t.string   "genre"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20170329090102) do
     t.integer  "tickets"
     t.string   "pref_role"
     t.boolean  "admin"
+    t.string   "theme"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["user_name"], name: "index_users_on_user_name", unique: true

@@ -1,3 +1,13 @@
+- @requestamount = 0
+- if current_user.nil?
+  - @notloggedin = true
+- @requests = Request.all
+- @requests.each do |request|
+  - @project = Project.find(request.project_id)
+  - @user = User.find(request.user_id)
+  - if @notloggedin != true
+    - if current_user.id == @project.users.ids.first
+      - @requestamount += 1
 %header
   / Sidebar navigation
   %ul#slide-out.side-nav.fixed.sn-bg-1.custom-scrollbar
@@ -5,7 +15,13 @@
     %li
       .logo-wrapper.waves-effect
         = link_to root_path do
-          %img.img-fluid.flex-center{:src => "/assets/logo_a.png"}/
+          - if @notloggedin == false
+            - if current_user.theme != nil && current_user.theme != "Default"
+              %img.img-fluid.flex-center{:src => "/assets/logo_a_white.png"}/
+            - else
+              %img.img-fluid.flex-center{:src => "/assets/logo_a.png"}/
+          - else
+            %img.img-fluid.flex-center{:src => "/assets/logo_a.png"}/
     / /. Logo
     / Search Form
     %li
@@ -17,9 +33,14 @@
     %li
       %ul.collapsible.collapsible-accordion
         %li
-          = link_to projects_path, :class => "collapsible-header waves-effect arrow-r" do
-            %i.fa.fa-rocket
-            Projects
+          - if current_page?(projects_path)
+            = link_to projects_path, :class => "collapsible-header waves-effect arrow-r active" do
+              %i.fa.fa-rocket
+              Projects
+          - else
+            = link_to projects_path, :class => "collapsible-header waves-effect arrow-r" do
+              %i.fa.fa-rocket
+              Projects
         %li
           %a.collapsible-header.waves-effect.arrow-r
             %i.fa.fa-bullseye
@@ -79,8 +100,12 @@
     %ul.nav.navbar-nav.ml-auto.flex-row
       - if user_signed_in?
         %li.nav-item
-          = link_to request_view_path, :class => "nav-link" do
-            %i.fa.fa-bell.orange-text
+          - if @requestamount > 0
+            = link_to request_view_path, :class => "nav-link" do
+              %i.fa.fa-bell.orange-text
+          - else
+            = link_to request_view_path, :class => "nav-link" do
+              %i.fa.fa-bell-o
         %li.nav-item
           %a.nav-link
             %i.fa.fa-ticket.green-text

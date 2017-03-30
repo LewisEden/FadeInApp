@@ -3,10 +3,13 @@
 %h2.display-inline Notifications
 %hr
 
+- @requestamount = 0
+
 - @requests.each do |request|
   - @project = Project.find(request.project_id)
   - @user = User.find(request.user_id)
   - if current_user.id == @project.users.ids.first
+    - @requestamount += 1
     .author-box
       %h4.h4-responsive.text-center.project-title
         =@project.title
@@ -34,3 +37,6 @@
           = link_to "Accept", request_join_path(request.project_id, request.id), :class => "btn btn-orange btn-rounded"
           = link_to "Decline", request_destroy_path(request.project_id, request.id), :class => "btn btn-orange btn-rounded"
   %br
+  
+- if @requestamount == 0
+  %p No notifications to show

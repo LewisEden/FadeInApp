@@ -4,5 +4,6 @@
 	= f.input :first_name
 	= f.input :last_name
 	= f.input :school, collection: ["Dunraven School"], input_html: { class: 'browser-default' }
-	= f.input :pref_role, label: 'Preferred Role', collection: ["Actor","Cinematographer", "Composer", "Director", "Editor", "Writer", "Makeup Artist" ], input_html: { class: 'browser-default' } 
+	= f.input :pref_role, label: 'Preferred Role', collection: ["Actor","Cinematographer", "Composer", "Director", "Editor", "Writer", "Makeup Artist" ], input_html: { class: 'browser-default' }
+	= f.input :theme, label: 'Website Theme', collection: ["Default", "Black", "Indigo", "Cyan", "Purple", "Navy", "Pink", "Light blue", "Grey"], input_html: { class: 'browser-default' }
 	= f.submit "Update Profile"

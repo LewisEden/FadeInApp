@@ -1,7 +1,7 @@
 - title "Edit Project - FADE IN"
 
 %br
-.card
+.card.card-space
   .card-block
     .form-header.orange.darken-4
       %h3
@@ -12,13 +12,14 @@
       .form-inline
         = f.input :genre, collection: ["Action", "Adventure", "Comedy", "Crime", "Drama", "Horror", "Sci-fi"], input_html: { class: 'browser-default' }
         = f.input :duration, collection: ["Very short", "Short", "Long", "Feature"], input_html: { class: 'browser-default' }
+      %br
       .md-form
         %i.fa.fa-rocket.prefix
-        = f.input_field :title, id: "title", input_html: { minlength: 3, maxlength: 50, length: '50' }, :class => "form-control"
+        = f.input_field :title, id: "title", :class => "form-control", :minlength => "3", :maxlength => 50, :length => "50"
         %label{:for => "title"} Enter a title
       .md-form
         %i.fa.fa-pencil.prefix
-        = f.input_field :synopsis, input_html: { minlength: 100, maxlength: 500, length: '500' }, :class => "md-textarea"
+        = f.input_field :synopsis, :class => "md-textarea", :minlength => "100", :maxlength => 500, :length => "500"
         %label{:for => "synopsis"} Enter a brief synopsis
       %br
       %h4.text-center

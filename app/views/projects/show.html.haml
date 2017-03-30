@@ -6,23 +6,23 @@
       %li.active
         %a{:href => "#!"}
           %span.circle 1
-          %span.label Planning
+          %span.label.hidden-sm-down Planning
       %li
         %a
           %span.circle 2
-          %span.label Pre-Production
+          %span.label.hidden-sm-down Pre-Production
       %li
         %a{:href => "#!"}
           %span.circle 3
-          %span.label Production
+          %span.label.hidden-sm-down Production
       %li
         %a{:href => "#!"}
           %span.circle 4
-          %span.label Post-production
+          %span.label.hidden-sm-down Post-production
       %li
         %a{:href => "#!"}
           %span.circle 5
-          %span.label Completed
+          %span.label.hidden-sm-down Completed
           
 .card-group.col-md-6
   .card
@@ -85,10 +85,10 @@
         %h5.teal-text.display-inline
           = @project.duration
       %h4.card-title.project-title
-        - if(@project.users.ids.first == current_user.id || current_user.admin == true)
-          = link_to edit_project_path(@project), :class => "btn-flat float-right" do
-            %i.fa.fa-pencil
         = @project.title
+        - if(@project.users.ids.first == current_user.id || current_user.admin == true)
+          = link_to edit_project_path(@project), :class => "btn-flat display-inline" do
+            %i.fa.fa-pencil
       %p.card-text
         = @project.synopsis
       %hr
@@ -99,50 +99,50 @@
         %h4 Crew needed
         - if @project.director > 0
           .view.display-inline
-            %img.img-fluid{:alt => "", :src => "/assets/roles/clapperboard.png", :height => "50", :width => "50"}/
-            .mask
+            %img.img-fluid{:alt => "Director", :src => "/assets/roles/clapperboard.png", :height => "50", :width => "50"}/
+            .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Director"}
               .span.badge.badge-danger
                 =@project.director
         - if @project.writer > 0
           .view.display-inline
             %img.img-fluid{:alt => "", :src => "/assets/roles/edit.png", :height => "50", :width => "50"}/
-            .mask
+            .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Writer"}
               .span.badge.badge-danger
                 =@project.writer
         - if @project.actor > 0
           .view.display-inline
             %img.img-fluid{:alt => "", :src => "/assets/roles/theater.png", :height => "50", :width => "50"}/
-            .mask
+            .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Actor"}
               .span.badge.badge-danger
                 =@project.actor
         - if @project.editor > 0
           .view.display-inline
             %img.img-fluid{:alt => "", :src => "/assets/roles/imac.png", :height => "50", :width => "50"}/
-            .mask
+            .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Editor"}
               .span.badge.badge-danger
                 =@project.editor
         - if @project.composer > 0
           .view.display-inline
             %img.img-fluid{:alt => "", :src => "/assets/roles/music-player.png", :height => "50", :width => "50"}/
-            .mask
+            .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Composer"}
               .span.badge.badge-danger
                 =@project.composer
         - if @project.cinematographer > 0
           .view.display-inline
             %img.img-fluid{:alt => "", :src => "/assets/roles/photo-camera.png", :height => "50", :width => "50"}/
-            .mask
+            .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Cinematographer"}
               .span.badge.badge-danger
                 =@project.cinematographer
         - if @project.makeup > 0
           .view.display-inline
             %img.img-fluid{:alt => "", :src => "/assets/roles/paint-brush.png", :height => "50", :width => "50"}/
-            .mask
+            .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Makeup Artist"}
               .span.badge.badge-danger
                 =@project.makeup
         - if @project.vfx > 0
           .view.display-inline
             %img.img-fluid{:alt => "", :src => "/assets/roles/fuse.png", :height => "50", :width => "50"}/
-            .mask
+            .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Visual Effects"}
               .span.badge.badge-danger
                 =@project.vfx
 // - if @project.writer > 0

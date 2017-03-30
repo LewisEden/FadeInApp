@@ -5,7 +5,7 @@
   %i.fa.fa-plus.left
   Create Project
 %hr
-.card-group
+.card-group.card-space
   -@projects.each do |project|
     - if project.public == true
       .card.card-home
@@ -73,28 +73,36 @@
             = truncate(project.synopsis, length: 120)
           - if project.director > 0
             //director
-            %i.fa.fa-fighter-jet
+            .mask.display-inline{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Director"}
+              %i.fa.fa-fighter-jet
           - if project.writer > 0
             //writer
-            %i.fa.fa-pencil
+            .mask.display-inline{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Writer"}
+              %i.fa.fa-pencil
           - if project.actor > 0
             //actor
-            %i.fa.fa-user
+            .mask.display-inline{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Actor"}
+              %i.fa.fa-user
           - if project.editor > 0
             //editor
-            %i.fa.fa-desktop
+            .mask.display-inline{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Editor"}
+              %i.fa.fa-desktop
           - if project.composer > 0
             //composer
-            %i.fa.fa-music
+            .mask.display-inline{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Composer"}
+              %i.fa.fa-music
           - if project.cinematographer > 0
             //cinematographer
-            %i.fa.fa-video-camera
+            .mask.display-inline{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Cinematographer"}
+              %i.fa.fa-video-camera
           - if project.makeup > 0
             //makeup
-            %i.fa.fa-paint-brush
+            .mask.display-inline{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Makeup Artist"}
+              %i.fa.fa-paint-brush
           - if project.vfx > 0
             //vfx
-            %i.fa.fa-bomb
+            .mask.display-inline{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Visual Effects"}
+              %i.fa.fa-bomb
           = link_to project_path(project), :class => "btn btn-rounded btn-view btn-sm float-right display-inline" do
             View Project
 

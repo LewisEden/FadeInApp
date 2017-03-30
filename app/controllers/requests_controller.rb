@@ -1,7 +1,18 @@
 class RequestsController < ApplicationController
+  before_action :authenticate_user!
   
   def new
     @project = Project.find(params[:id])
+    #checks if user has already made a request for the project they are viewing
+    #sets @requests to equal all requests where user_id is the same as the current user id viewing
+    @requests = Request.where(user_id: current_user.id)
+    @requests.each do |r|
+      #if a request project id is the same as the current project they're viewing's id
+      if r.project_id == @project.id
+        #link them back to the project
+        redirect_to project_path
+      end
+    end
     @request = Request.new()
   end
   
@@ -13,7 +24,7 @@ class RequestsController < ApplicationController
     @request.project_id = @project.id
     
     if @project.users.ids.include?(@request.user_id)
-      redirect_to profile_path(current_user.user_name)
+      redirect_to project_path
       flash[:danger] = "You can't request to join your own project"
     else
       if @request.save
@@ -21,7 +32,7 @@ class RequestsController < ApplicationController
         flash[:success] = "You have successfully sent an application to: " + @project.title
       else
         redirect_to project_path
-        flash[:danger] = "Could not send an application"
+        flash[:danger] = "Could not send application: make sure all forms are filled."
       end
     end
   end

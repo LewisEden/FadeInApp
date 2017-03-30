@@ -23,7 +23,7 @@
                 = @user.last_name
               - if @user.vip == true
                 .span.badge.badge-info
-                  VIP
+                  PRO
               - if @user.admin == true
                 .span.badge.badge-warning
                   admin
@@ -67,6 +67,7 @@
             Click here to rotate back
         / /.Back Side
   .col.mb-r
+    %h2.float-right My Showreel
     .embed-responsive.embed-responsive-16by9
       %iframe.embed-responsive-item{:allowfullscreen => "", :src => "https://www.youtube.com/embed/yJ-Z_DW0AuE"}
 %h3 My projects
