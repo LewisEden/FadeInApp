@@ -1,0 +1,120 @@
+- if @project.prod_stage == 1 || @project.prod_stage == nil
+  .row
+    .col-md-12
+      %ul.stepper.stepper-horizontal
+        %li.active
+          %a{:href => "#!"}
+            %span.circle 1
+            %span.label Planning
+        %li
+          %a
+            %span.circle 2
+            %span.label Pre-Production
+        %li
+          %a{:href => "#!"}
+            %span.circle 3
+            %span.label Production
+        %li
+          %a{:href => "#!"}
+            %span.circle 4
+            %span.label Post-production
+        %li
+          %a{:href => "#!"}
+            %span.circle 5
+            %span.label Completed
+- elsif @project.prod_stage == 2
+  .row
+    .col-md-12
+      %ul.stepper.stepper-horizontal
+        %li.completed
+          %a{:href => "#!"}
+            %span.circle 1
+            %span.label Planning
+        %li.active
+          %a{:href => "#!"}
+            %span.circle 2
+            %span.label Pre-Production
+        %li
+          %a{:href => "#!"}
+            %span.circle 3
+            %span.label Production
+        %li
+          %a{:href => "#!"}
+            %span.circle 4
+            %span.label Post-production
+        %li
+          %a{:href => "#!"}
+            %span.circle 5
+            %span.label Completed
+- elsif @project.prod_stage == 3
+  .row
+    .col-md-12
+      %ul.stepper.stepper-horizontal
+        %li.completed
+          %a{:href => "#!"}
+            %span.circle 1
+            %span.label Planning
+        %li.completed
+          %a{:href => "#!"}
+            %span.circle 2
+            %span.label Pre-Production
+        %li.active
+          %a{:href => "#!"}
+            %span.circle 3
+            %span.label Production
+        %li
+          %a{:href => "#!"}
+            %span.circle 4
+            %span.label Post-production
+        %li
+          %a{:href => "#!"}
+            %span.circle 5
+            %span.label Completed
+- elsif @project.prod_stage == 4
+  .row
+    .col-md-12
+      %ul.stepper.stepper-horizontal
+        %li.completed
+          %a{:href => "#!"}
+            %span.circle 1
+            %span.label Planning
+        %li.completed
+          %a{:href => "#!"}
+            %span.circle 2
+            %span.label Pre-Production
+        %li.completed
+          %a{:href => "#!"}
+            %span.circle 3
+            %span.label Production
+        %li.active
+          %a{:href => "#!"}
+            %span.circle 4
+            %span.label Post-production
+        %li
+          %a{:href => "#!"}
+            %span.circle 5
+            %span.label Completed
+- elsif @project.prod_stage == 5
+  .row
+    .col-md-12
+      %ul.stepper.stepper-horizontal
+        %li.completed
+          %a{:href => "#!"}
+            %span.circle 1
+            %span.label Planning
+        %li.completed
+          %a{:href => "#!"}
+            %span.circle 2
+            %span.label Pre-Production
+        %li.completed
+          %a{:href => "#!"}
+            %span.circle 3
+            %span.label Production
+        %li.completed
+          %a{:href => "#!"}
+            %span.circle 4
+            %span.label Post-production
+        %li.active
+          %a{:href => "#!"}
+            %span.circle 5
+            %span.label Completed

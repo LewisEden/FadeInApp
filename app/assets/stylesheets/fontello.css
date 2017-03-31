@@ -1,11 +1,11 @@
 @font-face {
-  font-family: 'mask';
-  src: url('../font/mask.eot?96207055');
-  src: url('../font/mask.eot?96207055#iefix') format('embedded-opentype'),
-       url('../font/mask.woff2?96207055') format('woff2'),
-       url('../font/mask.woff?96207055') format('woff'),
-       url('../font/mask.ttf?96207055') format('truetype'),
-       url('../font/mask.svg?96207055#mask') format('svg');
+  font-family: 'fontello';
+  src: url('../font/fontello.eot?78348513');
+  src: url('../font/fontello.eot?78348513#iefix') format('embedded-opentype'),
+       url('../font/fontello.woff2?78348513') format('woff2'),
+       url('../font/fontello.woff?78348513') format('woff'),
+       url('../font/fontello.ttf?78348513') format('truetype'),
+       url('../font/fontello.svg?78348513#fontello') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -14,14 +14,14 @@
 /*
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
-    font-family: 'mask';
-    src: url('../font/mask.svg?96207055#mask') format('svg');
+    font-family: 'fontello';
+    src: url('../font/fontello.svg?78348513#fontello') format('svg');
   }
 }
 */
  
  [class^="icon-"]:before, [class*=" icon-"]:before {
-  font-family: "mask";
+  font-family: "fontello";
   font-style: normal;
   font-weight: normal;
   speak: none;
@@ -55,4 +55,5 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
  
+.icon-video:before { content: '\e800'; } /* '' */
 .icon-theatre:before { content: '\e83a'; } /* '' */

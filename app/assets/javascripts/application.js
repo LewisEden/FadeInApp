@@ -15,6 +15,25 @@
 //= require turbolinks
 //= require_tree .
 
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
+
+// document.addEventListener("turbolinks:load", function() {
+//   $(function () {
+//     $('[data-toggle="tooltip"]').tooltip()
+//   })
+
+//   // Material Select Initialization
+//   $(document).ready(function() {
+//     $('.mdb-select').material_select();
+//   });
+// })
+
+$(document).on('turbolinks:load', function() {
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
+  // Material Select Initialization
+  $(document).ready(function() {
+    $('.mdb-select').material_select();
+  });
 })

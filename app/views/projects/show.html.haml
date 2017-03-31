@@ -1,31 +1,9 @@
 - title @project.title + " - FADE IN"
+.container
+  = render 'projects/stepper'
 
-.row
-  .col-md-12
-    %ul.stepper.stepper-horizontal
-      %li.active
-        %a{:href => "#!"}
-          %span.circle 1
-          %span.label.hidden-sm-down Planning
-      %li
-        %a
-          %span.circle 2
-          %span.label.hidden-sm-down Pre-Production
-      %li
-        %a{:href => "#!"}
-          %span.circle 3
-          %span.label.hidden-sm-down Production
-      %li
-        %a{:href => "#!"}
-          %span.circle 4
-          %span.label.hidden-sm-down Post-production
-      %li
-        %a{:href => "#!"}
-          %span.circle 5
-          %span.label.hidden-sm-down Completed
-          
-.card-group.col-md-6
-  .card
+.card-group.col-md-12
+  .card.card-project
     = image_tag @project.image.url(:medium), :class => "img-fluid img-responsive"
     .card-block
       - if @project.genre == "Action"
@@ -84,6 +62,8 @@
         %i.teal-text.fa.fa-clock-o
         %h5.teal-text.display-inline
           = @project.duration
+      .p.float-right
+        created #{time_ago_in_words(@project.created_at)} ago
       %h4.card-title.project-title
         = @project.title
         - if(@project.users.ids.first == current_user.id || current_user.admin == true)
@@ -145,31 +125,30 @@
             .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Visual Effects"}
               .span.badge.badge-danger
                 =@project.vfx
-// - if @project.writer > 0
-//   %img{:src => "/assets/roles/edit.png", :class => "rounded-circle img-responsive red", :height => "100", :width => "100"}
 %br
-%h5 The Crew
-- @project.users.each do |user|
-  .chip
-    - @them = UserProject.where(user_id: user.id, project_id: @project.id)
-    - @them.each do |it|
-      = it.user_role
-      %span -
-    - if user.avatar_file_name == nil
-      %img.img-fluid{:src => "/assets/icon.png"}
-    - else
-      = image_tag user.avatar, :class => "img-fluid"
-    = link_to user.user_name, profile_path(user.user_name), :class => "orange-text"
-= link_to "Back", root_path, :class => "btn btn-orange btn-rounded float-right"
-- @project.users.each do |u|
-  - if u.id == current_user.id
-    - @inproject = true
-- @what = Request.where(user_id: current_user.id, project_id: @project.id)
-- @what.each do |lol|
-  - if(lol.user_id == current_user.id) && (lol.project_id == @project.id)
-    - @requestpending = true
-- if (@inproject == nil && @filled == nil) && @requestpending != true
-  = link_to "Request to join", request_request_path(@project.id), :class => "btn btn-orange btn-rounded"
-- if @requestpending == true
-  .span.badge.badge-danger
-    Request is pending
+.col
+  %h5 The Crew
+  - @project.users.each do |user|
+    .chip
+      - @them = UserProject.where(user_id: user.id, project_id: @project.id)
+      - @them.each do |it|
+        = it.user_role
+        %span -
+      - if user.avatar_file_name == nil
+        %img.img-fluid{:src => "/assets/icon.png"}
+      - else
+        = image_tag user.avatar, :class => "img-fluid"
+      = link_to user.user_name, profile_path(user.user_name), :class => "orange-text"
+  = link_to "Back", root_path, :class => "btn btn-primary btn-rounded float-right"
+  - @project.users.each do |u|
+    - if u.id == current_user.id
+      - @inproject = true
+  - @what = Request.where(user_id: current_user.id, project_id: @project.id)
+  - @what.each do |lol|
+    - if(lol.user_id == current_user.id) && (lol.project_id == @project.id)
+      - @requestpending = true
+  - if (@inproject == nil && @filled == nil) && @requestpending != true
+    = link_to "Request to join", request_request_path(@project.id), :class => "btn btn-primary btn-rounded"
+  - if @requestpending == true
+    .span.badge.badge-danger
+      Request is pending

@@ -26,7 +26,7 @@
                   PRO
               - if @user.admin == true
                 .span.badge.badge-warning
-                  admin
+                  ADMIN
             %p
               - if @user.pref_role == nil
                 Happy FADE IN User
@@ -67,7 +67,6 @@
             Click here to rotate back
         / /.Back Side
   .col.mb-r
-    %h2.float-right My Showreel
     .embed-responsive.embed-responsive-16by9
       %iframe.embed-responsive-item{:allowfullscreen => "", :src => "https://www.youtube.com/embed/yJ-Z_DW0AuE"}
 %h3 My projects
@@ -143,5 +142,5 @@
             - if it.user_id == user.id
               My role:
               = it.user_role
-        = link_to project_path(project), :class => "btn btn-rounded btn-view btn-sm float-right display-inline" do
+        = link_to project_path(project), :class => "btn btn-rounded btn-primary btn-sm float-right display-inline" do
           View Project

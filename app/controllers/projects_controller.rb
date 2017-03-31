@@ -43,6 +43,10 @@ class ProjectsController < ApplicationController
 	end
 
 	def destroy
+		@requests = Request.where(project_id: @project.id)
+		@requests.each do |r|
+			r.destroy
+		end
 		@project.destroy
 		redirect_to root_path
 		flash[:success] = "Project successfully deleted"

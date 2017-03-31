@@ -12,7 +12,8 @@
     - @requestamount += 1
     .author-box
       %h4.h4-responsive.text-center.project-title
-        =@project.title
+        Project:
+        = link_to @project.title, project_path(@project.id)
       %hr
       .row
         / Avatar
@@ -20,22 +21,23 @@
           - if @user.avatar_file_name != nil
             = image_tag @user.avatar(:medium), :class => "rounded-circle img-responsive"
           - else
-            %img{:src => "/assets/icon.png", :class => "rounded-circle img-responsive"}
+            %img{:src => "/assets/icon.png", :class => "rounded-circle img-responsive", :height => "152", :width => "152"}
         / Author Data
         .col-12.col-sm-10
           %p
             %strong
               - if @user.first_name == nil || @user.last_name == nil
-                =@user.user_name
+                = link_to @user.user_name, profile_path(@user.user_name), :class => "text-primary"
               - else
-                =@user.first_name
-                =@user.last_name
+                - @fullname = @user.first_name + " " + @user.last_name
+                = link_to @fullname, profile_path(@user.user_name), :class => "text-primary"
               |
               = request.role
+            (sent #{time_ago_in_words(request.created_at)} ago)
           %p 
             = request.bio
-          = link_to "Accept", request_join_path(request.project_id, request.id), :class => "btn btn-orange btn-rounded"
-          = link_to "Decline", request_destroy_path(request.project_id, request.id), :class => "btn btn-orange btn-rounded"
+          = link_to "Accept", request_join_path(request.project_id, request.id), :class => "btn btn-primary btn-rounded"
+          = link_to "Decline", request_destroy_path(request.project_id, request.id), :class => "btn btn-primary btn-rounded"
   %br
   
 - if @requestamount == 0

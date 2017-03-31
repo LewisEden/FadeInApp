@@ -155,14 +155,40 @@ footer {
 /**/
  
 @media (min-width: 992px) {
-   .card-home {
-      max-width: 25%;
+  .card-home {
+    max-width: 25%;
   }
+
+  .card-project {
+    min-width: 50%;
+    max-width: 50%;
+  }
+
 }
 
 @media (min-width: 576px) and (max-width: 1440px) {
-   .card-home {
-      min-width: 33%;
-      max-width: 33%;
+  .card-home {
+    min-width: 33%;
+    max-width: 33%;
+  }
+}
+
+@media (max-width: 767px) {
+  .offset-1 {
+    margin-left: 0px;
+  }
+}
+
+@media (max-width: 1040px) {
+  .stepper li {
+    display: none;
+  }
+  .active {
+    display: block !important;
+    text-align: center;
+  }
+  
+  .active .label {
+    font-size: 2rem;
   }
 }

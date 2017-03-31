@@ -1,36 +1,55 @@
 - title "Request to join project - FADE IN"
-%h2 Request to join project
-= form_for @request, url: request_request_path do |f|
-  // = f.input :bio
-  // = f.input_field :role, collection: ["Actor", "Director", "Editor", "Cinematographer", "Composer"], as: :radio_buttons
-  = f.text_field :bio
-  %br
-  %h4
-    Select your role
-  .role-selector
-    - if @project.director > 0
-      = radio_button_tag("request[role]", "Director")
-      = label_tag(:request_role_Director, "", class: "options-roles Director")
-    - if @project.writer > 0
-      = radio_button_tag("request[role]", "Writer")
-      = label_tag(:request_role_Writer, "", class: "options-roles Writer")
-    - if @project.actor > 0
-      = radio_button_tag("request[role]", "Actor")
-      = label_tag(:request_role_Actor, "", class: "options-roles Actor")
-    - if @project.editor > 0
-      = radio_button_tag("request[role]", "Editor")
-      = label_tag(:request_role_Editor, "", class: "options-roles Editor")
-    - if @project.composer > 0
-      = radio_button_tag("request[role]", "Composer")
-      = label_tag(:request_role_Composer, "", class: "options-roles Composer")
-    - if @project.cinematographer > 0
-      = radio_button_tag("request[role]", "Cinematographer")
-      = label_tag(:request_role_Cinematographer, "", class: "options-roles Cinematographer") 
-    - if @project.makeup > 0
-      = radio_button_tag("request[role]", "Makeup")
-      = label_tag(:request_role_Makeup, "", class: "options-roles Makeup") 
-    - if @project.vfx > 0
-      = radio_button_tag("request[role]", "Vfx")
-      = label_tag(:request_role_Vfx, "", class: "options-roles Vfx") 
-  = f.submit
+%br
+.card.card-space
+  .card-block
+    .form-header.primary-color
+      %h3
+        %i.fa.fa-plus
+        Request to join Project
+    = form_for @request, url: request_request_path do |f|
+      %h4.text-center
+        Select your role
+      .form-inline
+        .container-fluid
+          .row
+            .role-selector
+              .col
+                - if @project.director > 0
+                  = radio_button_tag("request[role]", "Director")
+                  = label_tag(:request_role_Director, "", class: "options-roles Director")
+              .col
+                - if @project.writer > 0
+                  = radio_button_tag("request[role]", "Writer")
+                  = label_tag(:request_role_Writer, "", class: "options-roles Writer")
+              .col
+                - if @project.actor > 0
+                  = radio_button_tag("request[role]", "Actor")
+                  = label_tag(:request_role_Actor, "", class: "options-roles Actor")
+              .col
+                - if @project.editor > 0
+                  = radio_button_tag("request[role]", "Editor")
+                  = label_tag(:request_role_Editor, "", class: "options-roles Editor")
+              .col
+                - if @project.composer > 0
+                  = radio_button_tag("request[role]", "Composer")
+                  = label_tag(:request_role_Composer, "", class: "options-roles Composer")
+              .col
+                - if @project.cinematographer > 0
+                  = radio_button_tag("request[role]", "Cinematographer")
+                  = label_tag(:request_role_Cinematographer, "", class: "options-roles Cinematographer") 
+              .col
+                - if @project.makeup > 0
+                  = radio_button_tag("request[role]", "Makeup")
+                  = label_tag(:request_role_Makeup, "", class: "options-roles Makeup") 
+              .col
+                - if @project.vfx > 0
+                  = radio_button_tag("request[role]", "Vfx")
+                  = label_tag(:request_role_Vfx, "", class: "options-roles Vfx") 
+              .col
+      .md-form
+        %i.fa.fa-pencil.prefix
+        = f.text_area :bio, :class => "md-textarea", :minlength => "40", :maxlength => 150, :length => "150"
+        %label{:for => "bio"} Why should you get this role
+      %br
+      = f.submit 'Send request', :class => "btn btn-primary btn-rounded btn-sm"
   

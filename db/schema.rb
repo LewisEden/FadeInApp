@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330114809) do
+ActiveRecord::Schema.define(version: 20170330172151) do
 
   create_table "projects", force: :cascade do |t|
     t.string   "genre"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20170330114809) do
     t.boolean  "completed"
     t.string   "leader_role"
     t.integer  "vfx"
+    t.integer  "prod_stage"
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 

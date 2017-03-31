@@ -3,9 +3,11 @@
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata>Copyright (C) 2017 by original authors @ fontello.com</metadata>
 <defs>
-<font id="mask" horiz-adv-x="1000" >
-<font-face font-family="mask" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<font id="fontello" horiz-adv-x="1000" >
+<font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
 <missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="video" unicode="&#xe800;" d="M799 574l112 111-109 112 109 0 0-894-893 0 0 894 112 0 112-112-114-111 113 0 114 113-111 110 157 0 113-112-114-111 132 0 114 113-112 110 156 0 109-112-110-111 110 0z m0-557l0 112-669 0 0-112 669 0z m0 222l0 112-669 0 0-112 669 0z" horiz-adv-x="928" />
+
 <glyph glyph-name="theatre" unicode="&#xe83a;" d="M50 800c-24 0-50-25-50-50l0-350c0-111 50-250 250-250 18 0 34 1 50 3l0 147-200 0s25 100 150 100c25 0 35-4 50-9l0 109c0 46 18 84 50 100 50 25 70 15 100 0 50-25 50-25 50-25l0 175c0 25-26 50-50 50-50 0-100-50-200-50-100 0-150 50-200 50z m88-175c34 0 62-28 62-62 0-35-28-63-62-63-35 0-63 28-63 63 0 34 28 62 63 62z m262-75c-24 0-50-25-50-50l0-350c0-111 50-250 250-250 200 0 250 139 250 250l0 350c0 25-26 50-50 50-50 0-100-50-200-50-100 0-150 50-200 50z m88-175c34 0 62-28 62-62 0-35-28-63-62-63-35 0-63 28-63 63 0 34 28 62 63 62z m225 0c34 0 62-28 62-62 0-35-28-63-62-63-35 0-63 28-63 63 0 34 28 62 63 62z m-263-275l300 0s-25-100-150-100-150 100-150 100z" horiz-adv-x="850" />
 </font>
 </defs>

@@ -62,18 +62,69 @@ class RequestsController < ApplicationController
       @userprojects.save
       if @userprojects.user_role == "Actor"
         @project.actor -= 1
+        #if all roles have been filled then it will destroy all same role requests
+        if @project.actor <= 0
+          @req = Request.where(role: "Actor", project_id: @project.id)
+          @req.each do |r|
+            r.destroy
+          end
+        end
       elsif @userprojects.user_role == "Director"
         @project.director -= 1
+        if @project.actor <= 0
+          @req = Request.where(role: "Actor", project_id: @project.id)
+          @req.each do |r|
+            r.destroy
+          end
+        end
       elsif @userprojects.user_role == "Editor"
         @project.editor -= 1
+        if @project.editor <= 0
+          @req = Request.where(role: "Editor", project_id: @project.id)
+          @req.each do |r|
+            r.destroy
+          end
+        end
       elsif @userprojects.user_role == "Composer"
         @project.composer -= 1
-      elsif @userprojects.user_role == "cinematographer"
+        if @project.composer <= 0
+          @req = Request.where(role: "Composer", project_id: @project.id)
+          @req.each do |r|
+            r.destroy
+          end
+        end
+      elsif @userprojects.user_role == "Cinematographer"
         @project.cinematographer -= 1
+        if @project.cinematographer <= 0
+          @req = Request.where(role: "Cinematographer", project_id: @project.id)
+          @req.each do |r|
+            r.destroy
+          end
+        end
       elsif @userprojects.user_role == "Writer"
         @project.writer -= 1
+        if @project.writer <= 0
+          @req = Request.where(role: "Writer", project_id: @project.id)
+          @req.each do |r|
+            r.destroy
+          end
+        end
+      elsif @userprojects.user_role == "Makeup"
+        @project.makeup -= 1
+        if @project.makeup <= 0
+          @req = Request.where(role: "Makeup", project_id: @project.id)
+          @req.each do |r|
+            r.destroy
+          end
+        end
       elsif @userprojects.user_role == "VFX"
         @project.vfx -= 1
+        if @project.vfx <= 0
+          @req = Request.where(role: "VFX", project_id: @project.id)
+          @req.each do |r|
+            r.destroy
+          end
+        end
       end
       @project.save
       if(@project.director == 0 && @project.actor == 0 && @project.writer == 0 && @project.editor == 0 && @project.cinematographer == 0 && @project.composer == 0 && @project.makeup == 0 && @project.vfx == 0)

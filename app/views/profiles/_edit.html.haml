@@ -1,9 +1,23 @@
 = simple_form_for @user, url: {action: "update"}, html: { multipart: true} do |f|
-	= f.input :avatar
-	= f.input :bio
-	= f.input :first_name
-	= f.input :last_name
-	= f.input :school, collection: ["Dunraven School"], input_html: { class: 'browser-default' }
-	= f.input :pref_role, label: 'Preferred Role', collection: ["Actor","Cinematographer", "Composer", "Director", "Editor", "Writer", "Makeup Artist" ], input_html: { class: 'browser-default' }
-	= f.input :theme, label: 'Website Theme', collection: ["Default", "Black", "Indigo", "Cyan", "Purple", "Navy", "Pink", "Light blue", "Grey"], input_html: { class: 'browser-default' }
-	= f.submit "Update Profile"
+	.file-field
+		.btn.btn-primary.btn-sm
+			%span Upload Avatar
+			= f.input_field :avatar
+		.file-path-wrapper
+			%input.file-path.validate{:placeholder => "Upload your file", :type => "text"}/
+	%br
+	%br
+	.md-form
+		= f.input_field :first_name, id: "first_name", :class => "form-control", :minlength => "3", :maxlength => 12
+		%label{:for => "first_name"} First name
+	.md-form
+		= f.input_field :last_name, id: "last_name", :class => "form-control", :minlength => "3", :maxlength => 12
+		%label{:for => "last_name"} Last name
+	.md-form
+		= f.input_field :bio, :class => "md-textarea", :minlength => "30", :maxlength => 100, :length => "100"
+		%label{:for => "bio"} Tell us about yourself
+	.form-inline
+		= f.input_field :school, collection: ["Dunraven School"], :class => "mdb-select"
+		= f.input_field :pref_role, collection: ["Actor","Cinematographer", "Composer", "Director", "Editor", "Writer", "Makeup Artist" ], :class => "mdb-select"
+		= f.input_field :theme, collection: ["Default", "Black", "Indigo", "Cyan", "Purple", "Navy", "Pink", "Light blue", "Grey"], :class => "mdb-select"
+	= f.button :submit, :class => "btn btn-primary primary-color btn-sm"

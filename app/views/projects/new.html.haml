@@ -3,15 +3,22 @@
 %br
 .card.card-space
   .card-block
-    .form-header.orange.darken-4
+    .form-header.primary-color
       %h3
         %i.fa.fa-plus
         Create Project
     = simple_form_for @project do |f|
-      = f.input_field :image
+      .file-field
+        .btn.btn-primary.btn-sm
+          %span Upload header image
+          = f.input_field :image
+        .file-path-wrapper
+          %input.file-path.validate{:placeholder => "Upload your file", :type => "text"}/
+      %br
+      %br
       .form-inline
-        = f.input :genre, collection: ["Action", "Adventure", "Comedy", "Crime", "Drama", "Horror", "Sci-fi"], input_html: { class: 'browser-default' }
-        = f.input :duration, collection: ["Very short", "Short", "Long", "Feature"], input_html: { class: 'browser-default' }
+        = f.input_field :genre, collection: ["Action", "Adventure", "Comedy", "Crime", "Drama", "Horror", "Sci-fi"], :class => "mdb-select", :default => "Genre"
+        = f.input_field :duration, collection: ["Very short", "Short", "Long", "Feature"], :class => "mdb-select", :default => "Duration"
       %br
       .md-form
         %i.fa.fa-rocket.prefix
@@ -53,7 +60,9 @@
               %img.img-fluid{:src => "/assets/roles/fuse.png", :height => "50", :width => "50"}
               = f.input :vfx, label: false, input_html: { min: 0, max: 2, value: 0 }
       %br
-      = f.input :leader_role, label: "Your role", collection: ["Actor", "Cinematographer", "Director", "Writer", "Editor", "Makeup", "Composer", "VFX"], input_html: { class: 'browser-default' }
+      %l Your role
+      .form-inline
+        = f.input_field :leader_role, collection: ["Actor", "Cinematographer", "Director", "Writer", "Editor", "Makeup", "Composer", "VFX"], :class => "mdb-select"
       = f.input :public, input_html: { checked: true, checked_value: true, unchecked_value: false}
-      = f.button :submit, :class => "btn btn-primary btn-rounded btn-sm"
-      = link_to "Cancel", root_path, :class => "btn btn-secondary btn-rounded"
+      = f.button :submit, :class => "btn btn-primary primary-color btn-rounded btn-sm"
+      = link_to "Cancel", root_path, :class => "btn btn-primary btn-rounded"

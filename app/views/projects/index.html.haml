@@ -1,7 +1,7 @@
 - title "Projects - FADE IN"
 
 %h2.display-inline Projects
-= link_to new_project_path, :class => "btn btn-view cp-right display-inline" do
+= link_to new_project_path, :class => "btn btn-primary cp-right display-inline" do
   %i.fa.fa-plus.left
   Create Project
 %hr
@@ -74,7 +74,7 @@
           - if project.director > 0
             //director
             .mask.display-inline{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Director"}
-              %i.fa.fa-fighter-jet
+              %i.icon-video
           - if project.writer > 0
             //writer
             .mask.display-inline{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Writer"}
@@ -82,7 +82,7 @@
           - if project.actor > 0
             //actor
             .mask.display-inline{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Actor"}
-              %i.fa.fa-user
+              %i.icon-theatre
           - if project.editor > 0
             //editor
             .mask.display-inline{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Editor"}
@@ -103,7 +103,7 @@
             //vfx
             .mask.display-inline{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Visual Effects"}
               %i.fa.fa-bomb
-          = link_to project_path(project), :class => "btn btn-rounded btn-view btn-sm float-right display-inline" do
+          = link_to project_path(project), :class => "btn btn-rounded btn-primary btn-sm float-right display-inline" do
             View Project
 
       	
