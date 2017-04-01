@@ -1,0 +1,15 @@
+.card
+  .card-block
+    .row
+      .col-md-1
+        - if message.user.avatar_file_name.nil?
+          %img.rounded-circle.img-responsive.round-img{:src => "/assets/icon.png"}/
+        - else
+          = image_tag message.user.avatar(:medium), :class => "rounded-circle img-responsive round-img"
+      .col-md-11
+        %p.card-text
+          %span.text-muted
+            = message.user.user_name
+            at #{message.timestamp} says
+          %br/
+          = message.body

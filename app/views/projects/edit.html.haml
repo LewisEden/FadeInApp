@@ -17,9 +17,8 @@
       %br
       %br
       .form-inline
-        = f.input_field :genre, collection: ["Action", "Adventure", "Comedy", "Crime", "Drama", "Horror", "Sci-fi"], :class => "mdb-select", :default => "Genre"
-        = f.input_field :duration, collection: ["Very short", "Short", "Long", "Feature"], :class => "mdb-select", :default => "Duration"
-      %br
+        = f.input :genre, label: false, prompt: "Select genre", collection: ["Action", "Adventure", "Comedy", "Crime", "Drama", "Horror", "Sci-fi"], input_html: { class: "browser-default" }
+        = f.input :duration, label: false, prompt: "Select duration", collection: ["Very short", "Short", "Long", "Feature"], input_html: { class: "browser-default" }
       .md-form
         %i.fa.fa-rocket.prefix
         = f.input_field :title, id: "title", :class => "form-control", :minlength => "3", :maxlength => 50, :length => "50"

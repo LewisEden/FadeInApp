@@ -17,9 +17,8 @@
       %br
       %br
       .form-inline
-        = f.input_field :genre, collection: ["Action", "Adventure", "Comedy", "Crime", "Drama", "Horror", "Sci-fi"], :class => "mdb-select", :default => "Genre"
-        = f.input_field :duration, collection: ["Very short", "Short", "Long", "Feature"], :class => "mdb-select", :default => "Duration"
-      %br
+        = f.input :genre, label: false, prompt: "Select genre", collection: ["Action", "Adventure", "Comedy", "Crime", "Drama", "Horror", "Sci-fi"], input_html: { class: "browser-default" }
+        = f.input :duration, label: false, prompt: "Select duration", collection: ["Very short", "Short", "Long", "Feature"], input_html: { class: "browser-default" }
       .md-form
         %i.fa.fa-rocket.prefix
         = f.input_field :title, id: "title", :class => "form-control", :minlength => "3", :maxlength => 50, :length => "50"
@@ -60,9 +59,8 @@
               %img.img-fluid{:src => "/assets/roles/fuse.png", :height => "50", :width => "50"}
               = f.input :vfx, label: false, input_html: { min: 0, max: 2, value: 0 }
       %br
-      %l Your role
       .form-inline
-        = f.input_field :leader_role, collection: ["Actor", "Cinematographer", "Director", "Writer", "Editor", "Makeup", "Composer", "VFX"], :class => "mdb-select"
+        = f.input_field :leader_role, label: false, prompt: "Select your role", collection: ["Actor", "Cinematographer", "Director", "Writer", "Editor", "Makeup", "Composer", "VFX"], :class => "browser-default"
       = f.input :public, input_html: { checked: true, checked_value: true, unchecked_value: false}
       = f.button :submit, :class => "btn btn-primary primary-color btn-rounded btn-sm"
       = link_to "Cancel", root_path, :class => "btn btn-primary btn-rounded"

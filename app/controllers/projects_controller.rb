@@ -17,8 +17,14 @@ class ProjectsController < ApplicationController
 		@projectmade = UserProject.last
 		@projectmade.user_role = @project.leader_role
 		@projectmade.save
-
-		if @project.save
+		
+		@chat_room = ChatRoom.new
+		@chat_room.title = @project.title
+		current_user.chat_rooms << @chat_room
+		@chat_room.project_id = @project.id
+		@chat_room.save
+		
+		if @project.save && @chat_room.save
 			flash[:success] = "Project successfully created"
 			redirect_to(project_path(@project))
 		else
@@ -44,6 +50,10 @@ class ProjectsController < ApplicationController
 
 	def destroy
 		@requests = Request.where(project_id: @project.id)
+		@chat_rooms = ChatRoom.where(project_id: @project.id)
+		@chat_rooms.each do |c|
+			c.destroy
+		end
 		@requests.each do |r|
 			r.destroy
 		end

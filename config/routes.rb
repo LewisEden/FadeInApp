@@ -16,4 +16,8 @@ Rails.application.routes.draw do
   post 'projects/:id/request', to: 'requests#create'
   get 'notifications', to: 'requests#show', as: :request_view
   get 'projects/:project_id/destroy/:request_id', to: 'requests#destroy', as: :request_destroy
+  
+  resources :chat_rooms, only: [:new, :create, :show, :index, :destroy]
+  
+  mount ActionCable.server => '/cable'
 end

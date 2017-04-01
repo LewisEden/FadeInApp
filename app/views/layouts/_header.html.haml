@@ -120,7 +120,7 @@
               %l.green-text
                 = current_user.tickets
         %li.nav-item
-          %a.nav-link
+          = link_to chat_rooms_path, :class => "nav-link" do
             %i.fa.fa-comments
             %span.hidden-sm-down Chat
         %li.nav-item

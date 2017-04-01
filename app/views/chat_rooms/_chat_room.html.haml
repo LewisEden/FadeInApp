@@ -1,0 +1,6 @@
+- @cpid = chat_room.project_id.to_i
+- @current_project = Project.find(@cpid)
+
+= image_tag @current_project.image(:medium), :width => "100"
+%h4
+  = link_to chat_room.title, chat_room_path(chat_room)

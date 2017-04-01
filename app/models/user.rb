@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :user_projects
   has_many :projects, through: :user_projects, dependent: :destroy
+  has_many :chat_rooms, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   validates :user_name, presence: true, length: { minimum: 4, maximum: 16 }	
   validates_uniqueness_of :user_name
