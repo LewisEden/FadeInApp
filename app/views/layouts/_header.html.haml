@@ -33,6 +33,10 @@
     %li
       %ul.collapsible.collapsible-accordion
         %li
+          %a.collapsible-header.waves-effect.arrow-r.disabled
+            %i.fa.fa-dashboard
+            Dashboard
+        %li
           - if current_page?(projects_path)
             = link_to projects_path, :class => "collapsible-header waves-effect arrow-r active" do
               %i.fa.fa-rocket
@@ -42,15 +46,15 @@
               %i.fa.fa-rocket
               Projects
         %li
-          %a.collapsible-header.waves-effect.arrow-r
+          %a.collapsible-header.waves-effect.arrow-r.disabled
             %i.fa.fa-bullseye
             Challenges
         %li
-          %a.collapsible-header.waves-effect.arrow-r
-            %i.fa.fa-eye
+          %a.collapsible-header.waves-effect.arrow-r.disabled
+            %i.fa.fa-film
             Watch
         %li
-          %a.collapsible-header.waves-effect.arrow-r
+          %a.collapsible-header.waves-effect.arrow-r.disabled
             %i.fa.fa-ticket
             Redeem
         %li
@@ -59,19 +63,19 @@
               %i.fa.fa-photo
               Portfolio
           - else
-            %a.collapsible-header.waves-effect.arrow-r
+            %a.collapsible-header.waves-effect.arrow-r.disabled
               %i.fa.fa-photo
               Portfolio
         %li
-          %a.collapsible-header.waves-effect.arrow-r
-            %i.fa.fa-newspaper-o
+          %a.collapsible-header.waves-effect.arrow-r.disabled
+            %i.fa.fa-book
             Resources
         %li
-          %a.collapsible-header.waves-effect.arrow-r
+          %a.collapsible-header.waves-effect.arrow-r.disabled
             %i.fa.fa-calendar
             Calendar
         %li
-          %a.collapsible-header.waves-effect.arrow-r
+          %a.collapsible-header.waves-effect.arrow-r.disabled
             %i.fa.fa-folder
             Files
         %li
@@ -117,12 +121,19 @@
                 = current_user.tickets
         %li.nav-item
           %a.nav-link
-            %i.fa.fa-comments-o
+            %i.fa.fa-comments
             %span.hidden-sm-down Chat
+        %li.nav-item
+          - if current_user.avatar_file_name == nil
+            = link_to profile_path(current_user.user_name) do
+              %img{:src => "/assets/icon.png", :class => "rounded-circle img-responsive contact-avatar", :height => "36"}
+          - else
+            = link_to profile_path(current_user.user_name) do
+              = image_tag current_user.avatar(:medium), :class => "rounded-circle img-responsive contact-avatar", :height => "36"
         %li.nav-item
           = link_to destroy_user_session_path, method: :delete, :class => "nav-link" do
             %i.fa.fa-sign-out
-            %span.hidden-sm-down Sign Out
+            %span.hidden-sm-down
       - else
         %li.nav-item
           = link_to new_user_session_path, :class => "nav-link" do

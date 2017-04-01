@@ -34,6 +34,7 @@ gem 'devise'
 gem 'haml-rails', '~> 0.9'
 gem 'html2haml'
 gem 'unsplash'
+gem 'rails_admin', '~> 1.1.1'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

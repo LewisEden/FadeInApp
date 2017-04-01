@@ -43,6 +43,12 @@ footer {
     min-width: 25%;
 }
 
+.contact-avatar {
+    background: #fff;
+    padding: 0px;
+    border: 2px solid #fff; 
+}
+
 .alert-error {
     background-color: #f2dede;
     border-color: #eed3d7;
@@ -164,6 +170,9 @@ footer {
     max-width: 50%;
   }
 
+  .sidenav-bg {
+    overflow: hidden;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 1440px) {
