@@ -160,6 +160,33 @@ footer {
 
 /**/
 
+.chat-line {
+  border-bottom: 1px solid #ababab;
+}
+
+.chat-line:hover {
+  background: rgba(241,106,67,0.5);
+}
+
+.chat-link {
+  color: #000;
+}
+
+.square-img {
+  -webkit-border-radius: 10%;
+  -moz-border-radius: 10%;
+  border-radius: 10%;
+}
+
+.chat-align {
+  display: flex;
+  align-items: center;
+}
+
+.chat-mid-align {
+  padding-top: 20px;
+}
+
 select{
   -webkit-appearance: button;
   -webkit-border-radius: 2px;
