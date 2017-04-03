@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170401160839) do
+ActiveRecord::Schema.define(version: 20170402143305) do
+
+  create_table "challenges", force: :cascade do |t|
+    t.string   "genre"
+    t.string   "duration"
+    t.string   "title"
+    t.string   "synopsis"
+    t.integer  "reward"
+    t.boolean  "completed"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.boolean  "featured"
+    t.string   "requirements"
+  end
 
   create_table "chat_rooms", force: :cascade do |t|
     t.string   "title"
@@ -55,6 +72,7 @@ ActiveRecord::Schema.define(version: 20170401160839) do
     t.string   "leader_role"
     t.integer  "vfx"
     t.integer  "prod_stage"
+    t.boolean  "challenge"
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 

@@ -41,6 +41,14 @@ class ProjectsController < ApplicationController
 
 	def update
 		if @project.update(project_params)
+			@projectmade = UserProject.where(project_id: @project.id, user_id: current_user.id)
+			@theproject = @projectmade.first
+			@theproject.user_role = @project.leader_role
+			@theproject.save
+			if @project.director <= 0 && @project.writer <= 0 && @project.editor <= 0 && @project.actor <= 0 && @project.cinematographer <= 0 && @project.makeup <= 0 && @project.vfx <= 0 && @project.composer <= 0
+				@project.public = false
+				@project.save
+			end
 			redirect_to(project_path(@project))
 			flash[:success] = "Project succesfully updated"
 		else

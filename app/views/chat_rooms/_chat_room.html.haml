@@ -1,5 +1,8 @@
 - @cpid = chat_room.project_id.to_i
 - @current_project = Project.find(@cpid)
+- @members = 0
+- @current_project.users.each do |it|
+  - @members += 1
 
 = link_to chat_room_path(chat_room), :class => "chat-link" do
   .row.chat-line
@@ -7,12 +10,12 @@
       = image_tag @current_project.image(:medium), :class => "square-img", :width => "90", :height => "60"
     .col-6.chat-mid-align
       .row.chat-align
-        %h4
+        %h4.project-title
           = chat_room.title
       .row.chat-align
         %p 
           %i.fa.fa-group
-          4/5 online
+          =@members
     .col-2.chat-align
       %p 
         .span.badge.badge-danger

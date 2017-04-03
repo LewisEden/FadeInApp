@@ -1,0 +1,143 @@
+- if challenge.featured
+  .col-sm-12.mb-r
+    .card-overlay.card-bg{:style => "background-image: url('#{challenge.image.url}')"}
+      .white-text.text-center
+        .card-block
+          - if challenge.genre == "Action"
+            //Action
+            %i.red-text.fa.fa-fighter-jet
+            %h5.red-text.display-inline
+              = challenge.genre
+            %i.red-text.fa.fa-clock-o
+            %h5.red-text.display-inline
+              = challenge.duration
+          - elsif challenge.genre == "Adventure"
+            //Adventure
+            %i.green-text.fa.fa-envira
+            %h5.green-text.display-inline
+              = challenge.genre
+            %i.green-text.fa.fa-clock-o
+            %h5.green-text.display-inline
+              = challenge.duration
+          - elsif challenge.genre == "Comedy"
+            //Comedy
+            %i.cyan-text.fa.fa-smile-o
+            %h5.cyan-text.display-inline
+              = challenge.genre
+            %i.cyan-text.fa.fa-clock-o
+            %h5.cyan-text.display-inline
+              = challenge.duration
+          - elsif challenge.genre == "Crime"
+            //Crime
+            %i.orange-text.fa.fa-gavel
+            %h5.orange-text.display-inline
+              = challenge.genre
+            %i.orange-text.fa.fa-clock-o
+            %h5.orange-text.display-inline
+              = challenge.duration
+          - elsif challenge.genre == "Drama"
+            //Drama
+            %i.amber-text.fa.fa-group
+            %h5.amber-text.display-inline
+              = challenge.genre
+            %i.amber-text.fa.fa-clock-o
+            %h5.amber-text.display-inline
+              = challenge.duration
+          - elsif challenge.genre == "Horror"
+            //Horror
+            %i.brown-text.fa.fa-warning
+            %h5.brown-text.display-inline
+              = challenge.genre
+            %i.brown-text.fa.fa-clock-o
+            %h5.brown-text.display-inline
+              = challenge.duration
+          - else
+            //Si-fi
+            %i.teal-text.fa.fa-rocket
+            %h5.teal-text.display-inline
+              = challenge.genre
+            %i.teal-text.fa.fa-clock-o
+            %h5.teal-text.display-inline
+              = challenge.duration
+          %h5.green-text.display-inline
+            %i.fa.fa-ticket.display-inline
+            = challenge.reward
+          %h3
+            = challenge.title
+          %p
+            = challenge.synopsis
+          = link_to challenge_path(challenge), :class => "btn btn-lg btn-outline-white" do
+            %i.fa.fa-clone.left
+            View Challenge
+- else
+  .col-sm-6.mb-r
+    .card-overlay{:style => "background-image: url('#{challenge.image.url}')"}
+      / Content
+      .white-text.text-left
+        .card-block
+          - if challenge.genre == "Action"
+            //Action
+            %i.red-text.fa.fa-fighter-jet
+            %h5.red-text.display-inline
+              = challenge.genre
+            %i.red-text.fa.fa-clock-o
+            %h5.red-text.display-inline
+              = challenge.duration
+          - elsif challenge.genre == "Adventure"
+            //Adventure
+            %i.green-text.fa.fa-envira
+            %h5.green-text.display-inline
+              = challenge.genre
+            %i.green-text.fa.fa-clock-o
+            %h5.green-text.display-inline
+              = challenge.duration
+          - elsif challenge.genre == "Comedy"
+            //Comedy
+            %i.cyan-text.fa.fa-smile-o
+            %h5.cyan-text.display-inline
+              = challenge.genre
+            %i.cyan-text.fa.fa-clock-o
+            %h5.cyan-text.display-inline
+              = challenge.duration
+          - elsif challenge.genre == "Crime"
+            //Crime
+            %i.orange-text.fa.fa-gavel
+            %h5.orange-text.display-inline
+              = challenge.genre
+            %i.orange-text.fa.fa-clock-o
+            %h5.orange-text.display-inline
+              = challenge.duration
+          - elsif challenge.genre == "Drama"
+            //Drama
+            %i.amber-text.fa.fa-group
+            %h5.amber-text.display-inline
+              = challenge.genre
+            %i.amber-text.fa.fa-clock-o
+            %h5.amber-text.display-inline
+              = challenge.duration
+          - elsif challenge.genre == "Horror"
+            //Horror
+            %i.brown-text.fa.fa-warning
+            %h5.brown-text.display-inline
+              = challenge.genre
+            %i.brown-text.fa.fa-clock-o
+            %h5.brown-text.display-inline
+              = challenge.duration
+          - else
+            //Si-fi
+            %i.teal-text.fa.fa-rocket
+            %h5.teal-text.display-inline
+              = challenge.genre
+            %i.teal-text.fa.fa-clock-o
+            %h5.teal-text.display-inline
+              = challenge.duration
+          %h5.green-text.display-inline
+            %i.fa.fa-ticket.display-inline
+            = challenge.reward
+          %h3
+            = challenge.title
+          %p
+            = challenge.synopsis
+          = link_to challenge_path(challenge), :class => "btn btn-lg btn-outline-white" do
+            %i.fa.fa-clone.left
+            View Challenge

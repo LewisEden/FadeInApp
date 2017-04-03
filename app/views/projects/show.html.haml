@@ -67,6 +67,9 @@
           created #{time_ago_in_words(@project.created_at)} ago
         %h4.card-title.project-title
           = @project.title
+          - if @project.challenge == true
+            .span.badge.badge-success
+              Challenge
           - if(@project.users.ids.first == current_user.id || current_user.admin == true)
             = link_to edit_project_path(@project), :class => "btn-flat display-inline" do
               %i.fa.fa-pencil

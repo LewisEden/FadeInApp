@@ -69,6 +69,9 @@
               = project.duration
           %h4.card-title.project-title
             = project.title
+            - if project.challenge == true
+              .span.badge.badge-success
+                Challenge
           %p.card-text
             = truncate(project.synopsis, length: 120)
           - if project.director > 0

@@ -32,7 +32,7 @@ footer {
 }
 
 .project-title {
-	font-weight: bold;
+	font-weight: 600;
 }
 
 .cp-right {
@@ -160,6 +160,16 @@ footer {
 
 /**/
 
+.username-align {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+}
+
+.username-align a img {
+  margin-left: 10px;
+}
+
 .chat-line {
   border-bottom: 1px solid #ababab;
 }
@@ -263,3 +273,15 @@ select{
     font-size: 2rem;
   }
 }
+
+.blog-section h1 {
+  margin-bottom: 1rem;
+  margin-top: -0.5rem; }
+
+.blog-section h5 {
+  margin-bottom: 1.5rem; }
+
+.blog-section .post-text {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #e0e0e0; }

@@ -19,5 +19,9 @@ Rails.application.routes.draw do
   
   resources :chat_rooms, only: [:new, :create, :show, :index, :destroy]
   
+  resources :challenges
+  
+  get 'challenges/:id/enter', to: 'user_challenges#new', as: :user_challenge_new
+  
   mount ActionCable.server => '/cable'
 end

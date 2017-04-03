@@ -46,7 +46,7 @@
               %i.fa.fa-rocket
               Projects
         %li
-          %a.collapsible-header.waves-effect.arrow-r.disabled
+          = link_to challenges_path, :class => "collapsible-header waves-effect arrow-r" do
             %i.fa.fa-bullseye
             Challenges
         %li
@@ -111,6 +111,9 @@
             = link_to request_view_path, :class => "nav-link" do
               %i.fa.fa-bell-o
         %li.nav-item
+          = link_to chat_rooms_path, :class => "nav-link" do
+            %i.fa.fa-comments
+        %li.nav-item
           %a.nav-link
             %i.fa.fa-ticket.green-text
             - if current_user.tickets == nil
@@ -119,11 +122,8 @@
             - else
               %l.green-text
                 = current_user.tickets
-        %li.nav-item
-          = link_to chat_rooms_path, :class => "nav-link" do
-            %i.fa.fa-comments
-            %span.hidden-sm-down Chat
-        %li.nav-item
+        %li.nav-item.username-align
+          = link_to current_user.user_name, profile_path(current_user.user_name)
           - if current_user.avatar_file_name == nil
             = link_to profile_path(current_user.user_name) do
               %img{:src => "/assets/icon.png", :class => "rounded-circle img-responsive contact-avatar", :height => "36"}
