@@ -1,11 +1,21 @@
-%h1= @chat_room.title + " chat"
-#messages{"data-chat-room-id" => @chat_room.id}
-  = render @chat_room.messages
-%hr/
-= form_for @message, url: '#' do |f|
-  = hidden_field_tag 'chat_room_id', @chat_room.id
-  .form-group
-    .md-form
-      = f.text_field :body, class: 'md-textarea'
-    %small.text-muted From 2 to 1000 characters
-  = f.submit "Post", class: 'btn btn-primary btn-lg'
+- @cpid = @chat_room.project_id.to_i
+- @current_project = Project.find(@cpid)
+- @members = 0
+- @current_project.users.each do |it|
+  - @members += 1
+%h2 Chat rooms
+%hr
+.row
+  .col-4
+    = render @chat_rooms
+  .col-8
+    %h1= @chat_room.title + " chat"
+    #messages{"data-chat-room-id" => @chat_room.id}
+      = render @chat_room.messages
+    %hr/
+    = form_for @message, url: '#' do |f|
+      = hidden_field_tag 'chat_room_id', @chat_room.id
+      .form-group
+        .md-form
+          = f.text_field :body, class: 'md-textarea'
+      %button.btn.btn-primary.primary-color.btn-rounded Send Message

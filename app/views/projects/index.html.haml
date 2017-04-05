@@ -10,7 +10,7 @@
     - if project.public == true
       .card.card-home
         = image_tag project.image.url(:medium), :class => "img-fluid"
-        .card-block
+        .card-block.text-wrap
           - if project.genre == "Action"
             //Action
             %i.red-text.fa.fa-fighter-jet

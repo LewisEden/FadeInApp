@@ -160,6 +160,11 @@ footer {
 
 /**/
 
+.card-block {
+  -ms-word-wrap: break-word;
+  word-wrap: break-word;
+}
+
 .username-align {
   display: flex;
   align-items: center;

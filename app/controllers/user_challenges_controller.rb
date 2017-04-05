@@ -1,8 +1,8 @@
 class UserChallengesController < ApplicationController
   def new
     @challenge = Challenge.find(params[:id])
-    
-    if current_user.projects.where(title: @challenge.title, challenge: true)
+    @hasalready = current_user.projects.where(title: @challenge.title, challenge: true)
+    unless @hasalready.first.blank?
       redirect_to challenge_path(@challenge.id)
       flash[:danger] = "You have already entered this challenge"
     else

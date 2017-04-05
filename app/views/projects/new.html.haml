@@ -61,6 +61,6 @@
       %br
       .form-inline
         = f.input_field :leader_role, label: false, prompt: "Select your role", collection: ["Actor", "Cinematographer", "Director", "Writer", "Editor", "Makeup", "Composer", "VFX"], :class => "browser-default"
-      = f.input :public, input_html: { checked: true, checked_value: true, unchecked_value: false}
-      = f.button :submit, :class => "btn btn-primary primary-color btn-rounded btn-sm"
+      = f.input :public, input_html: { checked: true, checked_value: true, unchecked_value: false }
+      %button.btn.btn-primary.primary-color.btn-rounded Create Project
       = link_to "Cancel", root_path, :class => "btn btn-primary btn-rounded"

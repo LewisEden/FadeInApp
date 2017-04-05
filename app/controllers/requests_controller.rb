@@ -31,8 +31,8 @@ class RequestsController < ApplicationController
         redirect_to project_path
         flash[:success] = "You have successfully sent an application to: " + @project.title
       else
-        redirect_to project_path
         flash[:danger] = "Could not send application: make sure all forms are filled."
+        render :new
       end
     end
   end

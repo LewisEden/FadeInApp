@@ -6,6 +6,7 @@ class ChatRoomsController < ApplicationController
   
   def show
     @projects = current_user.projects
+    @chat_rooms = ChatRoom.where(project_id: @projects.ids)
     @current_room = ChatRoom.find(params[:id])
     
     @projects.each do |project|
