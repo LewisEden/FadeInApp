@@ -2,9 +2,10 @@ class ProjectsController < ApplicationController
 	before_action :authenticate_user!
 	before_action :set_project, only: [:show, :edit, :update, :destroy]
 	before_action :owned_post, only: [:edit, :update, :destroy]
+	before_action :title
 	
 	def index
-		@projects = Project.all
+		@projects = Project.all.order('created_at DESC')
 	end
 
 	def new
@@ -71,6 +72,10 @@ class ProjectsController < ApplicationController
 	end
 
 	private
+
+	def title
+		@title = "Projects"
+	end
 
 	def project_params
 		params.require(:project).permit(:image, :public, :genre, :duration, :title, :synopsis, :director, :writer, :actor, :editor, :composer, :cinematographer, :makeup, :vfx, :leader_role)

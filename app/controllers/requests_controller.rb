@@ -1,5 +1,6 @@
 class RequestsController < ApplicationController
   before_action :authenticate_user!
+  before_action :title
   
   def new
     @project = Project.find(params[:id])
@@ -138,6 +139,10 @@ class RequestsController < ApplicationController
   end
   
   private
+  
+  def title
+    @title = "Requests"
+  end
   
   def request_params
     params.require(:request).permit(:bio, :role, :project_id, :user_id)

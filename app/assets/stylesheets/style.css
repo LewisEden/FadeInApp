@@ -1,4 +1,4 @@
-/* YOUR CUSTOM STYLES */
+ YOUR CUSTOM STYLES 
 
 html {
   height: 100%;
@@ -32,7 +32,7 @@ footer {
 }
 
 .project-title {
-	font-weight: 600;
+	font-weight: 500 !important;
 }
 
 .cp-right {
@@ -40,44 +40,45 @@ footer {
 }
 
 .card {
-    min-width: 25%;
+  min-width: 25%;
+  word-wrap: break-word;
 }
 
 .contact-avatar {
-    background: #fff;
-    padding: 0px;
-    border: 2px solid #fff; 
+  background: #fff;
+  padding: 0px;
+  border: 0px;
 }
 
 .alert-error {
-    background-color: #f2dede;
-    border-color: #eed3d7;
-    color: #b94a48;
-    text-align: left;
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+  text-align: left;
  }
 
 .alert-alert {
-    background-color: #f2dede;
-    border-color: #eed3d7;
-    color: #b94a48;
-    text-align: left;
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+  text-align: left;
  }
 
 .alert-success {
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
-    color: #468847;
-    text-align: left;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+  text-align: left;
  }
 
 .alert-notice {
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
-    color: #468847;
-    text-align: left;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+  text-align: left;
  }
  
- /**/
+ 
  
 .role-selector input{
   margin: 0px;
@@ -158,7 +159,7 @@ footer {
   filter: brightness(1.2) grayscale(.5) opacity(.9);
 }
 
-/**/
+
 
 .card-block {
   -ms-word-wrap: break-word;
@@ -202,26 +203,6 @@ footer {
   padding-top: 20px;
 }
 
-select{
-  -webkit-appearance: button;
-  -webkit-border-radius: 2px;
-  -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
-  -webkit-padding-end: 20px;
-  -webkit-padding-start: 2px;
-  -webkit-user-select: none;
-  background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
-  background-position: 97% center;
-  background-repeat: no-repeat;
-  border: 1px solid #AAA;
-  color: #555;
-  font-size: inherit;
-  margin: 20px;
-  overflow: hidden;
-  padding: 5px 10px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 200px;
-}
 
 #messages {
   max-height: 450px;
@@ -240,13 +221,9 @@ select{
 @media (min-width: 992px) {
   .card-home {
     max-width: 25%;
+    min-width: 25%;
   }
-
-  .card-project {
-    min-width: 50%;
-    max-width: 50%;
-  }
-
+  
   .sidenav-bg {
     overflow: hidden;
   }
@@ -290,3 +267,322 @@ select{
   margin-top: 2rem;
   margin-bottom: 2rem;
   border-bottom: 1px solid #e0e0e0; }
+
+.green-text {
+  color: #2ecc71;
+}
+
+.red-text {
+  color: #e74c3c;
+}
+
+.cyan-text {
+  color: #1abc9c;
+}
+
+.orange-text {
+  color: #f16a43;
+}
+
+.amber-text {
+  color: #e67e22;
+}
+
+.brown-text {
+  color: #d35400;
+}
+
+.teal-text {
+  color: #3498db;
+}
+
+.field-text {
+  color: #787878;
+  font-weight: 400;
+}
+
+.main-text {
+  color: #323232;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.projectbar {
+  margin-bottom: 10px !important;
+}
+
+.project-card {
+  
+}
+
+.genreduration {
+  font-size: 12px;
+  padding-bottom: 8px;
+}
+
+.cardbottom {
+  margin-top: auto;
+}
+
+.maxtype {
+  max-height: 300px;
+}
+
+.typepadding {
+  padding-bottom: 25px;
+}
+
+.crewavi {
+  border-radius: 50%;
+  height: 64px;
+  width: 64px;
+}
+
+.genreduration span {
+  font-size: 15px;
+  height: 12px;
+  width: 12px;
+  margin-right: 1px;
+}
+
+.genreduration h5 {
+  margin-right: 10px;
+}
+
+.vidthumbnail {
+  border-radius: 4px;
+}
+
+.rounded-circle {
+  border-radius: 50%;
+}
+
+.roles-spacing {
+  margin-bottom: 12px;
+}
+
+.show-title-spacing {
+  margin-bottom: 12px;
+}
+
+.summary-main {
+  padding: 0px;
+}
+
+.show-centering {
+  margin: 28px 20px 0px 20px;
+}
+
+.show-centering-bottom {
+  margin-bottom: 20px;
+}
+
+.show-main-topbar {
+  display: flex;
+}
+
+.show-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.show-group .logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.show-group-right {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+}
+
+.show-group-right p {
+  margin-left: auto;
+}
+
+.show-titles {
+  font-size: 10px;
+  color: #a1a1a1;
+  margin-bottom: 0px !important;
+}
+
+.tiles-wrap {
+  flex-wrap: wrap;
+}
+
+.login-page {
+	margin: 0px;
+	background-image: url(/assets/icon_back.png);
+	background-size: cover; 
+}
+
+.login-page main {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100%
+}
+
+.login-page section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.login {
+	background: #f16a43;
+	height: 725px;
+	color: #fff;
+	width: 33%;
+	box-sizing: border-box;
+	padding: 0px 5%;
+	position: relative;
+	z-index: 2;
+	left: 100px;
+}
+
+.login img {
+	margin-top: 107px;
+}
+
+.login h1 {
+	font-weight: 400;
+	margin-top: 50px;
+	font-size: 36px;
+}
+
+.login p {
+	font-size: 14px;
+	text-align: center;
+	font-weight: 300;
+}
+
+.sign-up {
+	background: #fff;
+	height: 914px;
+	box-sizing: border-box;
+	width: 50%;
+	position: relative;
+	z-index: 1;
+	padding: 0px 10%;
+}
+
+.sign-up h1 {
+	font-weight: 400;
+	font-size: 40px;
+	color: #444444;
+}
+
+.sign-up p {
+	text-align: center;
+	font-size: 16px;
+	margin-top: 0px;
+	color: #444444;
+}
+
+.sign-up > p {
+	margin-bottom: 55px;
+	width: 50%;
+	font-weight: 300;
+}
+
+.sign-up-form {
+	display: flex;
+	flex-direction: column;
+	align-self: flex-start;
+}
+
+.sign-up-form div {
+	display: flex;
+	align-items: center;
+}
+
+.sign-up-form > div {
+	margin-bottom: 60px;
+}
+
+.sign-up-form div span {
+	font-size: 64px;
+	width: 64px;
+	margin-right: 25px;
+	color: #424242;
+}
+
+.sign-up-form div div{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.show-require-img {
+  height: 100%;
+}
+
+.show-spacing {
+  margin-left: 34px;
+}
+
+.show-center {
+  align-items: center;
+}
+
+.genre-space {
+  margin-right: 5px;
+}
+
+.genre-space i {
+  margin-right: 3px;
+}
+
+.fadein {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.body-margin {
+  margin: 0px;
+}
+
+.body-margin main {
+  width: 100%;
+  height: 100%;
+}
+
+.crew {
+  display: flex;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.show-crew-img {
+  width: 50px;
+  height: 100%;
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+.crew-name {
+  display: flex;
+}
+
+.crew-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+}
+
+.user-bottom {
+  padding-bottom: 0px;
+}
+
+.crew-name p {
+  color: #f16a43;
+  font-size: 16px;
+}
+
+.crew-role {
+  color: #363636;
+  font-size: 13px;
+}

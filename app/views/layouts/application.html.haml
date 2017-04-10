@@ -3,38 +3,28 @@
 - else
   - @notloggedin = false
 
-= render 'layouts/secret'
-!!!
-%html
-  %head
-    %title= content_for?(:title) ? content_for(:title) : "FADE IN"
-    = render 'layouts/rails_default'
-    %link{:href => "/assets/icon.png", :rel => "shortcut icon", :type => "image/png"}/
-  - if @notloggedin == false
-    - if current_user.theme == nil
-      %body.fixed-sn.white-skin
-    - if current_user.theme == "Black"
-      %body.fixed-sn.black-skin
-    - if current_user.theme == "Indigo"
-      %body.fixed-sn.indigo-skin
-    - if current_user.theme == "Cyan"
-      %body.fixed-sn.cyan-skin
-    - if current_user.theme == "Purple"
-      %body.fixed-sn.deep-purple-skin
-    - if current_user.theme == "Navy"
-      %body.fixed-sn.navy-blue-skin
-    - if current_user.theme == "Pink"
-      %body.fixed-sn.pink-skin
-    - if current_user.theme == "Light blue"
-      %body.fixed-sn.light-blue-skin
-    - if current_user.theme == "Grey"
-      %body.fixed-sn.grey-skin
-    - else
-      %body.fixed-sn.white-skin
-  - else
-    %body.fixed-sn.white-skin
-  = render 'layouts/header'
-  %main
-    = render 'layouts/messages'
-    = yield
-  = render 'layouts/footer'
+
+- if current_user.blank?
+  = render 'layouts/secret'
+  !!!
+  %html
+    %head
+      %title= content_for?(:title) ? content_for(:title) : "FADE IN"
+      = render 'layouts/rails_default'
+      %link{:href => "/assets/icon.png", :rel => "shortcut icon", :type => "image/png"}/
+    %body.body-margin
+      = render 'layouts/messages'
+      = yield
+- else
+  = render 'layouts/secret'
+  !!!
+  %html
+    %head
+      %title= content_for?(:title) ? content_for(:title) : "FADE IN"
+      = render 'layouts/rails_default'
+      %link{:href => "/assets/icon.png", :rel => "shortcut icon", :type => "image/png"}/
+    %body
+    = render 'layouts/newheader'
+    %main
+      = render 'layouts/messages'
+      = yield

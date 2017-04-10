@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
+  before_action :title
 
   def show
   	@projects = @user.projects.order('created_at Desc')
@@ -20,6 +21,14 @@ class ProfilesController < ApplicationController
   end
 
   private
+  
+  def title
+    if @user.first_name.blank?
+      @title = "#{@user.user_name}'s Profile"
+    else
+      @title = "#{@user.first_name}'s Profile"
+    end
+  end
 
   def profile_params
   	params.require(:user).permit(:avatar, :bio, :first_name, :last_name, :school, :pref_role, :theme)

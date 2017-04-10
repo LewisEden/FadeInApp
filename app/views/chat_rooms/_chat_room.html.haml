@@ -1,31 +1,3 @@
-- @cpid = chat_room.project_id.to_i
-- @current_project = Project.find(@cpid)
-- @members = 0
-- @current_project.users.each do |it|
-  - @members += 1
-
-= link_to chat_room_path(chat_room), :class => "chat-link" do
-  .row.chat-line
-    .col-4.chat-align
-      = image_tag @current_project.image(:medium), :class => "square-img", :width => "90", :height => "60"
-    .col-6.chat-mid-align
-      .row.chat-align
-        %h4.project-title
-          = chat_room.title
-      .row.chat-align
-        %p 
-          %i.fa.fa-group
-          =@members
-    .col-2.chat-align
-      %p 
-        .span.badge.badge-danger
-          4
-// .card
-//   .card-block
-//     .row
-//       .col-md-2
-//         = image_tag @current_project.image(:medium), :class => "round-img", :width => "250", :height => "250"
-//       .col-md-10
-//         %p.card-text
-//           %span.text-muted
-//             = link_to chat_room.title, chat_room_path(chat_room)
+%li
+  = link_to chat_room_path(chat_room) do
+    = chat_room.title

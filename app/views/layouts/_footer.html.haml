@@ -1,15 +1,8 @@
 / Footer
 %footer.page-footer.center-on-small-only
   / Footer Links
-  .container-fluid
+  .container.is-fluid
     .row
-      / First column
-      .col-md-3.offset-1.col-shrink
-        %h5.title About Us
-        %p FADE IN is a collaborative platform which enables students to easily create films, and be rewarded for doing so.
-      / /.First column
-      %hr.hidden-md-up
-      / Second column
       .col-md-2.offset-1.col-shrink
         %h5.title FADE IN
         %ul
@@ -50,20 +43,3 @@
           %li
             %a{:href => "#!"} Partnerships
       / /.Fourth column
-  / /.Footer Links
-  / Copyright
-  .footer-copyright.center
-    .container-fluid.center
-      \© 2017 Copyright:
-      %a{:href => "http://www.fadeinapp.com"} FADE IN LTD
-  / /.Copyright
-/ /.Footer
-/ SCRIPTS
-%script{:src => "https://mdbootstrap.com/wp-content/themes/mdbootstrap4/js/compiled.min.js", :type => "text/javascript"}
-:javascript
-  $(".button-collapse").sideNav();
-      
-  var el = document.querySelector('.custom-scrollbar');
-  Ps.initialize(el);
-  
-  

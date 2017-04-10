@@ -1,4 +1,6 @@
 class ChatRoomsController < ApplicationController
+  before_action :title
+  
   def index
     @projects = current_user.projects
     @chat_rooms = ChatRoom.where(project_id: @projects.ids)
@@ -25,6 +27,10 @@ class ChatRoomsController < ApplicationController
   end
 
   private
+
+  def title
+    @title = "Messages"
+  end
 
   def chat_room_params
     params.require(:chat_room).permit(:title)

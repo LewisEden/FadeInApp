@@ -1,0 +1,133 @@
+- @requestamount = 0
+- if current_user.nil?
+  - @notloggedin = true
+- @requests = Request.all
+- @requests.each do |request|
+  - @project = Project.find(request.project_id)
+  - @user = User.find(request.user_id)
+  - if @notloggedin != true
+    - if current_user.id == @project.users.ids.first
+      - @requestamount += 1
+%header
+  / Side Navigation
+  %a
+    = link_to root_path do
+      %img.logo{:src => "/assets/logo_a.png"}/
+  %nav
+    %ul
+      %a{:href => ""}
+        %li
+          %span.fa.fa-tachometer.fa-lg{"aria-hidden" => "true"}>
+          dashboard
+      = link_to projects_path do
+        %li.active
+          %span.fa.fa-rocket.fa-lg{"aria-hidden" => "true"}>
+          projects
+      = link_to challenges_path do
+        %li
+          %span.fa.fa-bullseye.fa-lg{"aria-hidden" => "true"}>
+          challenges
+      %a{:href => ""}
+        %li
+          %span.fa.fa-film.fa-lg{"aria-hidden" => "true"}>
+          watch
+      - if current_user.blank?
+      - else
+        = link_to profile_path(current_user.user_name) do
+          %li
+            %span.fa.fa-picture-o.fa-lg{"aria-hidden" => "true"}>
+            portfolio
+      %a{:href => ""}
+        %li
+          %span.fa.fa-ticket.fa-lg{"aria-hidden" => "true"}>
+          redeem
+      %a{:href => ""}
+        %li
+          %span.fa.fa-book.fa-lg{"aria-hidden" => "true"}>
+          resources
+      %a{:href => ""}
+        %li
+          %span.fa.fa-calendar.fa-lg{"aria-hidden" => "true"}>
+          calendar
+      %a{:href => ""}
+        %li
+          %span.fa.fa-folder.fa-lg{"aria-hidden" => "true"}>
+          files
+  / End Of Side Navigation
+  / Advertising Space
+  %aside
+    .ad-header-full
+      %span.fa.fa-bullhorn.fa-lg{"aria-hidden" => "true"}>
+      .ad-header-title
+        %h4 Harry Pooter
+        %p
+          Challenge ends in 4 days
+    %p Harry pooter is in an intense battle with a fart.
+    %a{:href => ""} View challenge
+  %aside
+    .ad-header-full
+      %span.fa.fa-comments.fa-lg{"aria-hidden" => "true"}>
+      .ad-header-title
+        %h4 Q&A - Matt Smith
+        %p Begins 14/06/17 @2pm
+    %p Join the Q&A and ask actor Matt Smith your questions!
+    %a{:href => ""} View event
+  / End of Advertising Space
+  / Settings
+  %nav.settings
+    %ul
+      %li
+        %a{:href => ""}
+          %i.fa.fa-cog.fa-lg{"aria-hidden" => "true"}
+      %li
+        %a{:href => ""}
+          %i.fa.fa-shield.fa-lg{"aria-hidden" => "true"}
+  / End Of Settings
+%nav.user-nav
+  %h1
+    = @title
+  %ul
+    %li.notifications
+      = link_to request_view_path do
+        - if @requestamount > 0
+          %span.fa.fa-bell.orange-text{"aria-hidden" => "true"}
+        - else
+          %span.fa.fa-bell-o{"aria-hidden" => "true"}
+    %li.tickets
+      %a
+        %span.fa.fa-ticket{"aria-hidden" => "true"}
+        230
+    %li.chat
+      = link_to chat_rooms_path do
+        %span.fa.fa-envelope{"aria-hidden" => "true"}
+    %li.search
+      %input{:name => "search", :placeholder => "Search", :type => "text"}/
+    - if current_user.blank?
+    - else
+      .dropdown
+        %li.user
+          = image_tag current_user.avatar(:medium), :class => "rounded-circle img-responsive contact-avatar", :height => "16", :width => "16"
+          = current_user.user_name
+        .arrow-up
+        .dropdown-content
+          %ul
+            = link_to profile_path(current_user.user_name) do
+              %li
+                %span.fa.fa-user-o{"aria-hidden" => "true"}>
+                My Profile
+            %a{:href => ""}
+              %li
+                %span.fa.fa-wpforms{"aria-hidden" => "true"}>
+                My Projects
+            %a{:href => "/chat_rooms"}
+              %li
+                %span.fa.fa-envelope-o{"aria-hidden" => "true"}>
+                My Messages
+            %a{:href => ""}
+              %li
+                %span.fa.fa-calendar{"aria-hidden" => "true"}>
+                My Calendar
+            = link_to destroy_user_session_path, :class => "sign-out", method: :delete do
+              %li
+                %span.fa.fa-sign-out{"aria-hidden" => "true"}>
+                Sign Out

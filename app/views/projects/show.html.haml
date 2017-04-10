@@ -1,161 +1,391 @@
 - title @project.title + " - FADE IN"
-.container
-  = render 'projects/stepper'
 
-.row
-  .card-group.col-md-12
-    .card.card-project
-      = image_tag @project.image.url(:medium), :class => "img-fluid img-responsive"
-      .card-block
-        - if @project.genre == "Action"
-          //Action
-          %i.red-text.fa.fa-fighter-jet
-          %h5.red-text.display-inline
-            = @project.genre
-          %i.red-text.fa.fa-clock-o
-          %h5.red-text.display-inline
-            = @project.duration
-        - elsif @project.genre == "Adventure"
-          //Adventure
-          %i.green-text.fa.fa-envira
-          %h5.green-text.display-inline
-            = @project.genre
-          %i.green-text.fa.fa-clock-o
-          %h5.green-text.display-inline
-            = @project.duration
-        - elsif @project.genre == "Comedy"
-          //Comedy
-          %i.cyan-text.fa.fa-smile-o
-          %h5.cyan-text.display-inline
-            = @project.genre
-          %i.cyan-text.fa.fa-clock-o
-          %h5.cyan-text.display-inline
-            = @project.duration
-        - elsif @project.genre == "Crime"
-          //Crime
-          %i.orange-text.fa.fa-gavel
-          %h5.orange-text.display-inline
-            = @project.genre
-          %i.orange-text.fa.fa-clock-o
-          %h5.orange-text.display-inline
-            = @project.duration
-        - elsif @project.genre == "Drama"
-          //Drama
-          %i.amber-text.fa.fa-group
-          %h5.amber-text.display-inline
-            = @project.genre
-          %i.amber-text.fa.fa-clock-o
-          %h5.amber-text.display-inline
-            = @project.duration
-        - elsif @project.genre == "Horror"
-          //Horror
-          %i.brown-text.fa.fa-warning
-          %h5.brown-text.display-inline
-            = @project.genre
-          %i.brown-text.fa.fa-clock-o
-          %h5.brown-text.display-inline
-            = @project.duration
-        - else
-          //Si-fi
-          %i.teal-text.fa.fa-rocket
-          %h5.teal-text.display-inline
-            = @project.genre
-          %i.teal-text.fa.fa-clock-o
-          %h5.teal-text.display-inline
-            = @project.duration
-        .p.float-right
-          created #{time_ago_in_words(@project.created_at)} ago
-        %h4.card-title.project-title
-          = @project.title
-          - if @project.challenge == true
-            .span.badge.badge-success
-              Challenge
-          - if(@project.users.ids.first == current_user.id || current_user.admin == true)
-            = link_to edit_project_path(@project), :class => "btn-flat display-inline" do
-              %i.fa.fa-pencil
-        %p.card-text
-          = @project.synopsis
-        %hr
-        - if(@project.director == 0) && (@project.writer == 0) && (@project.actor == 0) && (@project.editor == 0) && (@project.cinematographer == 0) && (@project.makeup == 0) && (@project.vfx == 0)
-          - @filled = true
-          Crew has been filled.
-        - else
-          %h4 Crew needed
-          - if @project.director > 0
-            .view.display-inline
-              %img.img-fluid{:alt => "Director", :src => "/assets/roles/clapperboard.png", :height => "50", :width => "50"}/
-              .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Director"}
-                .span.badge.badge-danger
-                  =@project.director
-          - if @project.writer > 0
-            .view.display-inline
-              %img.img-fluid{:alt => "", :src => "/assets/roles/edit.png", :height => "50", :width => "50"}/
-              .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Writer"}
-                .span.badge.badge-danger
-                  =@project.writer
-          - if @project.actor > 0
-            .view.display-inline
-              %img.img-fluid{:alt => "", :src => "/assets/roles/theater.png", :height => "50", :width => "50"}/
-              .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Actor"}
-                .span.badge.badge-danger
-                  =@project.actor
-          - if @project.editor > 0
-            .view.display-inline
-              %img.img-fluid{:alt => "", :src => "/assets/roles/imac.png", :height => "50", :width => "50"}/
-              .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Editor"}
-                .span.badge.badge-danger
-                  =@project.editor
-          - if @project.composer > 0
-            .view.display-inline
-              %img.img-fluid{:alt => "", :src => "/assets/roles/music-player.png", :height => "50", :width => "50"}/
-              .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Composer"}
-                .span.badge.badge-danger
-                  =@project.composer
-          - if @project.cinematographer > 0
-            .view.display-inline
-              %img.img-fluid{:alt => "", :src => "/assets/roles/photo-camera.png", :height => "50", :width => "50"}/
-              .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Cinematographer"}
-                .span.badge.badge-danger
-                  =@project.cinematographer
-          - if @project.makeup > 0
-            .view.display-inline
-              %img.img-fluid{:alt => "", :src => "/assets/roles/paint-brush.png", :height => "50", :width => "50"}/
-              .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Makeup Artist"}
-                .span.badge.badge-danger
-                  =@project.makeup
-          - if @project.vfx > 0
-            .view.display-inline
-              %img.img-fluid{:alt => "", :src => "/assets/roles/fuse.png", :height => "50", :width => "50"}/
-              .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Visual Effects"}
-                .span.badge.badge-danger
-                  =@project.vfx
-  .card-group.col-md-4.offset-1
-    .card
-      = link_to "Project chat", chat_room_path(@project.id), :class => "btn btn-primary btn-rounded"
-%br
-.col
-  %h5 The Crew
-  - @project.users.each do |user|
-    .chip
-      - @them = UserProject.where(user_id: user.id, project_id: @project.id)
-      - @them.each do |it|
-        = it.user_role
-        %span -
-      - if user.avatar_file_name == nil
-        %img.img-fluid{:src => "/assets/icon.png"}
-      - else
-        = image_tag user.avatar, :class => "img-fluid"
-      = link_to user.user_name, profile_path(user.user_name), :class => "orange-text"
-  = link_to "Back", root_path, :class => "btn btn-primary btn-rounded float-right"
-  - @project.users.each do |u|
-    - if u.id == current_user.id
-      - @inproject = true
-  - @what = Request.where(user_id: current_user.id, project_id: @project.id)
-  - @what.each do |lol|
-    - if(lol.user_id == current_user.id) && (lol.project_id == @project.id)
-      - @requestpending = true
-  - if (@inproject == nil && @filled == nil) && @requestpending != true
-    = link_to "Request to join", request_request_path(@project.id), :class => "btn btn-primary btn-rounded"
-  - if @requestpending == true
-    .span.badge.badge-danger
-      Request is pending
+- @what = Request.where(user_id: current_user.id, project_id: @project.id)
+- @what.each do |lol|
+  - if(lol.user_id == current_user.id) && (lol.project_id == @project.id)
+    - @requestpending = true
+
+.tile.is-ancestor
+  .tile.is-5.is-vertical.is-parent
+    %p.show-title-spacing Summary
+    .tile.is-child.box.summary-main
+      - if @project.public == true
+        .card-image
+          = image_tag @project.image.url(:medium), :class => "img-fluid"
+          .genreduration.show-centering.show-main-topbar
+            - if @project.genre == "Action"
+              //Action
+              .show-group.genre-space
+                %p.show-titles Genre
+                .logo-container
+                  %span.red-text.fa.fa-fighter-jet
+                  %h5.red-text.display-inline
+                    = @project.genre
+              .show-group.genre-space
+                %p.show-titles Duration
+                .logo-container
+                  %span.red-text.fa.fa-clock-o.icon
+                  %h5.red-text.display-inline
+                    = @project.duration
+            - elsif @project.genre == "Adventure"
+              //Adventure
+              .show-group.genre-space
+                %p.show-titles Genre
+                .logo-container
+                  %span.green-text.fa.fa-envira
+                  %h5.green-text.display-inline
+                    = @project.genre
+              .show-group.genre-space
+                %p.show-titles Duration
+                .logo-container
+                  %span.green-text.fa.fa-clock-o
+                  %h5.green-text.display-inline
+                    = @project.duration
+            - elsif @project.genre == "Comedy"
+              //Comedy
+              .show-group.genre-space
+                %p.show-titles Genre
+                .logo-container
+                  %i.cyan-text.fa.fa-smile-o
+                  %h5.cyan-text.display-inline
+                    = @project.genre
+              .show-group.genre-space
+                %p.show-titles Duration
+                .logo-container
+                  %i.cyan-text.fa.fa-clock-o
+                  %h5.cyan-text.display-inline
+                    = @project.duration
+            - elsif @project.genre == "Crime"
+              //Crime
+              .show-group.genre-space
+                %p.show-titles Genre
+                .logo-container
+                  %i.orange-text.fa.fa-gavel
+                  %h5.orange-text.display-inline
+                    = @project.genre
+              .show-group.genre-space
+                %p.show-titles Duration
+                .logo-container
+                  %i.orange-text.fa.fa-clock-o
+                  %h5.orange-text.display-inline
+                    = @project.duration
+            - elsif @project.genre == "Drama"
+              //Drama
+              .show-group.genre-space
+                %p.show-titles Genre
+                .logo-container
+                  %i.amber-text.fa.fa-group
+                  %h5.amber-text.display-inline
+                    = @project.genre
+              .show-group.genre-space
+                %p.show-titles Duration
+                .logo-container
+                  %i.amber-text.fa.fa-clock-o
+                  %h5.amber-text.display-inline
+                    = @project.duration
+            - elsif @project.genre == "Horror"
+              //Horror
+              .show-group.genre-space
+                %p.show-titles Genre
+                .logo-container
+                  %i.brown-text.fa.fa-warning
+                  %h5.brown-text.display-inline
+                    = @project.genre
+              .show-group.genre-space
+                %p.show-titles Duration
+                .logo-container
+                  %i.brown-text.fa.fa-clock-o
+                  %h5.brown-text.display-inline
+                    = @project.duration
+            - else
+              //Si-fi
+              .show-group.genre-space
+                %p.show-titles Genre
+                .logo-container
+                  %i.teal-text.fa.fa-rocket
+                  %h5.teal-text.display-inline
+                    = @project.genre
+              .show-group.genre-space
+                %p.show-titles Duration
+                .logo-container
+                  %i.teal-text.fa.fa-clock-o
+                  %h5.teal-text.display-inline
+                    = @project.duration
+            .show-group-right
+              %p.show-titles Created
+              = time_ago_in_words(@project.created_at) + " ago"
+          .content.show-centering
+            %p.show-titles Title
+            %h4.project-title
+              = @project.title
+              - if @project.challenge == true
+                .span.tag.is-primary
+                  Challenge
+            %p.show-titles Synopsis
+            %p.show-centering-bottom
+              = @project.synopsis
+    %p.show-title-spacing The Crew
+    .tile.is-child.box.user-bottom
+      - @project.users.each do |user|
+        .crew
+          = image_tag user.avatar(:medium), :class => "crewavi"
+          - @them = UserProject.where(user_id: user.id, project_id: @project.id)
+          - @them.each do |it|
+            .crew-info
+              - if user.first_name.blank?
+                .crew-name
+                  = link_to profile_path(current_user.user_name) do
+                    %p
+                      = user.user_name
+              - else
+                = link_to profile_path(current_user.user_name) do
+                  .crew-name
+                    %p
+                      = user.first_name + " " + user.last_name
+              - @them.each do |it|
+                %p.crew-role
+                  = it.user_role
+            - if it.user_role == "Director"
+              %img.show-crew-img{:src => "/assets/roles/clapperboard.png"}
+            - elsif it.user_role == "Actor"
+              %img.show-crew-img{:src => "/assets/roles/theater.png"}
+            - elsif it.user_role == "Writer"
+              %img.show-crew-img{:src => "/assets/roles/edit.png"}
+            - elsif it.user_role == "Cinematographer"
+              %img.show-crew-img{:src => "/assets/roles/photo-camera.png"}
+            - elsif it.user_role == "Editor"
+              %img.show-crew-img{:src => "/assets/roles/imac.png"}
+            - elsif it.user_role == "Composer"
+              %img.show-crew-img{:src => "/assets/roles/music.png"}
+            - elsif it.user_role == "Makeup"
+              %img.show-crew-img{:src => "/assets/roles/paint-brush.png"}
+            - elsif it.user_role == "Vfx"
+              %img.show-crew-img{:src => "/assets/roles/theater.png"}
+  .tile.is-vertical.is-parent
+    %p.show-title-spacing Roles needed
+    - if @project.director > 0
+      = link_to request_request_path(@project.id), :class => "roles-spacing" do
+        .tile-is-child.box.show-main-topbar.show-center
+          %img.show-require-img{:alt => "Director", :src => "/assets/roles/clapperboard.png", :height => "50", :width => "50"}/
+          //=@project.director
+          .show-group.show-spacing
+            %p.show-titles Requirements
+            Requirements go here mi famila
+    - if @project.actor > 0
+      = link_to request_request_path(@project.id), :class => "roles-spacing" do
+        .tile-is-child.box.show-main-topbar.show-center
+          %img.show-require-img{:alt => "Actor", :src => "/assets/roles/theater.png", :height => "50", :width => "50"}/
+          //=@project.actor
+          .show-group.show-spacing
+            %p.show-titles Requirements
+            Requirements go here mi famila
+    - if @project.writer > 0
+      = link_to request_request_path(@project.id), :class => "roles-spacing" do
+        .tile-is-child.box.show-main-topbar.show-center
+          %img.show-require-img{:alt => "Writer", :src => "/assets/roles/edit.png", :height => "50", :width => "50"}/
+          //=@project.writer
+          .show-group.show-spacing
+            %p.show-titles Requirements
+            Requirements go here mi famila
+    - if @project.cinematographer > 0
+      = link_to request_request_path(@project.id), :class => "roles-spacing" do
+        .tile-is-child.box.show-main-topbar.show-center
+          %img.show-require-img{:alt => "Cinematographer", :src => "/assets/roles/photo-camera.png", :height => "50", :width => "50"}/
+          //=@project.cinematographer
+          .show-group.show-spacing
+            %p.show-titles Requirements
+            Requirements go here mi famila
+    - if @project.editor > 0
+      = link_to request_request_path(@project.id), :class => "roles-spacing" do
+        .tile-is-child.box.show-main-topbar.show-center
+          %img.show-require-img{:alt => "Editor", :src => "/assets/roles/imac.png", :height => "50", :width => "50"}/
+          //=@project.editor
+          .show-group.show-spacing
+            %p.show-titles Requirements
+            Requirements go here mi famila
+    - if @project.composer > 0
+      = link_to request_request_path(@project.id), :class => "roles-spacing" do
+        .tile-is-child.box.show-main-topbar.show-center
+          %img.show-require-img{:alt => "Composer", :src => "/assets/roles/music.png", :height => "50", :width => "50"}/
+          //=@project.composer
+          .show-group.show-spacing
+            %p.show-titles Requirements
+            Requirements go here mi famila
+    - if @project.makeup > 0
+      = link_to request_request_path(@project.id), :class => "roles-spacing" do
+        .tile-is-child.box.show-main-topbar.show-center
+          %img{:alt => "Makeup artist", :src => "/assets/roles/paint-brush.png", :height => "50", :width => "50"}/
+          //=@project.makeup
+          .show-group.show-spacing
+            %p.show-titles Requirements
+            Requirements go here mi famila
+    - if @project.vfx > 0
+      = link_to request_request_path(@project.id), :class => "roles-spacing" do
+        .tile-is-child.box.show-main-topbar.show-center
+          %img{:alt => "VFX Artist", :src => "/assets/roles/fuse.png", :height => "50", :width => "50"}/
+          //=@project.
+          %p.show-titles Requirements
+          Requirements go here mi famila
+    - if @requestpending == true
+      %span.tag.is-success.is-medium
+        Your request to join this project is pending
+    
+// .container
+//   = render 'projects/stepper'
+// .row
+//   .card-group.col-md-12
+//     .card.card-project
+//       = image_tag @project.image.url(:medium), :class => "img-fluid img-responsive"
+//       .card-block
+//         - if @project.genre == "Action"
+//           //Action
+//           %i.red-text.fa.fa-fighter-jet
+//           %h5.red-text.display-inline
+//             = @project.genre
+//           %i.red-text.fa.fa-clock-o
+//           %h5.red-text.display-inline
+//             = @project.duration
+//         - elsif @project.genre == "Adventure"
+//           //Adventure
+//           %i.green-text.fa.fa-envira
+//           %h5.green-text.display-inline
+//             = @project.genre
+//           %i.green-text.fa.fa-clock-o
+//           %h5.green-text.display-inline
+//             = @project.duration
+//         - elsif @project.genre == "Comedy"
+//           //Comedy
+//           %i.cyan-text.fa.fa-smile-o
+//           %h5.cyan-text.display-inline
+//             = @project.genre
+//           %i.cyan-text.fa.fa-clock-o
+//           %h5.cyan-text.display-inline
+//             = @project.duration
+//         - elsif @project.genre == "Crime"
+//           //Crime
+//           %i.orange-text.fa.fa-gavel
+//           %h5.orange-text.display-inline
+//             = @project.genre
+//           %i.orange-text.fa.fa-clock-o
+//           %h5.orange-text.display-inline
+//             = @project.duration
+//         - elsif @project.genre == "Drama"
+//           //Drama
+//           %i.amber-text.fa.fa-group
+//           %h5.amber-text.display-inline
+//             = @project.genre
+//           %i.amber-text.fa.fa-clock-o
+//           %h5.amber-text.display-inline
+//             = @project.duration
+//         - elsif @project.genre == "Horror"
+//           //Horror
+//           %i.brown-text.fa.fa-warning
+//           %h5.brown-text.display-inline
+//             = @project.genre
+//           %i.brown-text.fa.fa-clock-o
+//           %h5.brown-text.display-inline
+//             = @project.duration
+//         - else
+//           //Si-fi
+//           %i.teal-text.fa.fa-rocket
+//           %h5.teal-text.display-inline
+//             = @project.genre
+//           %i.teal-text.fa.fa-clock-o
+//           %h5.teal-text.display-inline
+//             = @project.duration
+//         .p.float-right
+//           created #{time_ago_in_words(@project.created_at)} ago
+//         %h4.card-title.project-title
+//           = @project.title
+//           - if @project.challenge == true
+//             .span.badge.badge-success
+//               Challenge
+//           - if(@project.users.ids.first == current_user.id || current_user.admin == true)
+//             = link_to edit_project_path(@project), :class => "btn-flat display-inline" do
+//               %i.fa.fa-pencil
+//         %p.card-text
+//           = @project.synopsis
+//         %hr
+//         - if(@project.director == 0) && (@project.writer == 0) && (@project.actor == 0) && (@project.editor == 0) && (@project.cinematographer == 0) && (@project.makeup == 0) && (@project.vfx == 0)
+//           - @filled = true
+//           Crew has been filled.
+//         - else
+//           %h4 Crew needed
+//           - if @project.director > 0
+//             .view.display-inline
+//               %img.img-fluid{:alt => "Director", :src => "/assets/roles/clapperboard.png", :height => "50", :width => "50"}/
+//               .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Director"}
+//                 .span.badge.badge-danger
+//                   =@project.director
+//           - if @project.writer > 0
+//             .view.display-inline
+//               %img.img-fluid{:alt => "", :src => "/assets/roles/edit.png", :height => "50", :width => "50"}/
+//               .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Writer"}
+//                 .span.badge.badge-danger
+//                   =@project.writer
+//           - if @project.actor > 0
+//             .view.display-inline
+//               %img.img-fluid{:alt => "", :src => "/assets/roles/theater.png", :height => "50", :width => "50"}/
+//               .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Actor"}
+//                 .span.badge.badge-danger
+//                   =@project.actor
+//           - if @project.editor > 0
+//             .view.display-inline
+//               %img.img-fluid{:alt => "", :src => "/assets/roles/imac.png", :height => "50", :width => "50"}/
+//               .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Editor"}
+//                 .span.badge.badge-danger
+//                   =@project.editor
+//           - if @project.composer > 0
+//             .view.display-inline
+//               %img.img-fluid{:alt => "", :src => "/assets/roles/music-player.png", :height => "50", :width => "50"}/
+//               .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Composer"}
+//                 .span.badge.badge-danger
+//                   =@project.composer
+//           - if @project.cinematographer > 0
+//             .view.display-inline
+//               %img.img-fluid{:alt => "", :src => "/assets/roles/photo-camera.png", :height => "50", :width => "50"}/
+//               .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Cinematographer"}
+//                 .span.badge.badge-danger
+//                   =@project.cinematographer
+//           - if @project.makeup > 0
+//             .view.display-inline
+//               %img.img-fluid{:alt => "", :src => "/assets/roles/paint-brush.png", :height => "50", :width => "50"}/
+//               .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Makeup Artist"}
+//                 .span.badge.badge-danger
+//                   =@project.makeup
+//           - if @project.vfx > 0
+//             .view.display-inline
+//               %img.img-fluid{:alt => "", :src => "/assets/roles/fuse.png", :height => "50", :width => "50"}/
+//               .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Visual Effects"}
+//                 .span.badge.badge-danger
+//                   =@project.vfx
+//   .card-group.col-md-4.offset-1
+//     .card
+//       = link_to "Project chat", chat_room_path(@project.id), :class => "btn btn-primary btn-rounded"
+// %br
+// .col
+//   %h5 The Crew
+//   - @project.users.each do |user|
+//     .chip
+//       - @them = UserProject.where(user_id: user.id, project_id: @project.id)
+//       - @them.each do |it|
+//         = it.user_role
+//         %span -
+//       - if user.avatar_file_name == nil
+//         %img.img-fluid{:src => "/assets/icon.png"}
+//       - else
+//         = image_tag user.avatar, :class => "img-fluid"
+//       = link_to user.user_name, profile_path(user.user_name), :class => "orange-text"
+//   = link_to "Back", root_path, :class => "btn btn-primary btn-rounded float-right"
+//   - @project.users.each do |u|
+//     - if u.id == current_user.id
+//       - @inproject = true
+//   - @what = Request.where(user_id: current_user.id, project_id: @project.id)
+//   - @what.each do |lol|
+//     - if(lol.user_id == current_user.id) && (lol.project_id == @project.id)
+//       - @requestpending = true
+//   - if (@inproject == nil && @filled == nil) && @requestpending != true
+//     = link_to "Request to join", request_request_path(@project.id), :class => "btn btn-primary btn-rounded"
+//   - if @requestpending == true
+//     .span.badge.badge-danger
+//       Request is pending

@@ -3,19 +3,23 @@
 - @members = 0
 - @current_project.users.each do |it|
   - @members += 1
-%h2 Chat rooms
-%hr
-.row
-  .col-4
+.tabs.is-centered
+  %ul
     = render @chat_rooms
-  .col-8
-    %h1= @chat_room.title + " chat"
-    #messages{"data-chat-room-id" => @chat_room.id}
-      = render @chat_room.messages
-    %hr/
-    = form_for @message, url: '#' do |f|
-      = hidden_field_tag 'chat_room_id', @chat_room.id
-      .form-group
-        .md-form
-          = f.text_field :body, class: 'md-textarea'
-      %button.btn.btn-primary.primary-color.btn-rounded Send Message
+%h1= @chat_room.title + " chat"
+#messages{"data-chat-room-id" => @chat_room.id}
+  = render @chat_room.messages
+.tile
+  = form_for @message, url: '#' do |f|
+    %article.media
+      %figure.media-left
+        %p.image.is-96x96
+          = image_tag current_user.avatar.url(:medium)
+      .media-content
+        .field
+          %p.control
+            = f.text_field :body, class: "input", placeholder: "send a message..."
+        %nav.level
+          .level-left
+            .level-item
+              %button.button.is-info Submit

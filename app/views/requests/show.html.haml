@@ -1,8 +1,5 @@
 - title "Notifications - FADE IN"
 
-%h2.display-inline Notifications
-%hr
-
 - @requestamount = 0
 
 - @requests.each do |request|
@@ -10,35 +7,47 @@
   - @user = User.find(request.user_id)
   - if current_user.id == @project.users.ids.first
     - @requestamount += 1
-    .author-box
-      %h4.h4-responsive.text-center.project-title
-        Project:
-        = link_to @project.title, project_path(@project.id)
-      %hr
-      .row
-        / Avatar
-        .col-12.col-sm-2
-          - if @user.avatar_file_name != nil
-            = image_tag @user.avatar(:medium), :class => "rounded-circle img-responsive"
-          - else
-            %img{:src => "/assets/icon.png", :class => "rounded-circle img-responsive", :height => "152", :width => "152"}
-        / Author Data
-        .col-12.col-sm-10
-          %p
-            %strong
-              - if @user.first_name.blank? || @user.last_name.blank?
-                = link_to @user.user_name, profile_path(@user.user_name), :class => "text-primary"
-              - else
-                - @fullname = @user.first_name + " " + @user.last_name
-                = link_to @fullname, profile_path(@user.user_name), :class => "text-primary"
-              |
-              = request.role
-            (sent #{time_ago_in_words(request.created_at)} ago)
-          %p 
-            = request.bio
-          = link_to "Accept", request_join_path(request.project_id, request.id), :class => "btn btn-primary btn-rounded"
-          = link_to "Decline", request_destroy_path(request.project_id, request.id), :class => "btn btn-primary btn-rounded"
-  %br
-  
+
+- if @requestamount >= 1
+  .notification.is-primary
+    Someone wants to join one of your projects! You can either accept them or decline them.
+    
+- @requests.each do |request|
+  - @project = Project.find(request.project_id)
+  - @user = User.find(request.user_id)
+  - if current_user.id == @project.users.ids.first
+    - @requestamount += 1
+    Project: 
+    = link_to @project.title, project_path(@project.id)
+    .box
+      %article.media
+        %figure.media-left
+          %p.image.is-64x64
+            - if @user.avatar_file_name != nil
+              = image_tag @user.avatar(:medium), :class => "rounded-circle"
+            - else
+              %img{:src => "/assets/icon.png", :class => "rounded-circle"}
+        .media-content
+          .content
+            %p
+              %strong
+                - if @user.first_name.blank? || @user.last_name.blank?
+                  = link_to @user.user_name, profile_path(@user.user_name), :class => "text-primary"
+                - else
+                  - @fullname = @user.first_name + " " + @user.last_name
+                  = link_to @fullname, profile_path(@user.user_name), :class => "text-primary"
+              %small
+                = request.role
+              %br
+              = request.bio
+              %br
+              %small
+                sent #{time_ago_in_words(request.created_at)} ago
+              %br
+              = link_to "Accept", request_join_path(request.project_id, request.id), :class => "button is-primary"
+              = link_to "Decline", request_destroy_path(request.project_id, request.id), :class => "button is-danger"
+              
 - if @requestamount == 0
-  %p No notifications to show
+  %article.message.is-success
+    .message-body
+      %p No notifications to show
