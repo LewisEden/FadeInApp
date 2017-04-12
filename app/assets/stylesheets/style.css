@@ -40,7 +40,6 @@ footer {
 }
 
 .card {
-  min-width: 25%;
   word-wrap: break-word;
 }
 
@@ -820,4 +819,39 @@ footer {
   -webkit-hyphens: auto;
   -moz-hyphens: auto;
   hyphens: auto;
+}
+
+.is-flex-row {
+  display: flex;
+  align-items: center;
+}
+
+.is-flex-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex-padding {
+  margin-top: 32px;
+  margin-bottom: 4px;
+}
+
+.flex-padding p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.flex-padding span {
+  margin-left: 2px;
+}
+
+.is-message {
+  border-top: 0px !important;
+  margin-top: 0px !important;
+  padding-top: 0px !important;
+}
+
+.is-fadein {
+  color: #f16a43;
 }

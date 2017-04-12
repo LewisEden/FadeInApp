@@ -118,9 +118,16 @@
             %label.label.field-text.display-inline Vfx Requirements
             = f.input_field :r_vfx, placeholder: "Enter the requirements for the Vfx artist(s)", :class => "input"
         .tile.is-child
-          %button.button.is-primary Update Project
-          = link_to "Delete", project_path(@project), method: :delete, data: { confirm: "Are you sure you want to delete this project?" }, :class => "button is-danger"
-          = link_to "Cancel", root_path, :class => "button is-warning"
+          .field.is-grouped
+            %p.control
+              %button.button.is-primary Save changes
+            %p.control
+              = link_to "Cancel", root_path, :class => "button"
+            %p.control
+              = link_to project_path(@project), method: :delete, data: { confirm: "Are you sure you want to delete this project?" }, :class => "button is-danger is-outlined" do
+                %span Delete
+                %span.icon.is-small
+                  %i.fa.fa-times
 - else
   = simple_form_for @project do |f|
     .tile.is-ancestor
@@ -239,6 +246,13 @@
             %label.label.field-text.display-inline Vfx Requirements
             = f.input_field :r_vfx, placeholder: "Enter the requirements for the Vfx artist(s)", :class => "input"
         .tile.is-child
-          %button.button.is-primary Update Project
-          = link_to "Delete", project_path(@project), method: :delete, data: { confirm: "Are you sure you want to delete this project?" }, :class => "button is-danger"
-          = link_to "Cancel", root_path, :class => "button is-warning"
+          .field.is-grouped
+            %p.control
+              %button.button.is-primary Save changes
+            %p.control
+              = link_to "Cancel", root_path, :class => "button"
+            %p.control
+              = link_to project_path(@project), method: :delete, data: { confirm: "Are you sure you want to delete this project?" }, :class => "button is-danger is-outlined" do
+                %span Delete
+                %span.icon.is-small
+                  %i.fa.fa-times

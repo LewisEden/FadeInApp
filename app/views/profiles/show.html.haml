@@ -30,11 +30,14 @@
       %img{:src => "/assets/icon.png", :class => "rounded-circle center-circle"}
     - else
       = image_tag @user.avatar(:medium), :class => "rounded-circle center-circle", :width => "168"
-    %p.portfolio-username
-      - if @user.first_name.blank?
-        = @user.user_name
-      - else
-        = @user.first_name + " " + @user.last_name
+    .is-flex-row.flex-padding
+      %p.portfolio-username
+        - if @user.first_name.blank?
+          = @user.user_name
+        - else
+          = @user.first_name + " " + @user.last_name
+      %span.icon.is-small{"data-balloon" => "Verified", "data-balloon-pos" => "up"}
+        %i.fa.fa-check-square.field-text.is-fadein
     %p.portfolio-bio
       = @user.bio
     .user-stats

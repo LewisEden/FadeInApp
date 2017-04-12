@@ -1,5 +1,7 @@
 - @cpid = @chat_room.project_id.to_i
 - @current_project = Project.find(@cpid)
+- @totalmessages = @chat_room.messages.count
+- @start = 0
 - @members = 0
 - @current_project.users.each do |it|
   - @members += 1
@@ -21,6 +23,20 @@
           = @members
           Members
     .tile.is-child.box
+      - if @chat_room.messages.count == 0
+        .article.media.is-message
+          %figure.image.is-64x64.fuck-u-lewis
+            %img{:src => "/assets/icon.png", :class => "is-chat-avatar"}/
+          .media-content
+            .content
+              %p
+                %strong 
+                  FADE IN Bot
+                %small
+                  •
+                  The beginning of time
+                %br
+                No messages have been sent yet - be the first!
       #messages{"data-chat-room-id" => @chat_room.id}
         = render @chat_room.messages
     .tile.is-child
@@ -28,5 +44,7 @@
         .field.has-addons
           %p.control.is-expanded
             = f.text_field :body, class: "input", placeholder: "Message ##{@chat_room.title}", autocomplete: "off"
-          %p.control
-            %button.button.is-primary.is-outlined Submit
+          %p.field
+            %button.button
+              %span.icon.is-small
+                %i.fa.fa-paper-plane
