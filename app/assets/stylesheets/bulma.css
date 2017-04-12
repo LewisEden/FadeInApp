@@ -598,7 +598,7 @@ table th {
 
 .box {
   background-color: white;
-  border-radius: 5px;
+  border-radius: 2px;
   box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
   display: block;
   padding: 1.25rem;
@@ -992,7 +992,7 @@ a.box:active {
 }
 
 .button.is-primary:hover, .button.is-primary.is-hovered {
-  background-color: #00c4a7;
+  background-color: #DB5B36;
   border-color: transparent;
   color: #fff;
 }
@@ -1004,7 +1004,7 @@ a.box:active {
 }
 
 .button.is-primary:active, .button.is-primary.is-active {
-  background-color: #00b89c;
+  background-color: #DB5B36;
   border-color: transparent;
   box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.2);
   color: #fff;
@@ -2964,7 +2964,10 @@ input[type="submit"].button {
 }
 
 .card-content {
-  padding: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 .card-footer {
@@ -3179,13 +3182,13 @@ input[type="submit"].button {
       flex-shrink: 0;
 }
 
-.media-left {
-  margin-right: 1rem;
-}
+/*.media-left {*/
+/*  margin-right: 1rem;*/
+/*}*/
 
-.media-right {
-  margin-left: 1rem;
-}
+/*.media-right {*/
+/*  margin-left: 1rem;*/
+/*}*/
 
 .media-content {
   -ms-flex-preferred-size: auto;

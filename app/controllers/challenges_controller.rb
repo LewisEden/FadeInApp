@@ -1,5 +1,6 @@
 class ChallengesController < ApplicationController
   before_action :admin_rights, only: [:new, :create, :edit, :update, :destroy]
+  before_action :title
   
   def index
 	@challenges = Challenge.all.order('created_at DESC')
@@ -47,6 +48,10 @@ class ChallengesController < ApplicationController
 	end
 	
 	private
+	
+		def title
+			@title = "Challenges"
+		end
 	
 	  def challenge_params
 	    params.require(:challenge).permit(:image, :genre, :duration, :title, :synopsis, :reward, :featured, :requirements)

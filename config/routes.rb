@@ -24,4 +24,6 @@ Rails.application.routes.draw do
   get 'challenges/:id/enter', to: 'user_challenges#new', as: :user_challenge_new
   
   mount ActionCable.server => '/cable'
+  
+  post 'projects/remove/:project_id/:user_id', to: 'projects#removeuser', as: :remove_user
 end

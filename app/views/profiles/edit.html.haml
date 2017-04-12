@@ -1,23 +1,136 @@
-= simple_form_for @user, url: {action: "update"}, html: { multipart: true} do |f|
-	.file-field
-		.btn.btn-primary.btn-sm
-			%span Upload Avatar
-			= f.input_field :avatar
-		.file-path-wrapper
-			%input.file-path.validate{:placeholder => "Upload your file", :type => "text"}/
-	%br
-	%br
-	.md-form
-		= f.input_field :first_name, id: "first_name", :class => "form-control", :minlength => "3", :maxlength => 20
-		%label{:for => "first_name"} First name
-	.md-form
-		= f.input_field :last_name, id: "last_name", :class => "form-control", :minlength => "3", :maxlength => 25
-		%label{:for => "last_name"} Last name
-	.md-form
-		= f.input_field :bio, :class => "md-textarea", :minlength => "30", :maxlength => 100, :length => "100"
-		%label{:for => "bio"} Tell us about yourself
-	.form-inline
-		= f.input :school, label: false, prompt: "Select your school", collection: ["Dunraven School"], input_html: { class: "browser-default" }
-		= f.input :pref_role, label: false, prompt: "Select your preferred role", collection: ["Actor","Cinematographer", "Composer", "Director", "Editor", "Writer", "Makeup Artist" ], input_html: { class: "browser-default" }
-		= f.input :theme, label: false, prompt: "Select website theme", collection: ["Default", "Black", "Indigo", "Cyan", "Purple", "Navy", "Pink", "Light blue", "Grey"], input_html: { class: "browser-default" }
-	%button.btn.btn-primary.primary-color Update Profile
+- title @user.user_name + " - FADE IN"
+
+= simple_form_for @user, url: {action: "update"}, html: {multipart: true} do |f|
+	.tile.is-vertical.box.user-sidebar
+		- if @user.avatar_file_name.blank?
+			%img{:src => "/assets/icon.png", :class => "rounded-circle center-circle"}
+		- else
+			= image_tag @user.avatar(:medium), :class => "rounded-circle center-circle", :width => "168"
+		.field
+			%p.control
+				= f.input_field :avatar
+		%p.portfolio-username
+			.field.is-horizontal
+				= f.input_field :first_name, id: "first_name", :placeholder => "First name", :class => "input", :minlength => "3", :maxlength => 20
+				= f.input_field :last_name, id: "last_name", :placeholder => "Last name", :class => "input", :minlength => "3", :maxlength => 25
+		%p.portfolio-bio
+			.field
+				= f.input_field :bio, :class => "textarea", :placeholder => "Short bio", :minlength => "30", :maxlength => 50, :length => "50"
+		.user-stats
+			.stats-projects
+				%span.fa.fa-rocket
+				.stats-col
+					%p.stat-name
+						Projects
+					%p.stat-number
+						= @user.projects.count
+		%button.button.is-primary Update Profile
+	.tile.is-ancestor
+		.tile.is-2.is-vertical.is-parent.spacefix
+		.tile.is-vertical.fit-screen
+			.tile
+				.tile.is-parent
+					.tile.is-child.portfolio-topbar
+						%p
+							All work
+						.playlist-buttons
+							%a.button.is-primary Add New Playlist
+							%a.button.is-primary
+								%span.fa.fa-th-list
+							%a.button.is-primary
+								%span.fa.fa-th
+			.tile
+				.tile.is-parent
+					.tile.is-child.currentprojects-row
+						%p
+							My current projects
+						.add-button
+							%p
+								Add
+							%a.button.is-primary.rounded-circle
+								%span.fa.fa-plus
+			.tile.display-projects
+				-@user.projects.each do |project|
+					.tile.is-4.is-parent.portfolio-projects
+						.tile.is-child.box
+							= image_tag project.image.url(:medium), :class => "vidthumbnail"
+							- if project.genre == "Action"
+								//Action
+								%span.red-text.fa.fa-fighter-jet
+								%h5.red-text.display-inline
+									= project.genre
+								%span.red-text.fa.fa-clock-o.icon
+								%h5.red-text.display-inline
+									= project.duration
+							- elsif project.genre == "Adventure"
+								//Adventure
+								%span.green-text.fa.fa-envira
+								%h5.green-text.display-inline
+									= project.genre
+								%span.green-text.fa.fa-clock-o
+								%h5.green-text.display-inline
+									= project.duration
+							- elsif project.genre == "Comedy"
+								//Comedy
+								%span.cyan-text.fa.fa-smile-o
+								%h5.cyan-text.display-inline
+									= project.genre
+								%span.cyan-text.fa.fa-clock-o
+								%h5.cyan-text.display-inline
+									= project.duration
+							- elsif project.genre == "Crime"
+								//Crime
+								%span.orange-text.fa.fa-gavel
+								%h5.orange-text.display-inline
+									= project.genre
+								%span.orange-text.fa.fa-clock-o
+								%h5.orange-text.display-inline
+									= project.duration
+							- elsif project.genre == "Drama"
+								//Drama
+								%span.amber-text.fa.fa-group
+								%h5.amber-text.display-inline
+									= project.genre
+								%span.amber-text.fa.fa-clock-o
+								%h5.amber-text.display-inline
+									= project.duration
+							- elsif project.genre == "Horror"
+								//Horror
+								%span.brown-text.fa.fa-warning
+								%h5.brown-text.display-inline
+									= project.genre
+								%span.brown-text.fa.fa-clock-o
+								%h5.brown-text.display-inline
+									= project.duration
+							- else
+								//Si-fi
+								%span.teal-text.fa.fa-rocket
+								%h5.teal-text.display-inline
+									= project.genre
+								%span.teal-text.fa.fa-clock-o
+								%h5.teal-text.display-inline
+									= project.duration
+							= project.title
+// = simple_form_for @user, url: {action: "update"}, html: { multipart: true} do |f|
+// 	.file-field
+// 		.btn.btn-primary.btn-sm
+// 			%span Upload Avatar
+// 			= f.input_field :avatar
+// 		.file-path-wrapper
+// 			%input.file-path.validate{:placeholder => "Upload your file", :type => "text"}/
+// 	%br
+// 	%br
+// 	.md-form
+// 		= f.input_field :first_name, id: "first_name", :class => "form-control", :minlength => "3", :maxlength => 20
+// 		%label{:for => "first_name"} First name
+// 	.md-form
+// 		= f.input_field :last_name, id: "last_name", :class => "form-control", :minlength => "3", :maxlength => 25
+// 		%label{:for => "last_name"} Last name
+// 	.md-form
+// 		= f.input_field :bio, :class => "md-textarea", :minlength => "30", :maxlength => 100, :length => "100"
+// 		%label{:for => "bio"} Tell us about yourself
+// 	.form-inline
+// 		= f.input :school, label: false, prompt: "Select your school", collection: ["Dunraven School"], input_html: { class: "browser-default" }
+// 		= f.input :pref_role, label: false, prompt: "Select your preferred role", collection: ["Actor","Cinematographer", "Composer", "Director", "Editor", "Writer", "Makeup Artist" ], input_html: { class: "browser-default" }
+// 		= f.input :theme, label: false, prompt: "Select website theme", collection: ["Default", "Black", "Indigo", "Cyan", "Purple", "Navy", "Pink", "Light blue", "Grey"], input_html: { class: "browser-default" }
+// 	%button.btn.btn-primary.primary-color Update Profile

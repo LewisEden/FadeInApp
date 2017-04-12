@@ -12,9 +12,15 @@ class RequestsController < ApplicationController
       if r.project_id == @project.id
         #link them back to the project
         redirect_to project_path
+        flash[:warning] = "You already have a pending application for this project"
       end
     end
     @request = Request.new()
+    
+    if @project.users.ids.include?(current_user.id)
+      redirect_to project_path
+      flash[:danger] = "You can't request to join your own project"
+    end
   end
   
   def create

@@ -21,7 +21,7 @@
     = link_to @project.title, project_path(@project.id)
     .box
       %article.media
-        %figure.media-left
+        %figure.media-left.requestleft
           %p.image.is-64x64
             - if @user.avatar_file_name != nil
               = image_tag @user.avatar(:medium), :class => "rounded-circle"

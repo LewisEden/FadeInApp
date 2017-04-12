@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170402143305) do
+ActiveRecord::Schema.define(version: 20170411114631) do
 
   create_table "challenges", force: :cascade do |t|
     t.string   "genre"
@@ -73,6 +73,14 @@ ActiveRecord::Schema.define(version: 20170402143305) do
     t.integer  "vfx"
     t.integer  "prod_stage"
     t.boolean  "challenge"
+    t.string   "r_director"
+    t.string   "r_writer"
+    t.string   "r_actor"
+    t.string   "r_editor"
+    t.string   "r_composer"
+    t.string   "r_makeup"
+    t.string   "r_cinematographer"
+    t.string   "r_vfx"
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 

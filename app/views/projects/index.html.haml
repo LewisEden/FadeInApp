@@ -7,9 +7,9 @@
 .level
   .columns.is-multiline
     -@projects.each do |project|
-      .column.card-home
-        .card.project-card
-          - if project.public == true
+      - if project.public == true
+        .column.card-home
+          .card.project-card
             .card-image
               = image_tag project.image.url(:medium), :class => "img-fluid"
             .card-content
@@ -72,12 +72,12 @@
                     = project.duration
               .content
                 %h4.project-title
-                  = project.title
+                  = truncate(project.title, length: 30)
                   - if project.challenge == true
                     .span.tag.is-primary
                       Challenge
-                %p
-                  = truncate(project.synopsis, length: 120)
+                %p.project-bio
+                  = truncate(project.synopsis, length: 160)
               .cardbottom
                 .level
                   .media-left

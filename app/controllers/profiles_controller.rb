@@ -2,6 +2,7 @@ class ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
   before_action :title
+  before_action :owned_profile, only: [:new, :create, :edit, :update, :destroy]
 
   def show
   	@projects = @user.projects.order('created_at Desc')

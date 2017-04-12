@@ -3,23 +3,30 @@
 - @members = 0
 - @current_project.users.each do |it|
   - @members += 1
-.tabs.is-centered
-  %ul
-    = render @chat_rooms
-%h1= @chat_room.title + " chat"
-#messages{"data-chat-room-id" => @chat_room.id}
-  = render @chat_room.messages
-.tile
-  = form_for @message, url: '#' do |f|
-    %article.media
-      %figure.media-left
-        %p.image.is-96x96
-          = image_tag current_user.avatar.url(:medium)
-      .media-content
-        .field
+
+.tile.is-ancestor
+  .tile.is-chat.is-vertical.is-parent.is-chat-list
+    .tile.is-child.box
+      %aside.menu
+        %p.menu-label
+          Project Chats
+        %ul.menu-list
+          = render @chat_rooms
+  .tile.is-vertical.is-parent
+    .tile.is-child.box.is-chat-title
+      .field.display-inline
+        %p.menu-label
+          = @chat_room.title + " chat"
+          •
+          = @members
+          Members
+    .tile.is-child.box
+      #messages{"data-chat-room-id" => @chat_room.id}
+        = render @chat_room.messages
+    .tile.is-child
+      = form_for @message, url: '#' do |f|
+        .field.has-addons
+          %p.control.is-expanded
+            = f.text_field :body, class: "input", placeholder: "Message ##{@chat_room.title}", autocomplete: "off"
           %p.control
-            = f.text_field :body, class: "input", placeholder: "send a message..."
-        %nav.level
-          .level-left
-            .level-item
-              %button.button.is-info Submit
+            %button.button.is-primary.is-outlined Submit

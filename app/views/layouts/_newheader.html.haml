@@ -15,7 +15,7 @@
       %img.logo{:src => "/assets/logo_a.png"}/
   %nav
     %ul
-      %a{:href => ""}
+      = link_to page_path('comingsoon') do
         %li
           %span.fa.fa-tachometer.fa-lg{"aria-hidden" => "true"}>
           dashboard
@@ -55,23 +55,26 @@
           files
   / End Of Side Navigation
   / Advertising Space
-  %aside
-    .ad-header-full
-      %span.fa.fa-bullhorn.fa-lg{"aria-hidden" => "true"}>
-      .ad-header-title
-        %h4 Harry Pooter
-        %p
-          Challenge ends in 4 days
-    %p Harry pooter is in an intense battle with a fart.
-    %a{:href => ""} View challenge
-  %aside
-    .ad-header-full
-      %span.fa.fa-comments.fa-lg{"aria-hidden" => "true"}>
-      .ad-header-title
-        %h4 Q&A - Matt Smith
-        %p Begins 14/06/17 @2pm
-    %p Join the Q&A and ask actor Matt Smith your questions!
-    %a{:href => ""} View event
+  = render 'layouts/notices'
+  // .advert
+  //   %aside
+  //     .ad-header-full
+  //       %span.fa.fa-bullhorn.fa-lg{"aria-hidden" => "true"}>
+  //       .ad-header-title
+  //         %h4 Harry Pooter
+  //         %p
+  //           Challenge ends in 4 days
+  //     %p Harry pooter is in an intense battle with a fart.
+  //     %a{:href => ""} View challenge
+  // .advert
+  //   %aside
+  //     .ad-header-full
+  //       %span.fa.fa-comments.fa-lg{"aria-hidden" => "true"}>
+  //       .ad-header-title
+  //         %h4 Q&A - Matt Smith
+  //         %p Begins 14/06/17 @2pm
+  //     %p Join the Q&A and ask actor Matt Smith your questions!
+  //     %a{:href => ""} View event
   / End of Advertising Space
   / Settings
   %nav.settings
@@ -81,7 +84,7 @@
           %i.fa.fa-cog.fa-lg{"aria-hidden" => "true"}
       %li
         %a{:href => ""}
-          %i.fa.fa-shield.fa-lg{"aria-hidden" => "true"}
+          %i.fa.fa-star.fa-lg{"aria-hidden" => "true"}
   / End Of Settings
 %nav.user-nav
   %h1
@@ -96,7 +99,7 @@
     %li.tickets
       %a
         %span.fa.fa-ticket{"aria-hidden" => "true"}
-        230
+        = current_user.tickets
     %li.chat
       = link_to chat_rooms_path do
         %span.fa.fa-envelope{"aria-hidden" => "true"}

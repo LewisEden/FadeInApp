@@ -12,8 +12,8 @@ button[data-balloon] {
   -moz-opacity: 0;
   opacity: 0;
   pointer-events: none;
-  -webkit-transition: all 0.18s ease-out 0.18s;
-  transition: all 0.18s ease-out 0.18s;
+  -webkit-transition: all 0.18s ease-out 0s;
+  transition: all 0.18s ease-out 0s;
   bottom: 100%;
   left: 50%;
   position: absolute;

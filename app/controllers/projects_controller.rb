@@ -26,8 +26,8 @@ class ProjectsController < ApplicationController
 		@chat_room.save
 		
 		if @project.save && @chat_room.save
-			flash[:success] = "Project successfully created"
-			redirect_to(project_path(@project))
+			flash[:success] = "Project successfully created, please specify what requirements are needed."
+			redirect_to(edit_project_path(@project))
 		else
 			render :new
 			flash[:notice] = "Something went wrong"
@@ -70,7 +70,23 @@ class ProjectsController < ApplicationController
 		redirect_to root_path
 		flash[:success] = "Project successfully deleted"
 	end
-
+	
+	def removeuser
+		@project = Project.find(params[:project_id])
+		@user = User.find(params[:user_id])
+		unless @project.users.first.id == current_user.id
+			redirect_to project_path(@project)
+			flash[:danger] = "You must be the project leader to remove members"
+		end
+		if @project.users.destroy(@user)
+			redirect_to project_path(@project)
+			flash[:success] = "Successfully removed #{@user.user_name}"
+		else
+			redirect_to project_path(@project)
+			flash[:danger] = "Something went wrong..."
+		end
+	end
+	
 	private
 
 	def title
@@ -78,7 +94,7 @@ class ProjectsController < ApplicationController
 	end
 
 	def project_params
-		params.require(:project).permit(:image, :public, :genre, :duration, :title, :synopsis, :director, :writer, :actor, :editor, :composer, :cinematographer, :makeup, :vfx, :leader_role)
+		params.require(:project).permit(:image, :public, :genre, :duration, :title, :synopsis, :director, :writer, :actor, :editor, :composer, :cinematographer, :makeup, :vfx, :leader_role, :r_director, :r_writer, :r_actor, :r_editor, :r_cinematographer, :r_composer, :r_makeup, :r_vfx)
 	end
 
 	def set_project
