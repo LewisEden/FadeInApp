@@ -1,0 +1,12 @@
+.column.has-text-centered
+  %h2 FDN 9000
+  %img{:src => "/assets/just_hal.png"}
+  %h1
+    - if current_user.first_name.blank?
+      I'm sorry @#{current_user.user_name}, I'm afraid I can't do that.
+    - else
+      I'm sorry #{current_user.first_name}, I'm afraid I can't do that.
+  = link_to root_path, :class => "button is-primary is-outlined" do
+    %span.icon.is-small
+      %i.fa.fa-home
+    %span Go home

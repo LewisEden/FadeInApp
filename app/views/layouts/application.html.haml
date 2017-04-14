@@ -13,8 +13,8 @@
       = render 'layouts/rails_default'
       %link{:href => "/assets/icon.png", :rel => "shortcut icon", :type => "image/png"}/
     %body.body-margin
-      = render 'layouts/messages'
-      = yield
+    = render 'layouts/messages'
+    = yield
 - else
   = render 'layouts/secret'
   !!!

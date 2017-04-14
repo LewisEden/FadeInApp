@@ -18,8 +18,9 @@ Rails.application.routes.draw do
   get 'projects/:project_id/destroy/:request_id', to: 'requests#destroy', as: :request_destroy
   
   resources :chat_rooms, only: [:new, :create, :show, :index, :destroy]
-  
   resources :challenges
+  resources :redeem
+  resources :dashboard
   
   get 'challenges/:id/enter', to: 'user_challenges#new', as: :user_challenge_new
   

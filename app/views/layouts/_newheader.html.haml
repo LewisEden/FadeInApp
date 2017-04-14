@@ -15,7 +15,7 @@
       %img.logo{:src => "/assets/logo_a.png"}/
   %nav
     %ul
-      = link_to page_path('comingsoon') do
+      = link_to dashboard_index_path do
         %li
           %span.fa.fa-tachometer.fa-lg{"aria-hidden" => "true"}>
           dashboard
@@ -37,7 +37,7 @@
           %li
             %span.fa.fa-picture-o.fa-lg{"aria-hidden" => "true"}>
             portfolio
-      %a{:href => ""}
+      = link_to redeem_index_path do
         %li
           %span.fa.fa-ticket.fa-lg{"aria-hidden" => "true"}>
           redeem
@@ -97,20 +97,24 @@
         - else
           %span.fa.fa-bell-o{"aria-hidden" => "true"}
     %li.tickets
-      %a
+      = link_to redeem_index_path do
         %span.fa.fa-ticket{"aria-hidden" => "true"}
         = current_user.tickets
     %li.chat
       = link_to chat_rooms_path do
         %span.fa.fa-envelope{"aria-hidden" => "true"}
     %li.search
-      %input{:name => "search", :placeholder => "Search", :type => "text"}/
+      %input{:name => "search", :placeholder => "Search", :type => "text", :disabled => "disabled", :class => "cursor-disabled"}/
     - if current_user.blank?
     - else
       .dropdown
         %li.user
-          = image_tag current_user.avatar(:medium), :class => "rounded-circle img-responsive contact-avatar", :height => "16", :width => "16"
-          = current_user.user_name
+          - if current_user.avatar.blank?
+            %img{:src => "/assets/user.png", :class => "rounded circle img-responsive contact-avatar", :height => "16", :width => "16"}
+          - else
+            = image_tag current_user.avatar(:medium), :class => "rounded-circle img-responsive contact-avatar", :height => "16", :width => "16"
+          %p
+            = current_user.user_name
         .arrow-up
         .dropdown-content
           %ul

@@ -4,16 +4,30 @@
 - @what.each do |lol|
   - if(lol.user_id == current_user.id) && (lol.project_id == @project.id)
     - @requestpending = true
+- if @project.director <= 0 && @project.writer <= 0 && @project.actor <= 0 && @project.editor <= 0 && @project.cinematographer <= 0 && @project.composer <= 0 && @project.makeup <= 0 && @project.vfx <= 0
+  - @rolesneeded = false
 
+
+- if @project.completed == true
+  - @project.submission[/^.*((v\/)|(embed\/)|(watch\?))\??v?=?([^\&\?]*).*/]
+  - @youtube_id = $5
+  %h2
+    = @project.title
+  .video-container
+    %iframe{:allowfullscreen => "", :frameborder => "0", :src => "https://www.youtube.com/embed/#{@youtube_id}"}
+  %br
+  .notification.is-success
+    This project has been completed
+  
 .tile.is-ancestor
   .tile.is-5.is-vertical.is-parent
     .show-title-spacing
       %p
         Summary
-      - if(@project.users.ids.first == current_user.id || current_user.admin == true)
+      - if((@project.users.ids.first == current_user.id || current_user.admin == true) && @project.completed != true)
         = link_to edit_project_path(@project) do
           %span.fa.fa-pencil-square.is-small
-    .tile.is-child.box.summary-main
+    .tile.is-child.box.summary-main.max-height-set
       .card-image
         = image_tag @project.image.url(:medium), :class => "img-fluid"
         .genreduration.show-centering.show-main-topbar
@@ -130,27 +144,35 @@
             = @project.synopsis
     %p.show-title-spacing 
       The Crew
-    .tile.is-child.box.user-bottom
+    .tile.is-child.box.user-bottom.max-height-set
       - @project.users.each do |user|
         .crew
-          = image_tag user.avatar(:medium), :class => "crewavi"
+          - if user.avatar.blank?
+            %img{:src => "/assets/user.png", :class => "crewavi"}
+          - else
+            = image_tag user.avatar(:medium), :class => "crewavi"
           - @them = UserProject.where(user_id: user.id, project_id: @project.id)
           - @them.each do |it|
             .crew-info
               .crew-delete-row
                 - if user.first_name.blank?
-                  .crew-name
-                    = link_to profile_path(user.user_name) do
+                  = link_to profile_path(user.user_name) do
+                    .crew-name
                       %p
                         = user.user_name
+                      - if @project.users.ids.first == user.id
+                        %span.tag.is-info Leader
+                      - if (@project.users.ids.first != user.id) && (@project.users.ids.first == current_user.id) && (@project.completed != true)
+                        = link_to remove_user_path(@project.id, user.id), method: :removeuser, data: { confirm: "Are you sure you want to remove this person?" } do
+                          %span.fa.fa-times-circle
                 - else
                   = link_to profile_path(user.user_name) do
                     .crew-name
                       %p
                         = user.first_name + " " + user.last_name
-                        - if @project.users.ids.first == user.id
-                          %span.tag.is-info Leader
-                      - if @project.users.ids.first != user.id && @project.users.ids.first == current_user.id
+                      - if @project.users.ids.first == user.id
+                        %span.tag.is-info Leader
+                      - if (@project.users.ids.first != user.id) && (@project.users.ids.first == current_user.id) && (@project.completed != true)
                         = link_to remove_user_path(@project.id, user.id), method: :removeuser, data: { confirm: "Are you sure you want to remove this person?" } do
                           %span.fa.fa-times-circle
               - @them.each do |it|
@@ -181,285 +203,132 @@
               .mask.show-crew-img{"data-balloon" => "Vfx Artist", "data-balloon-pos" => "up"}
                 %img.show-crew-img{:src => "/assets/roles/fuse.png"}
   .tile.is-vertical.is-parent
-    %p.show-title-spacing 
-      Roles needed
-    - if @project.director > 0
-      = link_to request_request_path(@project.id), :class => "roles-spacing" do
-        .tile-is-child.box.show-main-topbar.show-center
-          .mask.display-inline{"data-balloon" => "Director", "data-balloon-pos" => "up"}
-            %img.show-require-img{:alt => "Director", :src => "/assets/roles/clapperboard.png", :height => "50", :width => "50"}/
-            - if @project.director > 1
-              %span.tag.is-primary
-                = @project.director
-          //=@project.director
-          .show-group.show-spacing
-            %p.show-titles Requirements
-            - if @project.r_director.blank?
-              No requirements specified.
-            - else
-              = @project.r_director
-    - if @project.actor > 0
-      = link_to request_request_path(@project.id), :class => "roles-spacing" do
-        .tile-is-child.box.show-main-topbar.show-center
-          .mask.display-inline{"data-balloon" => "Actor", "data-balloon-pos" => "up"}
-            %img.show-require-img{:alt => "Actor", :src => "/assets/roles/theater.png", :height => "50", :width => "50"}/
-            - if @project.actor > 1
-              %span.tag.is-primary
-                = @project.actor
-          //=@project.actor
-          .show-group.show-spacing
-            %p.show-titles Requirements
-            - if @project.r_actor.blank?
-              No requirements specified.
-            - else
-              = @project.r_actor
-    - if @project.writer > 0
-      = link_to request_request_path(@project.id), :class => "roles-spacing" do
-        .tile-is-child.box.show-main-topbar.show-center
-          .mask.display-inline{"data-balloon" => "Writer", "data-balloon-pos" => "up"}
-            %img.show-require-img{:alt => "Writer", :src => "/assets/roles/edit.png", :height => "50", :width => "50"}/
-            - if @project.writer > 1
-              %span.tag.is-primary
-                = @project.writer
-          //=@project.writer
-          .show-group.show-spacing
-            %p.show-titles Requirements
-            - if @project.r_writer.blank?
-              No requirements specified.
-            - else
-              = @project.r_writer
-    - if @project.cinematographer > 0
-      = link_to request_request_path(@project.id), :class => "roles-spacing" do
-        .tile-is-child.box.show-main-topbar.show-center
-          .mask.display-inline{"data-balloon" => "Cinematographer", "data-balloon-pos" => "up"}
-            %img.show-require-img{:alt => "Cinematographer", :src => "/assets/roles/photo-camera.png", :height => "50", :width => "50"}/
-            - if @project.cinematographer > 1
-              %span.tag.is-primary
-                = @project.cinematographer
-          //=@project.cinematographer
-          .show-group.show-spacing
-            %p.show-titles Requirements
-            - if @project.r_cinematographer.blank?
-              No requirements specified.
-            - else
-              = @project.r_cinematographer
-    - if @project.editor > 0
-      = link_to request_request_path(@project.id), :class => "roles-spacing" do
-        .tile-is-child.box.show-main-topbar.show-center
-          .mask.display-inline{"data-balloon" => "Editor", "data-balloon-pos" => "up"}
-            %img.show-require-img{:alt => "Editor", :src => "/assets/roles/imac.png", :height => "50", :width => "50"}/
-            - if @project.editor > 1
-              %span.tag.is-primary
-                = @project.editor
-          //=@project.editor
-          .show-group.show-spacing
-            %p.show-titles Requirements
-            - if @project.r_editor.blank?
-              No requirements specified.
-            - else
-              = @project.r_editor
-    - if @project.composer > 0
-      = link_to request_request_path(@project.id), :class => "roles-spacing" do
-        .tile-is-child.box.show-main-topbar.show-center
-          .mask.display-inline{"data-balloon" => "Composer", "data-balloon-pos" => "up"}
-            %img.show-require-img{:alt => "Composer", :src => "/assets/roles/music-player.png", :height => "50", :width => "50"}/
-            - if @project.composer > 1
-              %span.tag.is-primary
-                = @project.composer
-          //=@project.composer
-          .show-group.show-spacing
-            %p.show-titles Requirements
-            - if @project.r_composer.blank?
-              No requirements specified.
-            - else
-              = @project.r_composer
-    - if @project.makeup > 0
-      = link_to request_request_path(@project.id), :class => "roles-spacing" do
-        .tile-is-child.box.show-main-topbar.show-center
-          .mask.display-inline{"data-balloon" => "Makeup Artist", "data-balloon-pos" => "up"}
-            %img{:alt => "Makeup artist", :src => "/assets/roles/paint-brush.png", :height => "50", :width => "50"}/
-            - if @project.director > 1
-              %span.tag.is-primary
-                = @project.director
-          //=@project.makeup
-          .show-group.show-spacing
-            %p.show-titles Requirements
-            - if @project.r_makeup.blank?
-              No requirements specified.
-            - else
-              = @project.r_makeup
-    - if @project.vfx > 0
-      = link_to request_request_path(@project.id), :class => "roles-spacing" do
-        .tile-is-child.box.show-main-topbar.show-center
-          .mask.display-inline{"data-balloon" => "Vfx Artist", "data-balloon-pos" => "up"}
-            %img{:alt => "VFX Artist", :src => "/assets/roles/fuse.png", :height => "50", :width => "50"}/
-          //=@project.
-          .show-group.show-spacing
-            %p.show-titles Requirements
-            - if @project.r_vfx.blank?
-              No requirements specified.
-            - else
-              = @project.r_vfx
-    - if @requestpending == true
-      %span.tag.is-success.is-medium
-        Your request to join this project is pending
+    - if @rolesneeded != false
+      %p.show-title-spacing 
+        Roles needed
+        - if(@project.users.ids.first == current_user.id || current_user.admin == true)
+          = link_to edit_project_path(@project) do
+            %span.fa.fa-pencil-square.is-small
+      - if @project.director > 0
+        = link_to request_request_path(@project.id), :class => "roles-spacing" do
+          .tile-is-child.box.show-main-topbar.show-center
+            .mask.display-inline{"data-balloon" => "Director", "data-balloon-pos" => "up"}
+              %img.show-require-img{:alt => "Director", :src => "/assets/roles/clapperboard.png", :height => "50", :width => "50"}/
+              // - if @project.director > 1
+              //   %span.tag.is-primary
+              //     = @project.director
+            //=@project.director
+            .show-group.show-spacing
+              %p.show-titles Requirements
+              - if @project.r_director.blank?
+                No requirements specified.
+              - else
+                = @project.r_director
+      - if @project.actor > 0
+        = link_to request_request_path(@project.id), :class => "roles-spacing" do
+          .tile-is-child.box.show-main-topbar.show-center
+            .mask.display-inline{"data-balloon" => "Actor", "data-balloon-pos" => "up"}
+              %img.show-require-img{:alt => "Actor", :src => "/assets/roles/theater.png", :height => "50", :width => "50"}/
+              // - if @project.actor > 1
+              //   %span.tag.is-primary
+              //     = @project.actor
+            //=@project.actor
+            .show-group.show-spacing
+              %p.show-titles Requirements
+              - if @project.r_actor.blank?
+                No requirements specified.
+              - else
+                = @project.r_actor
+      - if @project.writer > 0
+        = link_to request_request_path(@project.id), :class => "roles-spacing" do
+          .tile-is-child.box.show-main-topbar.show-center
+            .mask.display-inline{"data-balloon" => "Writer", "data-balloon-pos" => "up"}
+              %img.show-require-img{:alt => "Writer", :src => "/assets/roles/edit.png", :height => "50", :width => "50"}/
+              // - if @project.writer > 1
+              //   %span.tag.is-primary
+              //     = @project.writer
+            //=@project.writer
+            .show-group.show-spacing
+              %p.show-titles Requirements
+              - if @project.r_writer.blank?
+                No requirements specified.
+              - else
+                = @project.r_writer
+      - if @project.cinematographer > 0
+        = link_to request_request_path(@project.id), :class => "roles-spacing" do
+          .tile-is-child.box.show-main-topbar.show-center
+            .mask.display-inline{"data-balloon" => "Cinematographer", "data-balloon-pos" => "up"}
+              %img.show-require-img{:alt => "Cinematographer", :src => "/assets/roles/photo-camera.png", :height => "50", :width => "50"}/
+              // - if @project.cinematographer > 1
+              //   %span.tag.is-primary
+              //     = @project.cinematographer
+            //=@project.cinematographer
+            .show-group.show-spacing
+              %p.show-titles Requirements
+              - if @project.r_cinematographer.blank?
+                No requirements specified.
+              - else
+                = @project.r_cinematographer
+      - if @project.editor > 0
+        = link_to request_request_path(@project.id), :class => "roles-spacing" do
+          .tile-is-child.box.show-main-topbar.show-center
+            .mask.display-inline{"data-balloon" => "Editor", "data-balloon-pos" => "up"}
+              %img.show-require-img{:alt => "Editor", :src => "/assets/roles/imac.png", :height => "50", :width => "50"}/
+              // - if @project.editor > 1
+              //   %span.tag.is-primary
+              //     = @project.editor
+            //=@project.editor
+            .show-group.show-spacing
+              %p.show-titles Requirements
+              - if @project.r_editor.blank?
+                No requirements specified.
+              - else
+                = @project.r_editor
+      - if @project.composer > 0
+        = link_to request_request_path(@project.id), :class => "roles-spacing" do
+          .tile-is-child.box.show-main-topbar.show-center
+            .mask.display-inline{"data-balloon" => "Composer", "data-balloon-pos" => "up"}
+              %img.show-require-img{:alt => "Composer", :src => "/assets/roles/music-player.png", :height => "50", :width => "50"}/
+              // - if @project.composer > 1
+              //   %span.tag.is-primary
+              //     = @project.composer
+            //=@project.composer
+            .show-group.show-spacing
+              %p.show-titles Requirements
+              - if @project.r_composer.blank?
+                No requirements specified.
+              - else
+                = @project.r_composer
+      - if @project.makeup > 0
+        = link_to request_request_path(@project.id), :class => "roles-spacing" do
+          .tile-is-child.box.show-main-topbar.show-center
+            .mask.display-inline{"data-balloon" => "Makeup Artist", "data-balloon-pos" => "up"}
+              %img{:alt => "Makeup artist", :src => "/assets/roles/paint-brush.png", :height => "50", :width => "50"}/
+              // - if @project.director > 1
+              //   %span.tag.is-primary
+              //     = @project.director
+            //=@project.makeup
+            .show-group.show-spacing
+              %p.show-titles Requirements
+              - if @project.r_makeup.blank?
+                No requirements specified.
+              - else
+                = @project.r_makeup
+      - if @project.vfx > 0
+        = link_to request_request_path(@project.id), :class => "roles-spacing" do
+          .tile-is-child.box.show-main-topbar.show-center
+            .mask.display-inline{"data-balloon" => "Vfx Artist", "data-balloon-pos" => "up"}
+              %img{:alt => "VFX Artist", :src => "/assets/roles/fuse.png", :height => "50", :width => "50"}/
+            //=@project.
+            .show-group.show-spacing
+              %p.show-titles Requirements
+              - if @project.r_vfx.blank?
+                No requirements specified.
+              - else
+                = @project.r_vfx
+      - if @requestpending == true
+        %span.tag.is-success.is-medium
+          Your request to join this project is pending
+    - if @project.users.ids.first == current_user.id
+      = render 'projects/submission'
     
-// .container
-//   = render 'projects/stepper'
-// .row
-//   .card-group.col-md-12
-//     .card.card-project
-//       = image_tag @project.image.url(:medium), :class => "img-fluid img-responsive"
-//       .card-block
-//         - if @project.genre == "Action"
-//           //Action
-//           %i.red-text.fa.fa-fighter-jet
-//           %h5.red-text.display-inline
-//             = @project.genre
-//           %i.red-text.fa.fa-clock-o
-//           %h5.red-text.display-inline
-//             = @project.duration
-//         - elsif @project.genre == "Adventure"
-//           //Adventure
-//           %i.green-text.fa.fa-envira
-//           %h5.green-text.display-inline
-//             = @project.genre
-//           %i.green-text.fa.fa-clock-o
-//           %h5.green-text.display-inline
-//             = @project.duration
-//         - elsif @project.genre == "Comedy"
-//           //Comedy
-//           %i.cyan-text.fa.fa-smile-o
-//           %h5.cyan-text.display-inline
-//             = @project.genre
-//           %i.cyan-text.fa.fa-clock-o
-//           %h5.cyan-text.display-inline
-//             = @project.duration
-//         - elsif @project.genre == "Crime"
-//           //Crime
-//           %i.orange-text.fa.fa-gavel
-//           %h5.orange-text.display-inline
-//             = @project.genre
-//           %i.orange-text.fa.fa-clock-o
-//           %h5.orange-text.display-inline
-//             = @project.duration
-//         - elsif @project.genre == "Drama"
-//           //Drama
-//           %i.amber-text.fa.fa-group
-//           %h5.amber-text.display-inline
-//             = @project.genre
-//           %i.amber-text.fa.fa-clock-o
-//           %h5.amber-text.display-inline
-//             = @project.duration
-//         - elsif @project.genre == "Horror"
-//           //Horror
-//           %i.brown-text.fa.fa-warning
-//           %h5.brown-text.display-inline
-//             = @project.genre
-//           %i.brown-text.fa.fa-clock-o
-//           %h5.brown-text.display-inline
-//             = @project.duration
-//         - else
-//           //Si-fi
-//           %i.teal-text.fa.fa-rocket
-//           %h5.teal-text.display-inline
-//             = @project.genre
-//           %i.teal-text.fa.fa-clock-o
-//           %h5.teal-text.display-inline
-//             = @project.duration
-//         .p.float-right
-//           created #{time_ago_in_words(@project.created_at)} ago
-//         %h4.card-title.project-title
-//           = @project.title
-//           - if @project.challenge == true
-//             .span.badge.badge-success
-//               Challenge
-//           - if(@project.users.ids.first == current_user.id || current_user.admin == true)
-//             = link_to edit_project_path(@project), :class => "btn-flat display-inline" do
-//               %i.fa.fa-pencil
-//         %p.card-text
-//           = @project.synopsis
-//         %hr
-//         - if(@project.director == 0) && (@project.writer == 0) && (@project.actor == 0) && (@project.editor == 0) && (@project.cinematographer == 0) && (@project.makeup == 0) && (@project.vfx == 0)
-//           - @filled = true
-//           Crew has been filled.
-//         - else
-//           %h4 Crew needed
-//           - if @project.director > 0
-//             .view.display-inline
-//               %img.img-fluid{:alt => "Director", :src => "/assets/roles/clapperboard.png", :height => "50", :width => "50"}/
-//               .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Director"}
-//                 .span.badge.badge-danger
-//                   =@project.director
-//           - if @project.writer > 0
-//             .view.display-inline
-//               %img.img-fluid{:alt => "", :src => "/assets/roles/edit.png", :height => "50", :width => "50"}/
-//               .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Writer"}
-//                 .span.badge.badge-danger
-//                   =@project.writer
-//           - if @project.actor > 0
-//             .view.display-inline
-//               %img.img-fluid{:alt => "", :src => "/assets/roles/theater.png", :height => "50", :width => "50"}/
-//               .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Actor"}
-//                 .span.badge.badge-danger
-//                   =@project.actor
-//           - if @project.editor > 0
-//             .view.display-inline
-//               %img.img-fluid{:alt => "", :src => "/assets/roles/imac.png", :height => "50", :width => "50"}/
-//               .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Editor"}
-//                 .span.badge.badge-danger
-//                   =@project.editor
-//           - if @project.composer > 0
-//             .view.display-inline
-//               %img.img-fluid{:alt => "", :src => "/assets/roles/music-player.png", :height => "50", :width => "50"}/
-//               .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Composer"}
-//                 .span.badge.badge-danger
-//                   =@project.composer
-//           - if @project.cinematographer > 0
-//             .view.display-inline
-//               %img.img-fluid{:alt => "", :src => "/assets/roles/photo-camera.png", :height => "50", :width => "50"}/
-//               .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Cinematographer"}
-//                 .span.badge.badge-danger
-//                   =@project.cinematographer
-//           - if @project.makeup > 0
-//             .view.display-inline
-//               %img.img-fluid{:alt => "", :src => "/assets/roles/paint-brush.png", :height => "50", :width => "50"}/
-//               .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Makeup Artist"}
-//                 .span.badge.badge-danger
-//                   =@project.makeup
-//           - if @project.vfx > 0
-//             .view.display-inline
-//               %img.img-fluid{:alt => "", :src => "/assets/roles/fuse.png", :height => "50", :width => "50"}/
-//               .mask{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Visual Effects"}
-//                 .span.badge.badge-danger
-//                   =@project.vfx
-//   .card-group.col-md-4.offset-1
-//     .card
-//       = link_to "Project chat", chat_room_path(@project.id), :class => "btn btn-primary btn-rounded"
-// %br
-// .col
-//   %h5 The Crew
-//   - @project.users.each do |user|
-//     .chip
-//       - @them = UserProject.where(user_id: user.id, project_id: @project.id)
-//       - @them.each do |it|
-//         = it.user_role
-//         %span -
-//       - if user.avatar_file_name == nil
-//         %img.img-fluid{:src => "/assets/icon.png"}
-//       - else
-//         = image_tag user.avatar, :class => "img-fluid"
-//       = link_to user.user_name, profile_path(user.user_name), :class => "orange-text"
-//   = link_to "Back", root_path, :class => "btn btn-primary btn-rounded float-right"
-//   - @project.users.each do |u|
-//     - if u.id == current_user.id
-//       - @inproject = true
-//   - @what = Request.where(user_id: current_user.id, project_id: @project.id)
-//   - @what.each do |lol|
-//     - if(lol.user_id == current_user.id) && (lol.project_id == @project.id)
-//       - @requestpending = true
-//   - if (@inproject == nil && @filled == nil) && @requestpending != true
-//     = link_to "Request to join", request_request_path(@project.id), :class => "btn btn-primary btn-rounded"
-//   - if @requestpending == true
-//     .span.badge.badge-danger
-//       Request is pending

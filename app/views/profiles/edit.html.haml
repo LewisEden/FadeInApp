@@ -3,7 +3,7 @@
 = simple_form_for @user, url: {action: "update"}, html: {multipart: true} do |f|
 	.tile.is-vertical.box.user-sidebar
 		- if @user.avatar_file_name.blank?
-			%img{:src => "/assets/icon.png", :class => "rounded-circle center-circle"}
+			%img{:src => "/assets/user.png", :class => "rounded-circle center-circle", :width => "168"}
 		- else
 			= image_tag @user.avatar(:medium), :class => "rounded-circle center-circle", :width => "168"
 		.field
@@ -16,14 +16,6 @@
 		%p.portfolio-bio
 			.field
 				= f.input_field :bio, :class => "textarea", :placeholder => "Short bio", :minlength => "30", :maxlength => 50, :length => "50"
-		.user-stats
-			.stats-projects
-				%span.fa.fa-rocket
-				.stats-col
-					%p.stat-name
-						Projects
-					%p.stat-number
-						= @user.projects.count
 		%button.button.is-primary Update Profile
 	.tile.is-ancestor
 		.tile.is-2.is-vertical.is-parent.spacefix

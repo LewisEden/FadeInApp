@@ -1,0 +1,85 @@
+- @hasprojects = true
+
+- if @hasprojects == true
+  .tile
+    .tile.is-parent
+      .tile.is-child.currentprojects-row
+        %p
+          My current projects
+  .tile.display-projects
+    -@myprojects.each do |project|
+      - if project.completed != true
+        .tile.is-4.is-parent.portfolio-projects
+          = link_to project_path(project) do
+            .tile.is-child.box.portfolio-projects-padding
+              = image_tag project.image.url(:medium), :class => "vidthumbnail"
+              - if project.genre == "Action"
+                //Action
+                .portfolio-project-row
+                  %span.red-text.fa.fa-fighter-jet
+                  %h5.red-text.display-inline
+                    = project.genre
+                  %span.red-text.fa.fa-clock-o.icon
+                  %h5.red-text.display-inline
+                    = project.duration
+              - elsif project.genre == "Adventure"
+                //Adventure
+                .portfolio-project-row
+                  %span.green-text.fa.fa-envira
+                  %h5.green-text.display-inline
+                    = project.genre
+                  %span.green-text.fa.fa-clock-o
+                  %h5.green-text.display-inline
+                    = project.duration
+              - elsif project.genre == "Comedy"
+                //Comedy
+                .portfolio-project-row
+                  %span.cyan-text.fa.fa-smile-o
+                  %h5.cyan-text.display-inline
+                    = project.genre
+                  %span.cyan-text.fa.fa-clock-o
+                  %h5.cyan-text.display-inline
+                    = project.duration
+              - elsif project.genre == "Crime"
+                //Crime
+                .portfolio-project-row
+                  %span.orange-text.fa.fa-gavel
+                  %h5.orange-text.display-inline
+                    = project.genre
+                  %span.orange-text.fa.fa-clock-o
+                  %h5.orange-text.display-inline
+                    = project.duration
+              - elsif project.genre == "Drama"
+                //Drama
+                .portfolio-project-row
+                  %span.amber-text.fa.fa-group
+                  %h5.amber-text.display-inline
+                    = project.genre
+                  %span.amber-text.fa.fa-clock-o
+                  %h5.amber-text.display-inline
+                    = project.duration
+              - elsif project.genre == "Horror"
+                //Horror
+                .portfolio-project-row
+                  %span.brown-text.fa.fa-warning
+                  %h5.brown-text.display-inline
+                    = project.genre
+                  %span.brown-text.fa.fa-clock-o
+                  %h5.brown-text.display-inline
+                    = project.duration
+              - else
+                //Si-fi
+                .portfolio-project-row
+                  %span.teal-text.fa.fa-rocket
+                  %h5.teal-text.display-inline
+                    = project.genre
+                  %span.teal-text.fa.fa-clock-o
+                  %h5.teal-text.display-inline
+                    = project.duration
+              %p
+                = truncate(project.title, length: 22)
+            .tile.box
+              %p
+                Messages
+              %span.tag.is-primary 14
+              

@@ -1,3 +1,4 @@
+- title "#{@chat_room.title} Chat - FADE IN"
 - @cpid = @chat_room.project_id.to_i
 - @current_project = Project.find(@cpid)
 - @totalmessages = @chat_room.messages.count
@@ -31,7 +32,8 @@
             .content
               %p
                 %strong 
-                  FADE IN Bot
+                  FADE IN
+                  %span.tag.is-primary Bot
                 %small
                   •
                   The beginning of time

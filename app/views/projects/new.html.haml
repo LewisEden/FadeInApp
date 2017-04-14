@@ -21,57 +21,57 @@
           %label.label.field-text Duration
           %p.control
             %span.select
-              = f.input_field :duration, label: false, prompt: "Select duration", collection: ["Very short", "Short", "Long", "Feature"]
+              = f.input_field :duration, label: false, prompt: "Select duration", collection: ["Very short", "Short", "Medium", "Long", "Feature"]
         .field
           %label.label.field-text Title
           %p.control
-            = f.input_field :title, id: "title", placeholder: "Enter a title", :class => "input", :minlength => "3", :maxlength => 500, :length => "50"
+            = f.input_field :title, id: "title", placeholder: "Enter a title (max 50 characters)", :class => "input", :minlength => "3", :maxlength => 50, :length => "50"
         .field
           %label.label.field-text Synopsis
           %p.control
-            = f.input_field :synopsis, placeholder: "Enter a synopsis", :class => "textarea", :minlength => "100", :maxlength => "500"
+            = f.input_field :synopsis, placeholder: "Enter a synopsis (min. 100 characters)", :class => "textarea", :minlength => "100", :maxlength => "500"
       .tile.is-child.box
         %label.label.field-text Header image
         = f.input_field :image
       .tile.is-child.box
         %label.label.field-text Roles
         .columns.is-multiline.text-center
-          .column
+          .column{"data-balloon" => "Director", "data-balloon-pos" => "up"}
             %img.img-fluid{:src => "/assets/roles/clapperboard.png", :height => "50", :width => "50"}
             %p.control
             %span.select
               = f.input_field :director, label: false, default: 0, collection: [0, 1, 2, 3]
-          .column
+          .column{"data-balloon" => "Writer", "data-balloon-pos" => "up"}
             %img.img-fluid{:src => "/assets/roles/edit.png", :height => "50", :width => "50"}
             %p.control
             %span.select
               = f.input_field :writer, label: false, default: 0, collection: [0, 1, 2, 3]
-          .column
+          .column{"data-balloon" => "Actor", "data-balloon-pos" => "up"}
             %img.img-fluid{:src => "/assets/roles/theater.png", :height => "50", :width => "50"}
             %p.control
             %span.select
               = f.input_field :actor, label: false, default: 0, collection: [0, 1, 2, 3]
-          .column
+          .column{"data-balloon" => "Editor", "data-balloon-pos" => "up"}
             %img.img-fluid{:src => "/assets/roles/imac.png", :height => "50", :width => "50"}
             %p.control
             %span.select
               = f.input_field :editor, label: false, default: 0, collection: [0, 1, 2, 3]
-          .column
+          .column{"data-balloon" => "Composer", "data-balloon-pos" => "up"}
             %img.img-fluid{:src => "/assets/roles/music-player.png", :height => "50", :width => "50"}
             %p.control
             %span.select
               = f.input_field :composer, label: false, default: 0, collection: [0, 1, 2, 3]
-          .column
+          .column{"data-balloon" => "Cinematographer", "data-balloon-pos" => "up"}
             %img.img-fluid{:src => "/assets/roles/photo-camera.png", :height => "50", :width => "50"}
             %p.control
             %span.select
               = f.input_field :cinematographer, label: false, default: 0, collection: [0, 1, 2, 3]
-          .column
+          .column{"data-balloon" => "Makeup Artist", "data-balloon-pos" => "up"}
             %img.img-fluid{:src => "/assets/roles/paint-brush.png", :height => "50", :width => "50"}
             %p.control
             %span.select
               = f.input_field :makeup, label: false, default: 0, collection: [0, 1, 2, 3]
-          .column
+          .column{"data-balloon" => "Vfx Artist", "data-balloon-pos" => "up"}
             %img.img-fluid{:src => "/assets/roles/fuse.png", :height => "50", :width => "50"}
             %p.control
             %span.select

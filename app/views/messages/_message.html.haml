@@ -1,52 +1,39 @@
-// // - if message.user.id == @lastmessage
+// - if message.user.id == @lastmessage
 // - @currentmessage = @chat_room.messages.index(message)
 // - if @currentmessage < @totalmessages - 1
 //   - @nextmessage = @currentmessage + 1
 // //  
 
-// // = @chat_room.messages[@nextmessage].user.user_name
+// // = @chat_room.messages[@nextmessage].user.user_name && @currentmessage != 0
 // // = message.user.id
-// - if message.user.id == @chat_room.messages[@nextmessage].user.id
-//   .article.media.is-message
-//     %figure.image.is-64x64.fuck-u-lewis
-//       = link_to profile_path(message.user.user_name) do
-//         - if message.user.avatar_file_name.nil?
-//           %img{:src => "/assets/icon.png", :class => "is-chat-avatar"}/
-//         - else
-//           = image_tag message.user.avatar(:medium), :class => "is-chat-avatar"
-//     .media-content
-//       .content
-//         %p
-//           %strong 
-//             = link_to profile_path(message.user.user_name) do
-//               = message.user.first_name
-//               = message.user.last_name
-//           %small 
-//             @#{message.user.user_name}
-//           %small
-//             •
-//             = time_ago_in_words(message.timestamp) + " ago"
-//           %br
-//           = message.body
-// - else
+// - if message.user.id == @chat_room.messages[@nextmessage].user.id && @currentmessage != 0
+//   - @yes = true
+
+// - if @yes != true
 .article.media.is-message
   %figure.image.is-64x64.fuck-u-lewis
     = link_to profile_path(message.user.user_name) do
       - if message.user.avatar_file_name.nil?
-        %img{:src => "/assets/icon.png", :class => "is-chat-avatar"}/
+        %img{:src => "/assets/user.png", :class => "is-chat-avatar"}/
       - else
         = image_tag message.user.avatar(:medium), :class => "is-chat-avatar"
   .media-content
     .content
       %p
-        %strong 
+        %strong
           = link_to profile_path(message.user.user_name) do
-            = message.user.first_name
-            = message.user.last_name
-        %small 
-          @#{message.user.user_name}
+            - if message.user.first_name.blank?
+              @#{message.user.user_name}
+            - else
+              = message.user.first_name
+              = message.user.last_name
         %small
+          @#{message.user.user_name}
           •
           = time_ago_in_words(message.timestamp) + " ago"
         %br
         = message.body
+// - else
+//   .content
+//     %p
+//       = message.body

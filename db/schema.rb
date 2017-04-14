@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170412151106) do
+ActiveRecord::Schema.define(version: 20170412210317) do
 
   create_table "challenges", force: :cascade do |t|
     t.string   "genre"
     t.string   "duration"
     t.string   "title"
-    t.string   "synopsis"
+    t.text     "synopsis"
     t.integer  "reward"
     t.boolean  "completed"
     t.datetime "created_at",         null: false

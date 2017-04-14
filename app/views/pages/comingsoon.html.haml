@@ -5,16 +5,5 @@
     %span.fa.fa-wrench
   .message-body
     This page soon come.
-%a.button.is-primary.is-large.modal-button{"data-target" => "#modal-submit"} Submit Film
-
-#modal-submit.modal
-  .modal-background
-  .modal-card
-    %header.modal-card-head
-      %p.modal-card-title Modal title EVERYWHERE?
-    %section.modal-card-body
-      .content
-        = render 'profiles/friends'
-    %footer.modal-card-foot
-      %a.button.is-success Save changes
-      %a.button Cancel
+    
+= render 'layouts/error'

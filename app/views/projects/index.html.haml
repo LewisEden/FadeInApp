@@ -1,118 +1,127 @@
 - title "Projects - FADE IN"
 
-.level.projectbar
-  %label.label.main-text All Projects
-  = link_to new_project_path, :class => "button is-primary is-outlined" do
-    Create Project
-.level
-  .columns.is-multiline
-    -@projects.each do |project|
-      - if project.public == true
-        .column.card-home
-          .card.project-card
-            .card-image
-              = image_tag project.image.url(:medium), :class => "img-fluid"
-            .card-content
-              .genreduration
-                - if project.genre == "Action"
-                  //Action
-                  %span.red-text.fa.fa-fighter-jet
-                  %h5.red-text.display-inline
-                    = project.genre
-                  %span.red-text.fa.fa-clock-o.icon
-                  %h5.red-text.display-inline
-                    = project.duration
-                - elsif project.genre == "Adventure"
-                  //Adventure
-                  %span.green-text.fa.fa-envira
-                  %h5.green-text.display-inline
-                    = project.genre
-                  %span.green-text.fa.fa-clock-o
-                  %h5.green-text.display-inline
-                    = project.duration
-                - elsif project.genre == "Comedy"
-                  //Comedy
-                  %span.cyan-text.fa.fa-smile-o
-                  %h5.cyan-text.display-inline
-                    = project.genre
-                  %span.cyan-text.fa.fa-clock-o
-                  %h5.cyan-text.display-inline
-                    = project.duration
-                - elsif project.genre == "Crime"
-                  //Crime
-                  %span.orange-text.fa.fa-gavel
-                  %h5.orange-text.display-inline
-                    = project.genre
-                  %span.orange-text.fa.fa-clock-o
-                  %h5.orange-text.display-inline
-                    = project.duration
-                - elsif project.genre == "Drama"
-                  //Drama
-                  %span.amber-text.fa.fa-group
-                  %h5.amber-text.display-inline
-                    = project.genre
-                  %span.amber-text.fa.fa-clock-o
-                  %h5.amber-text.display-inline
-                    = project.duration
-                - elsif project.genre == "Horror"
-                  //Horror
-                  %span.brown-text.fa.fa-warning
-                  %h5.brown-text.display-inline
-                    = project.genre
-                  %span.brown-text.fa.fa-clock-o
-                  %h5.brown-text.display-inline
-                    = project.duration
-                - else
-                  //Si-fi
-                  %span.teal-text.fa.fa-rocket
-                  %h5.teal-text.display-inline
-                    = project.genre
-                  %span.teal-text.fa.fa-clock-o
-                  %h5.teal-text.display-inline
-                    = project.duration
-              .content
-                %h4.project-title
-                  = truncate(project.title, length: 30)
-                  - if project.challenge == true
-                    .span.tag.is-primary
-                      Challenge
-                %p.project-bio
-                  = truncate(project.synopsis, length: 160)
-              .cardbottom
-                .level
-                  .media-left
-                    - if project.director > 0
-                      //director
-                      .mask.display-inline{"data-balloon" => "Director", "data-balloon-pos" => "up"}
-                        %i.icon-video
-                    - if project.writer > 0
-                      //writer
-                      .mask.display-inline{"data-balloon" => "Writer", "data-balloon-pos" => "up"}
-                        %i.fa.fa-pencil
-                    - if project.actor > 0
-                      //actor
-                      .mask.display-inline{"data-balloon" => "Actor", "data-balloon-pos" => "up"}
-                        %i.icon-theatre
-                    - if project.editor > 0
-                      //editor
-                      .mask.display-inline{"data-balloon" => "Editor", "data-balloon-pos" => "up"}
-                        %i.fa.fa-desktop
-                    - if project.composer > 0
-                      //composer
-                      .mask.display-inline{"data-balloon" => "Composer", "data-balloon-pos" => "up"}
-                        %i.fa.fa-music
-                    - if project.cinematographer > 0
-                      //cinematographer
-                      .mask.display-inline{"data-balloon" => "Cinematographer", "data-balloon-pos" => "up"}
-                        %i.fa.fa-video-camera
-                    - if project.makeup > 0
-                      //makeup
-                      .mask.display-inline{"data-balloon" => "Makeup Artist", "data-balloon-pos" => "up"}
-                        %i.fa.fa-paint-brush
-                    - if project.vfx > 0
-                      //vfx
-                      .mask.display-inline{"data-balloon" => "Vfx Artist", "data-balloon-pos" => "up"}
-                        %i.fa.fa-bomb
-                  .media-right
-                    = link_to project_path(project), :class => "button is-primary is-outlined is-small" do
-                      View Project
+- @pcount = 0
+- @projects.each do |project|
+  - if project.completed != true || project.public == true
+    - @pcount += 1
+
+- if @pcount == 0
+  .column.has-text-centered
+    %h1 There are no projects yet, be the first to create one.
+- else
+  .level.projectbar
+    %label.label.main-text All Projects
+    = link_to new_project_path, :class => "button is-primary is-outlined" do
+      Create Project
+  .level
+    .columns.is-multiline
+      -@projects.each do |project|
+        - if project.public == true
+          .column.card-home
+            .card.project-card
+              .card-image
+                = image_tag project.image.url(:medium), :class => "img-fluid"
+              .card-content
+                .genreduration
+                  - if project.genre == "Action"
+                    //Action
+                    %span.red-text.fa.fa-fighter-jet
+                    %h5.red-text.display-inline
+                      = project.genre
+                    %span.red-text.fa.fa-clock-o.icon
+                    %h5.red-text.display-inline
+                      = project.duration
+                  - elsif project.genre == "Adventure"
+                    //Adventure
+                    %span.green-text.fa.fa-envira
+                    %h5.green-text.display-inline
+                      = project.genre
+                    %span.green-text.fa.fa-clock-o
+                    %h5.green-text.display-inline
+                      = project.duration
+                  - elsif project.genre == "Comedy"
+                    //Comedy
+                    %span.cyan-text.fa.fa-smile-o
+                    %h5.cyan-text.display-inline
+                      = project.genre
+                    %span.cyan-text.fa.fa-clock-o
+                    %h5.cyan-text.display-inline
+                      = project.duration
+                  - elsif project.genre == "Crime"
+                    //Crime
+                    %span.orange-text.fa.fa-gavel
+                    %h5.orange-text.display-inline
+                      = project.genre
+                    %span.orange-text.fa.fa-clock-o
+                    %h5.orange-text.display-inline
+                      = project.duration
+                  - elsif project.genre == "Drama"
+                    //Drama
+                    %span.amber-text.fa.fa-group
+                    %h5.amber-text.display-inline
+                      = project.genre
+                    %span.amber-text.fa.fa-clock-o
+                    %h5.amber-text.display-inline
+                      = project.duration
+                  - elsif project.genre == "Horror"
+                    //Horror
+                    %span.brown-text.fa.fa-warning
+                    %h5.brown-text.display-inline
+                      = project.genre
+                    %span.brown-text.fa.fa-clock-o
+                    %h5.brown-text.display-inline
+                      = project.duration
+                  - else
+                    //Si-fi
+                    %span.teal-text.fa.fa-rocket
+                    %h5.teal-text.display-inline
+                      = project.genre
+                    %span.teal-text.fa.fa-clock-o
+                    %h5.teal-text.display-inline
+                      = project.duration
+                .content
+                  %h4.project-title
+                    = truncate(project.title, length: 30)
+                    - if project.challenge == true
+                      .span.tag.is-primary
+                        Challenge
+                  %p.project-bio
+                    = truncate(project.synopsis, length: 160)
+                .cardbottom
+                  .level
+                    .media-left
+                      - if project.director > 0
+                        //director
+                        .mask.display-inline{"data-balloon" => "Director", "data-balloon-pos" => "up"}
+                          %i.icon-video
+                      - if project.writer > 0
+                        //writer
+                        .mask.display-inline{"data-balloon" => "Writer", "data-balloon-pos" => "up"}
+                          %i.fa.fa-pencil
+                      - if project.actor > 0
+                        //actor
+                        .mask.display-inline{"data-balloon" => "Actor", "data-balloon-pos" => "up"}
+                          %i.icon-theatre
+                      - if project.editor > 0
+                        //editor
+                        .mask.display-inline{"data-balloon" => "Editor", "data-balloon-pos" => "up"}
+                          %i.fa.fa-desktop
+                      - if project.composer > 0
+                        //composer
+                        .mask.display-inline{"data-balloon" => "Composer", "data-balloon-pos" => "up"}
+                          %i.fa.fa-music
+                      - if project.cinematographer > 0
+                        //cinematographer
+                        .mask.display-inline{"data-balloon" => "Cinematographer", "data-balloon-pos" => "up"}
+                          %i.fa.fa-video-camera
+                      - if project.makeup > 0
+                        //makeup
+                        .mask.display-inline{"data-balloon" => "Makeup Artist", "data-balloon-pos" => "up"}
+                          %i.fa.fa-paint-brush
+                      - if project.vfx > 0
+                        //vfx
+                        .mask.display-inline{"data-balloon" => "Vfx Artist", "data-balloon-pos" => "up"}
+                          %i.fa.fa-bomb
+                    .media-right
+                      = link_to project_path(project), :class => "button is-primary is-outlined is-small" do
+                        View Project
