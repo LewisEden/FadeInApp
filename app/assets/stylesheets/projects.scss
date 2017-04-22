@@ -170,3 +170,15 @@
     width: 32%;
   }
 }
+
+@media (max-width: 1024px) {
+  .card {
+    width: 48%;
+  }
+}
+
+@media (max-width: 728px) {
+  .card {
+    width: 100%;
+  }
+}
