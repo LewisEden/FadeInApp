@@ -4,3 +4,5 @@
 #   http_host: 'example.org',
 #   https: false
 # )
+
+Paperclip::Attachment.default_options[:s3_protocol] = "https"

@@ -11,6 +11,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_attached_file :avatar, styles: { medium: '152x152#' }
+  has_attached_file :avatar, styles: { medium: '152x152#' }, default_url: "https://s3.eu-west-2.amazonaws.com/fadein-assets/user.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 end
