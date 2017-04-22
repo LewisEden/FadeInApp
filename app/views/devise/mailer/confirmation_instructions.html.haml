@@ -2,7 +2,7 @@
   Hi #{@email}!
 %p Thank you for joining FADE IN! To finish signing up, you just need to confirm that we got your email right. 
 %p To confirm your email, please click this link:
-%p= link_to confirmation_url(@resource, confirmation_token: @token)
+%p= link_to "Click here", confirmation_url(@resource, confirmation_token: @token)
 %p 
   Welcome and thanks!
   %br
