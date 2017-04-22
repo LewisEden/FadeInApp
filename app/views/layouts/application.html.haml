@@ -4,7 +4,7 @@
     = render 'layouts/secret'
     %title= content_for?(:title) ? content_for(:title) : "FADE IN"
     = render 'layouts/rails_default'
-    %link{:href => "/assets/icon.png", :rel => "shortcut icon", :type => "image/png"}/
+    %link{:href => "https://s3.eu-west-2.amazonaws.com/fadein-assets/icon.png", :rel => "shortcut icon", :type => "image/png"}/
   %body
     #overlay{:onclick => "closeNav()"}
     - if user_signed_in?
