@@ -20,32 +20,33 @@
             = link_to chat_rooms_path do
               %span.fa.fa-comments-o{"aria-hidden" => "true"}
           %li
-            = image_tag current_user.avatar(:medium)
-            #dropdown
-              %ul
-                %li
-                  %p
-                    = current_user.user_name
-                %a
+            = link_to destroy_user_session_path, :class => "sign-out", method: :delete do
+              = image_tag current_user.avatar(:medium)
+              #dropdown
+                %ul
                   %li
-                    %p My Profile
-                    %span
-                %a
-                  %li
-                    %p My Projects
-                    %span
-                %a
-                  %li
-                    %p My Calendar
-                    %span
-                %a
-                  %li
-                    %p My Settings
-                    %span
-                %a
-                  %li
-                    %p Sign out
-                    %span
+                    %p
+                      = current_user.user_name
+                  %a
+                    %li
+                      %p My Profile
+                      %span
+                  %a
+                    %li
+                      %p My Projects
+                      %span
+                  %a
+                    %li
+                      %p My Calendar
+                      %span
+                  %a
+                    %li
+                      %p My Settings
+                      %span
+                  %a
+                    %li
+                      %p Sign out
+                      %span
 %nav#sidenav.sidenav
   %div
     %img{:src => "/assets/logo_white.png"}

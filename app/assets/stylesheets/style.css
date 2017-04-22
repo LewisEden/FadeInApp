@@ -52,6 +52,30 @@ a {
   hyphens: auto;
 }
 
+.green-text {
+  color: #2ecc71;
+}
+
+.red-text {
+  color: #e74c3c;
+}
+
+.cyan-text {
+  color: #1abc9c;
+}
+
+.orange-text {
+  color: #f16a43;
+}
+
+.amber-text {
+  color: #ffbf00;
+}
+
+.brown-text {
+  color: #836953;
+}
+
 /* Page Header Styles */
 
 .page-header {
