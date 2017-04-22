@@ -169,13 +169,14 @@
                 %div{:style => "padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;"}
                   %div{:style => "font-size:12px;line-height:14px;color:#555555;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;text-align:left;"}
                     %p{:style => "margin: 0;font-size: 14px;line-height: 17px"}
-                      %span{:style => "font-family: inherit; text-align: initial; background-color: transparent; font-size: 14px; line-height: 16px;"} %p Thank you for joining FADE IN! To finish signing up, you just need to confirm that we got your email right. 
-                        %p To confirm your email, please click this link:
-                        %p= link_to "Click here", confirmation_url(@resource, confirmation_token: @token)
-                        %p 
-                          Welcome and thanks!
-                          %br
-                          The FADE IN Team
+                      %span{:style => "font-family: inherit; text-align: initial; background-color: transparent; font-size: 14px; line-height: 16px;"} 
+                      %p Thank you for joining FADE IN! To finish signing up, you just need to confirm that we got your email right. 
+                      %p To confirm your email, please click this link:
+                      %p= link_to "Click here", confirmation_url(@resource, confirmation_token: @token)
+                      %p 
+                        Welcome and thanks!
+                        %br
+                        The FADE IN Team
                 /[if mso] </td></tr></table>
                 /[if mso] <table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                 %div{:style => "padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;"}
