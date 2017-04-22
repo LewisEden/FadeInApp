@@ -93,4 +93,15 @@ Rails.application.configure do
       s3_region: ENV.fetch('AWS_REGION'),
     }
   }
+  
+  config.action_mailer.default_url_options = { :host => 'fadeinapp.com' }
+  ActionMailer::Base.smtp_settings = {
+    :user_name            => ENV['SENDGRID_USERNAME'],
+    :password             => ENV['SENDGRID_PASSWORD'],
+    :address              => "smtp.sendgrid.net",
+    :port                 => 587,
+    :enable_starttls_auto => true,
+    :authentication       => :plain,
+    :domain               => "fadeinapp.com"
+  }
 end
