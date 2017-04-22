@@ -140,6 +140,8 @@
     }
     
     .project-needs {
+      display: flex;
+      align-items: center;
       
       span {
         font-size: 19px;
@@ -153,11 +155,10 @@
       
       a {
         border: solid 1px #f16a43;
-        -webkit-border-radius: 2px;
-        -moz-border-radius: 2px;
-        border-radius: 2px;
         
-        font-size: 16px;
+        font-size: 12px;
+        
+        padding: 5px 22px;
         
         color: #f16a43;
       }

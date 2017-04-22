@@ -109,7 +109,7 @@ function openNav() {
   } else {
     document.getElementById("sidenav").style.width = "223px";
     toggleNav = 0;
-    if (document.documentElement.clientWidth > 768) {
+    if (document.documentElement.clientWidth > 1024) {
       document.getElementById("actionbar").style.marginLeft = "223px";
       document.getElementById("main").style.marginLeft = "223px";
     } else {
