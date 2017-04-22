@@ -7,6 +7,7 @@
     %link{:href => "/assets/icon.png", :rel => "shortcut icon", :type => "image/png"}/
   %body
     #overlay{:onclick => "closeNav()"}
-    = render 'layouts/header'
+    - if user_signed_in?
+      = render 'layouts/header'
     = render 'layouts/messages'
     = yield
