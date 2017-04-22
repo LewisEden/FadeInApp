@@ -1,3 +1,110 @@
 // Place all the styles related to the projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// Index Styles
+
+.projects-actionbar {
+  display: flex;
+  align-items: center;
+  
+  height: 71px;
+  width: 100%;
+  
+  background: #fff;
+  
+  transition: margin-left .5s;
+  
+  > p:first-child {
+    margin-left: 21px;
+  }
+  
+  > p {
+    color: #757D8C;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+  
+  ul {
+    border-right: solid 1px #d7d9e1;
+  }
+  
+  input {
+    border: none;
+    
+    background-image: url('searchicon.png');
+    background-repeat: no-repeat;
+    
+    font-size: 16px;
+  }
+  
+  input:focus {
+    outline: none;
+  }
+  
+  a {
+    display: flex;
+    align-items: center;
+    
+    border: solid 1px #f16a43;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    
+    font-size: 16px;
+    
+    color: #f16a43;
+  }
+  
+  a p {
+    margin: 8px 15px;
+  }
+}
+
+.projects-main {
+  padding: 33px 64px 0 64px;
+  
+  transition: margin-left .5s;
+  
+  p {
+    margin-left: 0.5%;
+  }
+  
+  > div {
+    display: flex;
+    flex-wrap: wrap;
+    
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.card {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  
+  width: 24%;
+  
+  margin-right: 0.5%;
+  margin-bottom: 21px;
+  margin-left: 0.5%;
+  
+  img {
+    width: 100%;
+    height: auto;
+  }
+  
+  > div {
+    margin: 13px 22px 0 26px;
+  }
+  
+  .genre-duration {
+    display: flex;
+    align-items: center;
+    
+    p {
+      margin: 0;
+    }
+  }
+}

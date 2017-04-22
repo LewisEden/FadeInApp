@@ -6,6 +6,13 @@ class ProjectsController < ApplicationController
 	
 	def index
 		@projects = Project.all.order('created_at DESC')
+		@challenges = Project.where(challenge: true, user_id: current_user.id)
+		@challenges.each do |challenge|
+			if challenge.prod_stage == 0
+				challenge.destroy
+				flash[:danger] = "The challenge project you just made has been deleted. You must fill out the fields in the challenge project. Please navigate back to the challenges page to re-enter the challenge."
+			end
+		end
 	end
 
 	def new
@@ -69,6 +76,8 @@ class ProjectsController < ApplicationController
 	end
 
 	def update
+		@project.prod_stage = 1
+		@project.save
 		if @project.update(project_params)
 			@projectmade = UserProject.where(project_id: @project.id, user_id: current_user.id)
 			@theproject = @projectmade.first
@@ -103,14 +112,11 @@ class ProjectsController < ApplicationController
 		@project = Project.find(params[:project_id])
 		@user = User.find(params[:user_id])
 		unless @project.users.first.id == current_user.id
-			redirect_to project_path(@project)
 			flash[:danger] = "You must be the project leader to remove members"
 		end
 		if @project.users.destroy(@user)
-			redirect_to project_path(@project)
 			flash[:success] = "Successfully removed #{@user.user_name}"
 		else
-			redirect_to project_path(@project)
 			flash[:danger] = "Something went wrong..."
 		end
 	end

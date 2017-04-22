@@ -23,6 +23,7 @@ class UserChallengesController < ApplicationController
       @project.composer = 0
       @project.vfx = 0
       @project.public = true
+      @project.prod_stage = 0
   		
       if current_user.pref_role.blank?
         @project.leader_role = "Director"

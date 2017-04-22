@@ -19,7 +19,7 @@ class RequestsController < ApplicationController
     
     if @project.users.ids.include?(current_user.id)
       redirect_to project_path
-      flash[:danger] = "You can't request to join your own project"
+      flash[:danger] = "You can't request to join a project you're already in."
     end
   end
   
@@ -38,7 +38,7 @@ class RequestsController < ApplicationController
         redirect_to project_path
         flash[:success] = "You have successfully sent an application to: " + @project.title
       else
-        flash[:danger] = "Could not send application: make sure all forms are filled."
+        flash[:danger] = "Could not send application. Make sure all fields are filled."
         render :new
       end
     end

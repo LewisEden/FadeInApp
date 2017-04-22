@@ -11,7 +11,7 @@
             .notification.is-success
               %p Congratulations on finishing your project! You can complete the project by submitting the link below.
             %label.label.field-text Film URL
-            = f.input_field :submission, :placeholder => "Insert YouTube/Vimeo URL here", :class => 'input'
+            = f.input_field :submission, :placeholder => "Insert YouTube URL here", :class => 'input'
         %footer.modal-card-foot
           %button.button.is-success.is-outlined Submit
           = link_to project_path(@project), :class => "button is-danger is-outlined" do

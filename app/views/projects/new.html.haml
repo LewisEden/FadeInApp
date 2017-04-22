@@ -86,5 +86,5 @@
           %label.label.field-text Project is public?
           = f.input_field :public, checked: true, checked_value: true, unchecked_value: false
       .tile.is-child
-        %button.button.is-primary Create Project
+        = submit_tag "Create project", data: { disable_with: "Please wait..." }
         = link_to "Cancel", root_path, :class => "button is-danger"

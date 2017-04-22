@@ -1,8 +1,26 @@
 - title "#{@challenge.title} - FADE IN"
 
-= @challenge.genre
-= @challenge.duration
-= @challenge.title
-= @challenge.synopsis
-= @challenge.requirements
-= link_to "Start Challenge", user_challenge_new_path
+= link_to "Start Challenge", user_challenge_new_path, :class => "button is-primary is-wide"
+.jumbo
+  = image_tag @challenge.image(:medium)
+.tile.box.img-card-overlay
+  %div
+    %p
+      = @challenge.genre
+    %p
+      = @challenge.duration
+  %p
+    = @challenge.title
+  %p
+    = @challenge.synopsis
+
+.tile.is-ancestor
+  .tile.is-parent
+    .tile.is-child.box
+      NUMBO 1
+    .tile.is-child.box
+      NUMBO 2
+    .tile.is-child.box
+      NUMBO 3
+    .tile.is-child.box
+      NUMBO 4
