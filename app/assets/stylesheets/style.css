@@ -52,34 +52,6 @@ a {
   hyphens: auto;
 }
 
-.green-text {
-  color: #2ecc71;
-}
-
-.red-text {
-  color: #e74c3c;
-}
-
-.cyan-text {
-  color: #1abc9c;
-}
-
-.orange-text {
-  color: #f16a43;
-}
-
-.amber-text {
-  color: #ffbf00;
-}
-
-.brown-text {
-  color: #836953;
-}
-
-.teal-text {
-  color: #3498db;
-}
-
 /* Page Header Styles */
 
 .page-header {
@@ -90,7 +62,12 @@ a {
   left: 0;
   
   display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   align-items: center;
+  -webkit-align-items: center;
   
   height: 71px;
   width: 100%;
@@ -104,8 +81,14 @@ a {
 
 .page-header > div {
   display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   align-items: center;
+  -webkit-align-items: center;
   justify-content: center;
+  -webkit-justify-content: center;
   
   margin-right: auto;
   
@@ -206,7 +189,12 @@ a {
 
 .page-header ul {
   display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   align-items: center;
+  -webkit-align-items: center;
   
   margin: 0;
   padding: 0;
@@ -283,8 +271,14 @@ a {
 
 .sidenav > div {
   display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   align-items: center;
+  -webkit-align-items: center;
   justify-content: center;
+  -webkit-justify-content: center;
   
   height: 71px;
   
@@ -303,7 +297,12 @@ a {
 
 .sidenav li {
   display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   align-items: center;
+  -webkit-align-items: center;
   
   padding-left: 20px;
 }
@@ -340,4 +339,163 @@ a {
     
     box-shadow: 0px 6px 10px #000;
   }
+}
+
+/* Signin Page Styles*/
+
+.login-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+  display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  flex-direction: column;
+  align-items: center;
+  -webkit-align-items: center;
+  justify-content: center;
+  -webkit-justify-content: center;
+  
+  width: 100vw;
+  height: 100vh;
+  
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+	background:	#fff;
+	background-repeat:no-repeat;
+	background: -webkit-linear-gradient(72deg, #fff 0%, #fff 50%, #f16a43 50.1%, #f16a43 100%);
+	background: -moz-linear-gradient(72deg, #fff 0%, #fff 50%, #f16a43 50.1%, #f16a43 100%);
+  background: linear-gradient(72deg, #fff 0%, #fff 50%, #f16a43 50.1%, #f16a43 100%);
+}
+
+.login-page img {
+  position: absolute;
+  
+  top: 5%;
+  left: 3%;
+}
+
+.login-page .card {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  
+  width: 568px;
+  height: 367px;
+  
+  padding: 40px 40px;
+  
+  -webkit-box-shadow: 0px 0px 10px 2px #ababab;
+  -moz-box-shadow: 0px 0px 10px 2px #ababab;
+  box-shadow: 0px 0px 10px 2px #ababab;
+}
+
+.login-page .card p {
+  color: #9d9d9d;
+  
+  font-size: 12px;
+}
+
+.login-page .card p:first-child {
+  margin-top: 0;
+  margin-bottom: 38px;
+  
+  color: #484848;
+  
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.login-page .card .string {
+  margin-bottom: 20px;
+}
+
+.login-page .card .string,
+.login-page .card .password {
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  
+  width: 100%;
+  
+  font-size: 15px;
+}
+
+.login-page .card .string:focus,
+.login-page .card .password:focus {
+  outline: none;
+}
+
+.login-page .card form > div {
+  display: flex;
+  align-items: center;
+  
+  margin-top: 65px;
+}
+
+.login-page .card form div div {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-page .card a {
+  color: #f16a43;
+  
+  font-size: 14px;
+  
+  margin-right: auto;
+}
+
+.login-page .card .button {
+  margin-left: auto;
+  
+  -webkit-border-radius: 23px;
+  -moz-border-radius: 23px;
+  border-radius: 23px;
+  border: none;
+  background: #f16a43;
+  
+  padding: 9px 26px;
+  
+  font-size: 15px;
+  color: #fff;
+  
+  cursor: pointer;
+}
+
+.login-page .card .button:hover {
+  background: #ff754d;
+}
+
+.login-page > a {
+  margin-top: 24px;
+  
+  color: #9d9d9d;
+  
+  font-size: 14px;
+}
+
+/* Sign up Page styles*/
+
+.signup-page .card {
+  height: 500px;
+}
+
+.signup-page .card .password {
+  margin-bottom: 20px;
+}
+
+.signup-page .card form > div {
+  margin-top: 25px;
+}
+
+/* Forgot Password Page Styles*/
+
+.forgot-page .card {
+  height: 310px;
 }

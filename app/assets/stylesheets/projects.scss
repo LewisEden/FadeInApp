@@ -6,7 +6,12 @@
 
 .projects-actionbar {
   display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   align-items: center;
+  -webkit-align-items: center;
   
   height: 71px;
   width: 100%;
@@ -44,7 +49,12 @@
   
   a {
     display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     align-items: center;
+    -webkit-align-items: center;
     
     border: solid 1px #f16a43;
     -webkit-border-radius: 2px;
@@ -72,14 +82,18 @@
   
   > div {
     display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
     
     width: 100%;
     height: 100%;
   }
-}
-
-.card {
+  
+  .card {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -90,90 +104,101 @@
   margin-bottom: 21px;
   margin-left: 0.5%;
   
-  img {
-    width: 100%;
-    height: auto;
-  }
-  
-  > div {
-    margin: 10px 22px 16px 26px;
-  
-    .genre-duration {
-      display: flex;
-      align-items: center;
-      
-      span {
-        font-size: 15px;
-      }
-      
-      p {
-        margin: 0;
-        
-        font-size: 13px;
-        
-        margin-right: 13px;
-        margin-left: 4px;
-      }
+    img {
+      width: 100%;
+      height: auto;
     }
     
-    .project-info {
-      
-      p {
-        color: #222222;
-        
-        font-family: 'Roboto', sans-serif;
-        font-weight: 400;
-        
-        margin-top: 0;
-      }
-      
-      p:first-child {
-        font-size: 16px;
-        font-weight: 500;
-        font-family: 'Montserrat', sans-serif;
-        
-        color: #272727;
-        
-        margin-top: 11px;
-        margin-bottom: 11px;
-      }
-    }
+    > div {
+      margin: 10px 22px 16px 26px;
     
-    .project-needs {
-      display: flex;
-      align-items: center;
-      
-      span {
-        font-size: 19px;
-        width: 19px;
-        height: 19px;
+      .genre-duration {
+        display: flex;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        align-items: center;
+        -webkit-align-items: center;
         
-        margin: 0;
+        span {
+          font-size: 15px;
+        }
         
-        // color: ;
+        p {
+          margin: 0;
+          
+          font-size: 13px;
+          
+          margin-right: 13px;
+          margin-left: 4px;
+        }
       }
       
-      a {
-        border: solid 1px #f16a43;
+      .project-info {
         
-        font-size: 12px;
+        p {
+          color: #222222;
+          
+          font-family: 'Roboto', sans-serif;
+          font-weight: 400;
+          
+          margin-top: 0;
+        }
         
-        padding: 5px 22px;
+        p:first-child {
+          font-size: 16px;
+          font-weight: 500;
+          font-family: 'Montserrat', sans-serif;
+          
+          color: #272727;
+          
+          margin-top: 11px;
+          margin-bottom: 11px;
+        }
+      }
+      
+      .project-needs {
+        display: flex;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        align-items: center;
+        -webkit-align-items: center;
         
-        color: #f16a43;
+        span {
+          font-size: 19px;
+          width: 19px;
+          height: 19px;
+          
+          margin: 0;
+          
+          // color: ;
+        }
+        
+        a {
+          border: solid 1px #f16a43;
+          
+          font-size: 12px;
+          
+          padding: 5px 22px;
+          
+          color: #f16a43;
+        }
       }
     }
   }
 }
 
 @media (max-width: 1440px) {
-  .card {
+  .projects-main .card {
     width: 32%;
   }
 }
 
 @media (max-width: 1024px) {
-  .card {
+  .projects-main .card {
     width: 48%;
   }
 }
@@ -184,7 +209,7 @@
     padding-right: 10px;
   }
   
-  .card {
+  .projects-main .card {
     width: 100%;
   }
 }

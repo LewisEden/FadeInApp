@@ -1,35 +1,47 @@
-%main.fadein.login-page
-  %section.login
-    %img{:src => "/assets/icon_white.png"}/
-    %h1 Login
-    %p Welcome back! Please login to your account to access the full version.
+%main.login-page.signup-page
+  = link_to root_path do
+    %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/orange_icon_logo.png"}
+  .card
+    %p Sign up to FADE IN
     = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      = f.input_field :email, required: false, :placeholder => "Email", autofocus: true, :class => "input"
-      = f.input_field :password, required: false, :placeholder => "Password", :class => "input"
-      = f.button :submit, "Log in", :class => "button is-secondary"
-  %section.sign-up
-    %h1 Sign up
-    %p Create an account and start your filmmaking journey
-    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-      .sign-up-form
-        %div
-          %span.fa.fa-at.fa-lg{"aria-hidden" => "true"}
-          %div
-            %p What username would you like?
-            = f.input_field :user_name, :placeholder => "Enter your username", required: true, :class => "input"
-        %div
-          %span.fa.fa-envelope.fa-lg{"aria-hidden" => "true"}
-          %div
-            %p What is your email?
-            = f.input_field :email, :placeholder => "Enter your email", required: true, :class => "input"
-        %div
-          %span.fa.fa-lock.fa-lg{"aria-hidden" => "true"}
-          %div
-            %p What password would you like?
-            = f.input_field :password, :placeholder => "Enter your password", required: true, :class => "input"
-        %div
-          %span.fa.fa-lock.fa-lg{"aria-hidden" => "true"}
-          %div
-            %p Please confirm your password
-            = f.input_field :password_confirmation, :placeholder => "Enter your username", required: true, :class => "input"
-      = f.button :submit, "Sign up", :class => 'button is-primary'
+      %p USERNAME
+      = f.input_field :user_name, required: true
+      %p EMAIL ADDRESS
+      = f.input_field :email, id: "email", required: true
+      %p PASSWORD
+      = f.input_field :password, id: "password", required: true
+      %p CONFIRM PASSWORD
+      = f.input_field :password_confirmation, required: true
+      // = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+      %div
+        = link_to "Have an account? Sign in", new_session_path(resource_name)
+        = f.button :submit, "Sign Up"
+
+
+// %main.fadein.login-page
+//   %section.sign-up
+//     %h1 Sign up
+//     %p Create an account and start your filmmaking journey
+//     = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+//       .sign-up-form
+//         %div
+//           %span.fa.fa-at.fa-lg{"aria-hidden" => "true"}
+//           %div
+//             %p What username would you like?
+//             = f.input_field :user_name, :placeholder => "Enter your username", required: true, :class => "input"
+//         %div
+//           %span.fa.fa-envelope.fa-lg{"aria-hidden" => "true"}
+//           %div
+//             %p What is your email?
+//             = f.input_field :email, :placeholder => "Enter your email", required: true, :class => "input"
+//         %div
+//           %span.fa.fa-lock.fa-lg{"aria-hidden" => "true"}
+//           %div
+//             %p What password would you like?
+//             = f.input_field :password, :placeholder => "Enter your password", required: true, :class => "input"
+//         %div
+//           %span.fa.fa-lock.fa-lg{"aria-hidden" => "true"}
+//           %div
+//             %p Please confirm your password
+//             = f.input_field :password_confirmation, :placeholder => "Enter your username", required: true, :class => "input"
+//       = f.button :submit, "Sign up", :class => 'button is-primary'

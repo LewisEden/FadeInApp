@@ -1,35 +1,56 @@
-%br
-.container
-  .row.col-md-6.col-lg-8.login-form.mx-auto.float-none
-    .card.card-space
-      .card-block
-        / Header
-        .form-header.primary-color
-          %h3
-            %i.fa.fa-lock
-            Login:
-        / Body
-        = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-          .form-inputs
-            .md-form
-              %i.fa.fa-envelope.prefix
-              = f.input_field :email, id: "email", required: false, autofocus: true, :class => "form-control"
-              %label{:for => "email"} Email
-            .md-form
-              %i.fa.fa-lock.prefix
-              = f.input_field :password, id: "password", required: false, :class => "form-control"
-              %label{:for => "password"} Password
-            .md-form
-              = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
-          .form-actions.center
-            = f.button :submit, "Log in", :class => "btn btn-primary btn-sm"
-      / Footer
-      .modal-footer
-        .options
-          %p
-            Not a member?
-            = link_to "Sign up", new_registration_path(resource_name)
-          %p
-            Forgot
-            = link_to "your password?", new_password_path(resource_name)
+%main.login-page
+  = link_to root_path do
+    %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/orange_icon_logo.png"}
+  .card
+    %p Sign in to FADE IN
+    = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      %p EMAIL ADDRESS
+      = f.input_field :email, id: "email", required: false, autofocus: true
+      %p PASSWORD
+      = f.input_field :password, id: "password", required: false
+      // = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+      %div
+        %div
+          = link_to "New? Sign up", new_registration_path(resource_name)
+          = link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name)
+        = f.button :submit, "Sign In"
+  = link_to "Forgot password?", new_password_path(resource_name)
+
+
+// %br
+// .container
+//   .row.col-md-6.col-lg-8.login-form.mx-auto.float-none
+//     .card.card-space
+//       .card-block
+//         / Header
+//         .form-header.primary-color
+//           %h3%main.login-page
+//   .card
+//             %i.fa.fa-lock
+//       %p
+//             Login:
+//         / Body
+//         = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+//           .form-inputs
+//             .md-form
+//               %i.fa.fa-envelope.prefix
+//               = f.input_field :email, id: "email", required: false, autofocus: true, :class => "form-control"
+//               %label{:for => "email"} Email
+//             .md-form
+//               %i.fa.fa-lock.prefix
+//               = f.input_field :password, id: "password", required: false, :class => "form-control"
+//               %label{:for => "password"} Password
+//             .md-form
+//               = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+//           .form-actions.center
+//             = f.button :submit, "Log in", :class => "btn btn-primary btn-sm"
+//       / Footer
+//       .modal-footer
+//         .options
+//           %p
+//             Not a member?
+//             = link_to "Sign up", new_registration_path(resource_name)
+//           %p
+//             Forgot
+//             = link_to "your password?", new_password_path(resource_name)
             
