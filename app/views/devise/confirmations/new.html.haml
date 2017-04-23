@@ -3,7 +3,7 @@
     %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/orange_icon_logo.png"}
   .card
     %p Resend confirmation instructions
-    = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+    = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
       %p EMAIL ADDRESS
       = f.input_field :email, required: true, autofocus: true
       %div
