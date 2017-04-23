@@ -480,6 +480,12 @@ a {
   font-size: 14px;
 }
 
+@media (max-width: 768px) {
+  .login-page .card {
+    width: 100%
+  }
+}
+
 /* Sign up Page styles*/
 
 .signup-page .card {

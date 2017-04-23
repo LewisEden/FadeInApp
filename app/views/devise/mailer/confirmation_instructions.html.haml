@@ -143,7 +143,7 @@
                 .img-container.center.fullwidth{:align => "center", :style => "padding-right: 0px;  padding-left: 0px;"}
                   /[if mso] <table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px;" align="center">
                   %a{:href => "http://www.fadeinapp.com/", :target => "_blank"}
-                    %img.center.fullwidth{:align => "center", :alt => "FADE IN", :border => "0", :src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/white_logo.png", :style => "outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 440px", :title => "FADE IN", :width => "440"}/
+                    %img.center.fullwidth{:align => "center", :alt => "FADE IN", :border => "0", :src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/white_logo.png", :style => "outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 200px", :title => "FADE IN", :width => "200", :height => "59"}/
                   /[if mso] </td></tr></table>
                 / [if (!mso)&(!IE)]><!
               / <![endif]
@@ -163,7 +163,7 @@
                   %div{:style => "font-size:12px;line-height:14px;color:#4C4C4C;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;text-align:left;"}
                     %p{:style => "margin: 0;font-size: 14px;line-height: 17px;text-align: center"}
                       %strong
-                        %span{:style => "font-size: 28px; line-height: 33px;"} Hello, #{@email}!
+                        %span{:style => "font-size: 28px; line-height: 33px;"} Hello, #{current_user.user_name}!
                 /[if mso] </td></tr></table>
                 /[if mso] <table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                 %div{:style => "padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;"}
@@ -172,7 +172,7 @@
                       %span{:style => "font-family: inherit; text-align: initial; background-color: transparent; font-size: 14px; line-height: 16px;"} 
                       %p Thank you for joining FADE IN! To finish signing up, you just need to confirm that we got your email right. 
                       %p To confirm your email, please click this link:
-                      %p= link_to "Click here", confirmation_url(@resource, confirmation_token: @token)
+                      %p= link_to "#{confirmation_url(@resource, confirmation_token: @token)", confirmation_url(@resource, confirmation_token: @token)
                       %p 
                         Welcome and thanks!
                         %br
