@@ -52,6 +52,34 @@ a {
   hyphens: auto;
 }
 
+.green-text {
+  color: #2ecc71;
+}
+
+.red-text {
+  color: #e74c3c;
+}
+
+.cyan-text {
+  color: #1abc9c;
+}
+
+.orange-text {
+  color: #f16a43;
+}
+
+.amber-text {
+  color: #ffbf00;
+}
+
+.brown-text {
+  color: #836953;
+}
+
+.teal-text {
+  color: #3498db;
+}
+
 /* Page Header Styles */
 
 .page-header {
@@ -354,6 +382,7 @@ a {
   display: -ms-flexbox;
   display: -webkit-flex;
   flex-direction: column;
+  -webkit-flex-direction: column;
   align-items: center;
   -webkit-align-items: center;
   justify-content: center;
@@ -370,7 +399,7 @@ a {
 	background-repeat:no-repeat;
 	background: -webkit-linear-gradient(72deg, #fff 0%, #fff 50%, #f16a43 50.1%, #f16a43 100%);
 	background: -moz-linear-gradient(72deg, #fff 0%, #fff 50%, #f16a43 50.1%, #f16a43 100%);
-  background: linear-gradient(72deg, #fff 0%, #fff 50%, #f16a43 50.1%, #f16a43 100%);
+  background: linear-gradient(72deg, #fff 0%, #fff 50%, #f16a43 50.26%, #f16a43 100%);
 }
 
 .login-page img {
@@ -433,14 +462,24 @@ a {
 
 .login-page .card form > div {
   display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   align-items: center;
+  -webkit-align-items: center;
   
   margin-top: 65px;
 }
 
 .login-page .card form div div {
   display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   flex-direction: column;
+  -webkit-flex-direction: column;
 }
 
 .login-page .card a {
