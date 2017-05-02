@@ -1,0 +1,13 @@
+- @requests.each do |request|
+  - @project = Project.find(request.project_id)
+  - @user = User.find(request.user_id)
+  - if current_user.id == @project.users.ids.first
+    - @requestamount += 1
+  %a
+    %div
+      = image_tag @user.avatar(:medium)
+      %p 
+        %strong '#{@user.first_name} #{@user.last_name}''
+        wants to join project 
+        %strong '#{@project.title}'
+        as role '#{request.role}'

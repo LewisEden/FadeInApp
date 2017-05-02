@@ -1,3 +1,11 @@
+- @projects = Project.all
+- @requests = Request.all
+- @requestamount = 0
+- @requests.each do |request|
+  - @project = Project.find(request.project_id)
+  - @user = User.find(request.user_id)
+  - if current_user.id == @project.users.ids.first
+    - @requestamount += 1
 %header.page-header
   %div{:onclick => "openNav()"}
     #nav-icon3
@@ -11,65 +19,91 @@
       - if user_signed_in?
         %ul
           %li
-            = link_to request_view_path do
-              %span.fa.fa-bell{"aria-hidden" => "true"}
+            %a
+              - if @requestamount > 0
+                %span.im.im-bell-active{"aria-hidden" => "true", :onclick => "openNotification()"}
+              - else
+                %span.im.im-bell{"aria-hidden" => "true", :onclick => "openNotification()"}
+          #notification-dropdown
+            - if @requestamount > 0
+              %div
+                %p Notifications
+                %p
+                  = @requestamount
+              - @requests.each do |request|
+                - @project = Project.find(request.project_id)
+                - @user = User.find(request.user_id)
+                - if current_user.id == @project.users.ids.first
+                  - @requestamount += 1
+                  = link_to profile_path(@user.user_name) do
+                    %div
+                      = image_tag @user.avatar(:medium)
+                      %p 
+                        %strong
+                          = @user.user_name
+                        wants to join project 
+                        %strong 
+                          = @project.title
+                        as role #{request.role}
+                    = link_to request_join_path(request.project_id, request.id) do
+                      Accept
+                    = link_to request_destroy_path(request.project_id, request.id) do
+                      Deny
+            - else
+              %div
+                %p Notifications
+                %div
+                  %img{src: "https://s.ytimg.com/yts/img/useredu/zero_state_notifications-vflXkxvHM.png"}
+                %p 
+                  Your notifications live here
           %li
             = link_to redeem_index_path do
               %span.fa.fa-ticket{"aria-hidden" => "true"}
           %li
             = link_to chat_rooms_path do
-              %span.fa.fa-comments-o{"aria-hidden" => "true"}
-          %li
-            = link_to destroy_user_session_path, :class => "sign-out", method: :delete do
+              %span.im.im-speech-bubble{"aria-hidden" => "true"}
+          %li{:onclick => "openUser()"}
+            = image_tag current_user.avatar(:medium)
+          #user-dropdown
+            %div
               = image_tag current_user.avatar(:medium)
-              #dropdown
-                %ul
-                  %li
-                    %p
-                      = current_user.user_name
-                  %a
-                    %li
-                      %p My Profile
-                      %span
-                  %a
-                    %li
-                      %p My Projects
-                      %span
-                  %a
-                    %li
-                      %p My Calendar
-                      %span
-                  %a
-                    %li
-                      %p My Settings
-                      %span
-                  %a
-                    %li
-                      %p Sign out
-                      %span
+            %p
+              = current_user.first_name
+              = current_user.last_name
+            %p
+              = current_user.email
+            %ul
+              = link_to edit_user_registration_path do
+                %li
+                  %span.im.im-toggle{"aria-hidden" => "true"}
+                  %p Account settings
+              = link_to destroy_user_session_path, :class => "sign-out", method: :delete do
+                %li
+                  %span.fa.fa-sign-out
+                  %p Sign out
 %nav#sidenav.sidenav
   %div
     %img{:src => "/assets/logo_white.png"}
   %ul
     = link_to dashboard_index_path do
       %li{:class => "#{'active' if current_page?(dashboard_index_path)}"}
-        %span.fa.fa-tachometer{"aria-hidden" => "true"}
+        %span.im.im-dashboard{"aria-hidden" => "true"}
         %p Dashboard
-    = link_to root_path do
-      %li{:class => "#{'active' if current_page?(root_path)}"}
-        %span.fa.fa-rocket{"aria-hidden" => "true"}
+    = link_to projects_path do
+      %li{:class => "#{'active' if current_page?(projects_path) || current_page?(root_path)}"}
+        %span.im.im-rocket{"aria-hidden" => "true"}
         %p Projects
     = link_to challenges_path do
       %li{:class => "#{'active' if current_page?(challenges_path)}"}
-        %span.fa.fa-bullseye{"aria-hidden" => "true"}
+        %span.im.im-target{"aria-hidden" => "true"}
         %p Challenges
     %a
       %li
-        %span.fa.fa-film{"aria-hidden" => "true"}
+        %span.im.im-video{"aria-hidden" => "true"}
         %p Watch
     = link_to profile_path(current_user.user_name) do
       %li{:class => "#{'active' if current_page?(profile_path(current_user.user_name))}"}
-        %span.fa.fa-picture-o{"aria-hidden" => "true"}
+        %span.im.im-picture-o{"aria-hidden" => "true"}
         %p My Portfolio
     = link_to redeem_index_path do
       %li
@@ -77,9 +111,13 @@
         %p Redeem
     %a
       %li
-        %span.fa.fa-book{"aria-hidden" => "true"}
+        %span.im.im-book{"aria-hidden" => "true"}
         %p Resources
     %a
       %li
-        %span.fa.fa-calendar{"aria-hidden" => "true"}
+        %span.im.im-graduation-hat{"aria-hidden" => "true"}
+        %p Experience
+    %a
+      %li
+        %span.im.im-calendar{"aria-hidden" => "true"}
         %p Calendar

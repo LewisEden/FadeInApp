@@ -4,20 +4,51 @@
   %p Choose Type
   %ul
     %li
+      %label
+        %input{:type => "checkbox"}
+        %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/filmstrip.png", :height => "33", :width => "33"}  
     %li
+      %label
+        %input{:type => "checkbox"}
+        %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/info.png", :height => "33", :width => "33"}
     %li
+      %label
+        %input{:type => "checkbox"}
+        %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/music-player.png", :height => "33", :width => "33"}
   %p Choose Role
   %ul
+    %li
+      %label
+        %input{:type => "checkbox"}
+        %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/clapperboard.png", :height => "33", :width => "33"}
+    %li
+      %label
+        %input{:type => "checkbox"}
+        %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/photo-camera.png", :height => "33", :width => "33"}
+    %li
+      %label
+        %input{:type => "checkbox"}
+        %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/edit.png", :height => "33", :width => "33"}
+    %li
+      %label
+        %input{:type => "checkbox"}
+        %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/theater.png", :height => "33", :width => "33"}
   %input{:name => "search", :placeholder => "Search projects...", :type => "text"}
   = link_to new_project_path do
     %p + Create Project
 %main.projects-main#main
-  %p Showing films looking for actors
+  %p 
+    Showing 
+    %strong films 
+    looking for 
+    %strong actors
+    in
+    %strong London
   %div
     -@projects.each do |project|
       - if project.public == true
         .card
-          = image_tag project.image.url(:medium)
+          %img{src: project.header_url, class: "header-fit-cover"}
           %div
             .genre-duration
               - if project.genre == "Action"
@@ -84,35 +115,35 @@
             .project-needs
               - if project.director > 0
                 //director
-                %span{"data-balloon" => "Director", "data-balloon-pos" => "up"}
+                %div{"data-balloon" => "Director", "data-balloon-pos" => "up"}
                   %span.icon-video
               - if project.writer > 0
                 //writer
-                %span{"data-balloon" => "Writer", "data-balloon-pos" => "up"}
+                %div{"data-balloon" => "Writer", "data-balloon-pos" => "up"}
                   %span.fa.fa-pencil
               - if project.actor > 0
                 //actor
-                %span{"data-balloon" => "Actor", "data-balloon-pos" => "up"}
+                %div{"data-balloon" => "Actor", "data-balloon-pos" => "up"}
                   %span.icon-theatre
               - if project.editor > 0
                 //editor
-                %span{"data-balloon" => "Editor", "data-balloon-pos" => "up"}
+                %div{"data-balloon" => "Editor", "data-balloon-pos" => "up"}
                   %span.fa.fa-desktop
               - if project.composer > 0
                 //composer
-                %span{"data-balloon" => "Composer", "data-balloon-pos" => "up"}
+                %div{"data-balloon" => "Composer", "data-balloon-pos" => "up"}
                   %span.fa.fa-music
               - if project.cinematographer > 0
                 //cinematographer
-                %span{"data-balloon" => "Cinematographer", "data-balloon-pos" => "up"}
+                %div{"data-balloon" => "Cinematographer", "data-balloon-pos" => "up"}
                   %span.fa.fa-video-camera
               - if project.makeup > 0
                 //makeup
-                %span{"data-balloon" => "Makeup Artist", "data-balloon-pos" => "up"}
+                %div{"data-balloon" => "Makeup Artist", "data-balloon-pos" => "up"}
                   %span.fa.fa-paint-brush
               - if project.vfx > 0
                 //vfx
-                %span{"data-balloon" => "Vfx Artist", "data-balloon-pos" => "up"}
+                %div{"data-balloon" => "Vfx Artist", "data-balloon-pos" => "up"}
                   %span.fa.fa-bomb
               = link_to "View Project", project_path(project)
 

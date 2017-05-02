@@ -1,90 +1,162 @@
 - title "New Project - FADE IN"
-
-
-= simple_form_for @project do |f|
-  .tile.is-ancestor
-    .tile.is-2.is-vertical.is-parent.is-type
-      .tile.is-child.box.maxtype
-        .level-item.typepadding
-          %label.label.field-text Type
-        .level-item.typepadding
-          %img{:src => "/assets/types/filmstrip.png", :height => "48", :width => "48"}
-        .level-item
-          %img{:src => "/assets/types/music-headphones.png", :height => "48", :width => "48"}
-    .tile.is-vertical.is-parent
-      .tile.is-child.box
-        .field.display-inline
-          %label.label.field-text Genre
-          %span.select
-            = f.input_field :genre, label: false, prompt: "Select genre", collection: ["Action", "Adventure", "Comedy", "Crime", "Drama", "Horror", "Sci-fi"]
-        .field.display-inline
-          %label.label.field-text Duration
-          %p.control
-            %span.select
-              = f.input_field :duration, label: false, prompt: "Select duration", collection: ["Very short", "Short", "Medium", "Long", "Feature"]
-        .field
-          %label.label.field-text Title
-          %p.control
-            = f.input_field :title, id: "title", placeholder: "Enter a title (max 50 characters)", :class => "input", :minlength => "3", :maxlength => 50, :length => "50"
-        .field
-          %label.label.field-text Synopsis
-          %p.control
-            = f.input_field :synopsis, placeholder: "Enter a synopsis (min. 100 characters)", :class => "textarea", :minlength => "100", :maxlength => "500"
-      .tile.is-child.box
-        %label.label.field-text Header image
-        = f.input_field :image
-      .tile.is-child.box
-        %label.label.field-text Roles
-        .columns.is-multiline.text-center
-          .column{"data-balloon" => "Director", "data-balloon-pos" => "up"}
+%script checkNav()
+%header.projects-new-actionbar#actionbar
+  %div
+    %a Summary
+    %a Roles
+    %a Requirements
+    %a Documents
+%main.projects-new#main
+  = simple_form_for @project do |f|
+    .card.film-type
+      %p Type
+      %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/filmstrip.png", :height => "48", :width => "48"}
+      %p Film
+      %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/info.png", :height => "48", :width => "48"}
+      %p Doc
+      %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/music-player.png", :height => "48", :width => "48"}
+      %p Music
+    .container
+      .card.film-details
+        %div
+          %div
+            %p Genre
+            = f.input_field :genre, label: false, prompt: "Select genre", collection: ["Action", "Adventure", "Comedy", "Crime", "Drama", "Horror", "Sci-fi"], class: "styled-select slate"
+          %div
+            %p Duration
+            = f.input_field :duration, label: false, prompt: "Select duration", collection: ["Very short", "Short", "Medium", "Long", "Feature"], class: "styled-select slate"
+          %p Can't think of any ideas?
+          %a Generate project
+        %p Title
+        = f.input_field :title, id: "title", placeholder: "Enter a title (max 50 characters)", :class => "input", :minlength => "3", :maxlength => 50, :length => "50"
+        %p Synopsis
+        = f.input_field :synopsis, placeholder: "Enter a synopsis (min. 100 characters)", :class => "textarea", :minlength => "100", :maxlength => "500"
+      .card.film-image
+        %div
+          %p Header image
+          %input#unsplash
+        %div#image-container
+      .card.film-roles
+        %p Roles needed
+        %div
+          %div
             %img.img-fluid{:src => "/assets/roles/clapperboard.png", :height => "50", :width => "50"}
-            %p.control
-            %span.select
-              = f.input_field :director, label: false, default: 0, collection: [0, 1, 2, 3]
-          .column{"data-balloon" => "Writer", "data-balloon-pos" => "up"}
+            = f.input_field :director, label: false, default: 0, collection: [0, 1, 2, 3]
+          %div
             %img.img-fluid{:src => "/assets/roles/edit.png", :height => "50", :width => "50"}
-            %p.control
-            %span.select
-              = f.input_field :writer, label: false, default: 0, collection: [0, 1, 2, 3]
-          .column{"data-balloon" => "Actor", "data-balloon-pos" => "up"}
+            = f.input_field :writer, label: false, default: 0, collection: [0, 1, 2, 3]
+          %div
             %img.img-fluid{:src => "/assets/roles/theater.png", :height => "50", :width => "50"}
-            %p.control
-            %span.select
-              = f.input_field :actor, label: false, default: 0, collection: [0, 1, 2, 3]
-          .column{"data-balloon" => "Editor", "data-balloon-pos" => "up"}
+            = f.input_field :actor, label: false, default: 0, collection: [0, 1, 2, 3]
+          %div
             %img.img-fluid{:src => "/assets/roles/imac.png", :height => "50", :width => "50"}
-            %p.control
-            %span.select
-              = f.input_field :editor, label: false, default: 0, collection: [0, 1, 2, 3]
-          .column{"data-balloon" => "Composer", "data-balloon-pos" => "up"}
+            = f.input_field :editor, label: false, default: 0, collection: [0, 1, 2, 3]
+          %div
             %img.img-fluid{:src => "/assets/roles/music-player.png", :height => "50", :width => "50"}
-            %p.control
-            %span.select
-              = f.input_field :composer, label: false, default: 0, collection: [0, 1, 2, 3]
-          .column{"data-balloon" => "Cinematographer", "data-balloon-pos" => "up"}
+            = f.input_field :composer, label: false, default: 0, collection: [0, 1, 2, 3]
+          %div
             %img.img-fluid{:src => "/assets/roles/photo-camera.png", :height => "50", :width => "50"}
-            %p.control
-            %span.select
-              = f.input_field :cinematographer, label: false, default: 0, collection: [0, 1, 2, 3]
-          .column{"data-balloon" => "Makeup Artist", "data-balloon-pos" => "up"}
+            = f.input_field :cinematographer, label: false, default: 0, collection: [0, 1, 2, 3]
+          %div
             %img.img-fluid{:src => "/assets/roles/paint-brush.png", :height => "50", :width => "50"}
-            %p.control
-            %span.select
-              = f.input_field :makeup, label: false, default: 0, collection: [0, 1, 2, 3]
-          .column{"data-balloon" => "Vfx Artist", "data-balloon-pos" => "up"}
+            = f.input_field :makeup, label: false, default: 0, collection: [0, 1, 2, 3]
+          %div
             %img.img-fluid{:src => "/assets/roles/fuse.png", :height => "50", :width => "50"}
-            %p.control
-            %span.select
-              = f.input_field :vfx, label: false, default: 0, collection: [0, 1, 2, 3]
-      .tile.is-child.box
-        %label.label.field-text Additional information
-        %field.display-inline
-          %label.label.field-text Your role
-          %span.select
-            = f.input_field :leader_role, label: false, prompt: "Select your role", collection: ["Actor", "Cinematographer", "Director", "Writer", "Editor", "Makeup", "Composer", "VFX"], :class => "browser-default"
-        %field.display-inline
-          %label.label.field-text Project is public?
-          = f.input_field :public, checked: true, checked_value: true, unchecked_value: false
-      .tile.is-child
-        = submit_tag "Create project", data: { disable_with: "Please wait..." }
-        = link_to "Cancel", root_path, :class => "button is-danger"
+            = f.input_field :vfx, label: false, default: 0, collection: [0, 1, 2, 3]
+      %div.film-docs
+        .card
+          %p Documents
+        .card
+          %p Information
+          = f.input_field :leader_role, label: false, prompt: "Select your role", collection: ["Actor", "Cinematographer", "Director", "Writer", "Editor", "Makeup", "Composer", "VFX"]
+      %div
+        = submit_tag "Create Project", data: { disable_with: "Please wait..." }
+        = link_to "Back", root_path
+%script imageSearch()
+// = simple_form_for @project do |f|
+//   .tile.is-ancestor
+//     .tile.is-2.is-vertical.is-parent.is-type
+//       .tile.is-child.box.maxtype
+//         .level-item.typepadding
+//           %label.label.field-text Type
+//         .level-item.typepadding
+//           %img{:src => "/assets/types/filmstrip.png", :height => "48", :width => "48"}
+//         .level-item
+//           %img{:src => "/assets/types/music-headphones.png", :height => "48", :width => "48"}
+//     .tile.is-vertical.is-parent
+//       .tile.is-child.box
+//         .field.display-inline
+//           %label.label.field-text Genre
+//           %span.select
+//             = f.input_field :genre, label: false, prompt: "Select genre", collection: ["Action", "Adventure", "Comedy", "Crime", "Drama", "Horror", "Sci-fi"]
+//         .field.display-inline
+//           %label.label.field-text Duration
+//           %p.control
+//             %span.select
+//               = f.input_field :duration, label: false, prompt: "Select duration", collection: ["Very short", "Short", "Medium", "Long", "Feature"]
+//         .field
+//           %label.label.field-text Title
+//           %p.control
+//             = f.input_field :title, id: "title", placeholder: "Enter a title (max 50 characters)", :class => "input", :minlength => "3", :maxlength => 50, :length => "50"
+//         .field
+//           %label.label.field-text Synopsis
+//           %p.control
+//             = f.input_field :synopsis, placeholder: "Enter a synopsis (min. 100 characters)", :class => "textarea", :minlength => "100", :maxlength => "500"
+//       .tile.is-child.box
+//         %label.label.field-text Header image
+//         = f.input_field :image
+//       .tile.is-child.box
+//         %label.label.field-text Roles
+//         .columns.is-multiline.text-center
+//           .column{"data-balloon" => "Director", "data-balloon-pos" => "up"}
+//             %img.img-fluid{:src => "/assets/roles/clapperboard.png", :height => "50", :width => "50"}
+//             %p.control
+//             %span.select
+//               = f.input_field :director, label: false, default: 0, collection: [0, 1, 2, 3]
+//           .column{"data-balloon" => "Writer", "data-balloon-pos" => "up"}
+//             %img.img-fluid{:src => "/assets/roles/edit.png", :height => "50", :width => "50"}
+//             %p.control
+//             %span.select
+//               = f.input_field :writer, label: false, default: 0, collection: [0, 1, 2, 3]
+//           .column{"data-balloon" => "Actor", "data-balloon-pos" => "up"}
+//             %img.img-fluid{:src => "/assets/roles/theater.png", :height => "50", :width => "50"}
+//             %p.control
+//             %span.select
+//               = f.input_field :actor, label: false, default: 0, collection: [0, 1, 2, 3]
+//           .column{"data-balloon" => "Editor", "data-balloon-pos" => "up"}
+//             %img.img-fluid{:src => "/assets/roles/imac.png", :height => "50", :width => "50"}
+//             %p.control
+//             %span.select
+//               = f.input_field :editor, label: false, default: 0, collection: [0, 1, 2, 3]
+//           .column{"data-balloon" => "Composer", "data-balloon-pos" => "up"}
+//             %img.img-fluid{:src => "/assets/roles/music-player.png", :height => "50", :width => "50"}
+//             %p.control
+//             %span.select
+//               = f.input_field :composer, label: false, default: 0, collection: [0, 1, 2, 3]
+//           .column{"data-balloon" => "Cinematographer", "data-balloon-pos" => "up"}
+//             %img.img-fluid{:src => "/assets/roles/photo-camera.png", :height => "50", :width => "50"}
+//             %p.control
+//             %span.select
+//               = f.input_field :cinematographer, label: false, default: 0, collection: [0, 1, 2, 3]
+//           .column{"data-balloon" => "Makeup Artist", "data-balloon-pos" => "up"}
+//             %img.img-fluid{:src => "/assets/roles/paint-brush.png", :height => "50", :width => "50"}
+//             %p.control
+//             %span.select
+//               = f.input_field :makeup, label: false, default: 0, collection: [0, 1, 2, 3]
+//           .column{"data-balloon" => "Vfx Artist", "data-balloon-pos" => "up"}
+//             %img.img-fluid{:src => "/assets/roles/fuse.png", :height => "50", :width => "50"}
+//             %p.control
+//             %span.select
+//               = f.input_field :vfx, label: false, default: 0, collection: [0, 1, 2, 3]
+//       .tile.is-child.box
+//         %label.label.field-text Additional information
+//         %field.display-inline
+//           %label.label.field-text Your role
+//           %span.select
+//             = f.input_field :leader_role, label: false, prompt: "Select your role", collection: ["Actor", "Cinematographer", "Director", "Writer", "Editor", "Makeup", "Composer", "VFX"], :class => "browser-default"
+//         %field.display-inline
+//           %label.label.field-text Project is public?
+//           = f.input_field :public, checked: true, checked_value: true, unchecked_value: false
+//       .tile.is-child
+//         = submit_tag "Create project", data: { disable_with: "Please wait..." }
+//         = link_to "Cancel", root_path, :class => "button is-danger"

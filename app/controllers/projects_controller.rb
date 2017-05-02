@@ -21,6 +21,8 @@ class ProjectsController < ApplicationController
 
 	def create
 		@project = current_user.projects.build(project_params)
+		@project.public = true
+		@project.save
 		current_user.projects << @project
 		@projectmade = UserProject.last
 		@projectmade.user_role = @project.leader_role
@@ -128,7 +130,7 @@ class ProjectsController < ApplicationController
 	end
 
 	def project_params
-		params.require(:project).permit(:image, :public, :genre, :duration, :title, :synopsis, :director, :writer, :actor, :editor, :composer, :cinematographer, :makeup, :vfx, :leader_role, :r_director, :r_writer, :r_actor, :r_editor, :r_cinematographer, :r_composer, :r_makeup, :r_vfx, :submission)
+		params.require(:project).permit(:header_url, :public, :genre, :duration, :title, :synopsis, :director, :writer, :actor, :editor, :composer, :cinematographer, :makeup, :vfx, :leader_role, :r_director, :r_writer, :r_actor, :r_editor, :r_cinematographer, :r_composer, :r_makeup, :r_vfx, :submission)
 	end
 
 	def set_project

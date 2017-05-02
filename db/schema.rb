@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170422134042) do
+ActiveRecord::Schema.define(version: 20170429151424) do
 
   create_table "challenges", force: :cascade do |t|
     t.string   "genre"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20170422134042) do
     t.string   "r_cinematographer"
     t.string   "r_vfx"
     t.string   "submission"
+    t.string   "header_url"
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 

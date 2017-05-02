@@ -65,7 +65,7 @@ a {
 }
 
 .orange-text {
-  color: #f16a43;
+  color: #f2694b;
 }
 
 .amber-text {
@@ -78,6 +78,47 @@ a {
 
 .teal-text {
   color: #3498db;
+}
+
+#actionbar {
+  height: 71px;
+  width: 100%;
+  
+  background: #fff;
+  
+  display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  align-items: center;
+  -webkit-align-items: center;
+  
+  transition: margin-left .5s;
+}
+
+#main {
+  transition: margin-left .5s;
+}
+
+.styled-select {
+   background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+   height: 32px;
+   overflow: hidden;
+   width: 240px;
+}
+
+.styled-select.slate {
+   background: url(https://s3.eu-west-2.amazonaws.com/fadein-assets/chevron-arrow-down.png) no-repeat right center;
+   height: 34px;
+   width: 240px;
+}
+
+.styled-select.slate select {
+   border: 1px solid #ccc;
+   font-size: 16px;
+   height: 34px;
+   width: 268px;
 }
 
 /* Page Header Styles */
@@ -100,7 +141,7 @@ a {
   height: 71px;
   width: 100%;
   
-  background: #f16a43;
+  background: #f2694b;
 }
 
 .page-header span {
@@ -125,7 +166,7 @@ a {
   
   font-size: 29px;
   
-  background: #ff754d;
+  background: #f96e4f;
 }
 
 .page-header > div:hover {
@@ -237,6 +278,7 @@ a {
 .page-header li span {
   font-size: 20px;
   opacity: 0.8;
+  cursor: pointer;
 }
 
 .page-header li span:hover {
@@ -274,8 +316,116 @@ a {
 
 /* Dropdown Styles*/
 
-#dropdown {
-  display: none;
+#notification-dropdown {
+  display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  
+  position: absolute;
+  top: 75px;
+  right: 25px;
+  
+  max-height: 0px;
+  width: 303px;
+  
+  overflow: hidden;
+  
+  background: #fff;
+  
+  box-shadow: 0px 0px 8px #989898;
+  
+  /*transition: all 1s 0s;*/
+  /*-webkit-transition: all 0.5s 0s;*/
+  /*-moz-transition: all 0.5s 0s;*/
+  /*-o-transition: all 0.5s 0s;*/
+}
+
+.openNotification {
+  max-height: 500px !important;
+}
+
+#notification-dropdown div {
+  display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  align-items: center;
+  -webkit-align-items: center;
+  justify-content: center;
+  -webkit-justify-content: center;
+  
+  border-bottom: solid 1px #ececec;
+}
+
+#notification-dropdown a div {
+  padding-top: 15px;
+  padding-bottom: 18px;
+}
+
+#notification-dropdown > div p:nth-child(2) {
+  color: #fff;
+  
+  background: #f2694b;
+  
+  width: 22px;
+  height: 22px;
+  
+  text-align: center;
+  line-height: 22px;
+  
+  border-radius: 50%;
+}
+
+#notification-dropdown div p:first-child {
+  margin-right: 10px;
+  font-size: 15px;
+}
+
+#notification-dropdown div img {
+  margin-left: 18px;
+  height: 32px;
+  width: 32px;
+  min-width: 32px;
+}
+
+#notification-dropdown div p:nth-child(2) {
+  font-size: 13px;
+  font-weight: 300;
+}
+
+#notification-dropdown a p {
+  margin: 0;
+  margin-right: 22px;
+}
+
+#user-dropdown {
+  position: absolute;
+  top: 75px;
+  right: 15px;
+  
+  width: 200px;
+  height: 0px;
+  
+  overflow: hidden;
+  
+  background: #fff;
+  
+  box-shadow: 0px 0px 8px #989898;
+  
+  animation: height 1s;
+}
+
+#user-dropdown p {
+  text-align: center;
+}
+
+.openUser {
+  height: auto !important;
 }
 
 /* Side Navigation Styles */ 
@@ -310,7 +460,7 @@ a {
   
   height: 71px;
   
-  background: #f16a43;
+  background: #f2694b;
 }
 
 .sidenav ul {
@@ -337,12 +487,12 @@ a {
 
 .sidenav li:hover {
   color: #fff;
-  background: #ff754d;
+  background: #484848;
 }
 
 .active {
   color: #fff;
-  background: #f16a43;
+  background: #f2694b;
 }
 
 .sidenav span {
@@ -397,13 +547,15 @@ a {
   background-size: cover;
 	background:	#fff;
 	background-repeat:no-repeat;
-	background: -webkit-linear-gradient(72deg, #fff 0%, #fff 50%, #f16a43 50.1%, #f16a43 100%);
-	background: -moz-linear-gradient(72deg, #fff 0%, #fff 50%, #f16a43 50.1%, #f16a43 100%);
-  background: linear-gradient(72deg, #fff 0%, #fff 50%, #f16a43 50.26%, #f16a43 100%);
+	background: -webkit-linear-gradient(72deg, #fff 0%, #fff 50%, #f2694b 50.1%, #f2694b 100%);
+	background: -moz-linear-gradient(72deg, #fff 0%, #fff 50%, #f2694b 50.1%, #f2694b 100%);
+  background: linear-gradient(72deg, #fff 0%, #fff 50%, #f2694b 50.26%, #f2694b 100%);
 }
 
 .login-page img {
   position: absolute;
+  
+  z-index: 1;
   
   top: 5%;
   left: 3%;
@@ -416,6 +568,8 @@ a {
   
   width: 568px;
   height: 367px;
+  
+  z-index: 2;
   
   padding: 40px 40px;
   
@@ -483,7 +637,7 @@ a {
 }
 
 .login-page .card a {
-  color: #f16a43;
+  color: #f2694b;
   
   font-size: 14px;
   
@@ -497,7 +651,7 @@ a {
   -moz-border-radius: 23px;
   border-radius: 23px;
   border: none;
-  background: #f16a43;
+  background: #f2694b;
   
   padding: 9px 26px;
   
@@ -508,7 +662,7 @@ a {
 }
 
 .login-page .card .button:hover {
-  background: #ff754d;
+  background: #f96e4f;
 }
 
 .login-page > a {

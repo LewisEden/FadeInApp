@@ -2,7 +2,7 @@ class Project < ApplicationRecord
 	has_many :user_projects
 	has_many :users, through: :user_projects
 	
-	validates :image, presence: true
+	validates :header_url, presence: true
 	validates :genre, presence: true
 	validates :duration, presence: true
 	validates :title, presence: true

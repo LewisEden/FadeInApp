@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get 'projects/:id/request', to: 'requests#new', as: :request_request
   post 'projects/:id/request', to: 'requests#create'
   get 'notifications', to: 'requests#show', as: :request_view
-  get 'projects/:project_id/destroy/:request_id', to: 'requests#destroy', as: :request_destroy
+  get 'projects/:project_id/del/:request_id', to: 'requests#destroy', as: :request_destroy
   
   resources :chat_rooms, only: [:new, :create, :show, :index, :destroy]
   resources :challenges
@@ -27,4 +27,6 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
   
   post 'projects/remove/:project_id/:user_id', to: 'projects#removeuser', as: :remove_user
+  
+  get '/search/photos'
 end

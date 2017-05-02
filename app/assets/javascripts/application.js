@@ -109,7 +109,7 @@ function openNav() {
   } else {
     document.getElementById("sidenav").style.width = "223px";
     toggleNav = 0;
-    if (document.documentElement.clientWidth > 1024) {
+    if (document.documentElement.clientWidth > 1200) {
       document.getElementById("actionbar").style.marginLeft = "223px";
       document.getElementById("main").style.marginLeft = "223px";
     } else {
@@ -146,6 +146,61 @@ function checkNav() {
 function burger() {
   document.getElementById("nav-icon3").classList.toggle('open');
 };
+
+function openNotification() {
+  if (document.getElementById("user-dropdown").classList.contains('openUser')) {
+    document.getElementById("user-dropdown").classList.toggle('openUser')
+  }
+  document.getElementById("notification-dropdown").classList.toggle('openNotification');
+};
+
+function openUser() {
+  if (document.getElementById("notification-dropdown").classList.contains('openNotification')) {
+    document.getElementById("notification-dropdown").classList.toggle('openNotification')
+  }
+  document.getElementById("user-dropdown").classList.toggle('openUser')
+}
+
+function imageSearch() {
+  var typingTimer;
+  var doneTypingInterval = 2000;
+  var input = document.getElementById('unsplash');
+  
+  input.addEventListener('keyup', function () {
+    clearTimeout(typingTimer);
+    typingTimer = setTimeout(doneTyping, doneTypingInterval);
+  });
+  
+  input.addEventListener('keydown', function () {
+    clearTimeout(typingTimer);
+  });
+  
+  function doneTyping () {
+    if (input.value.length > 2) {
+      var api = "https://api.unsplash.com/search/photos/?client_id=ca5b70a696bb7a2e58811ea474e8171ea0d9669c0bc0efdb034b7daffafe9e42&per_page=30&query=" + input.value;
+      console.log(api);
+      $.getJSON(api, function(data) {
+        console.log(data);
+        for (var i = 0; i < data.results.length; i++) {
+          var elem = document.createElement("img");
+          elem.setAttribute("src", data.results[i].urls.regular);
+          
+          var label = document.createElement("label");
+          label.setAttribute("id", "label" + i);
+          document.getElementById("image-container").appendChild(label);
+          
+          var radio = document.createElement("input");
+          radio.setAttribute("type", "radio");
+          radio.setAttribute("value", data.results[i].urls.regular);
+          radio.setAttribute("name", "project[header_url]");
+          document.getElementById("label" + i).appendChild(radio);
+          
+          document.getElementById("label" + i).appendChild(elem);
+        }  
+      });
+    }
+  }
+}
 // $(document).on('turbolinks:load', function() {
 //   $(function () {
 //     $('[data-toggle="tooltip"]').tooltip()

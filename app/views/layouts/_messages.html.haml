@@ -3,7 +3,12 @@
     %div
       %img
       %div
-        %p
+        - if key == "notice"
+          %p Welcome to FADE IN, 
+        - elsif key == "success"
+          %p Congratulations!
+        - elsif key == "danger"
+          %p
         %p
           = value
       %a.delete{"data-dismiss" => "notification", :href => "#"}

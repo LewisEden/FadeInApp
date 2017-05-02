@@ -1,57 +1,60 @@
-- title "Notifications - FADE IN"
-
-- @requestamount = 0
-
+// - title "Notifications - FADE IN"
 - @requests.each do |request|
   - @project = Project.find(request.project_id)
   - @user = User.find(request.user_id)
-  - if current_user.id == @project.users.ids.first
-    - @requestamount += 1
+  = @user
+// - @requestamount = 0
 
-- if @requestamount >= 1
-  .notification.is-primary
-    Someone wants to join one of your projects! You can either accept them or decline them.
+// - @requests.each do |request|
+//   - @project = Project.find(request.project_id)
+//   - @user = User.find(request.user_id)
+//   - if current_user.id == @project.users.ids.first
+//     - @requestamount += 1
+
+// - if @requestamount >= 1
+//   .notification.is-primary
+//     Someone wants to join one of your projects! You can either accept them or decline them.
     
-- @requests.each do |request|
-  - @project = Project.find(request.project_id)
-  - @user = User.find(request.user_id)
-  - if current_user.id == @project.users.ids.first
-    - @requestamount += 1
-    Project: 
-    = link_to @project.title, project_path(@project.id)
-    .box
-      %article.media
-        %figure.media-left.requestleft
-          %p.image.is-64x64
-            - if @user.avatar_file_name != nil
-              = image_tag @user.avatar(:medium), :class => "rounded-circle"
-            - else
-              %img{:src => "/assets/user.png", :class => "rounded-circle"}
-        .media-content
-          .content
-            %p
-              %strong
-                - if @user.first_name.blank? || @user.last_name.blank?
-                  = link_to "@#{@user.user_name}", profile_path(@user.user_name), :class => "text-primary"
-                - else
-                  - @fullname = @user.first_name + " " + @user.last_name
-                  = link_to @fullname, profile_path(@user.user_name), :class => "text-primary"
-              %small
-                = request.role
-                •
-                sent #{time_ago_in_words(request.created_at)} ago
-              %br
-              = request.bio
-              %br
-              %br
-              = link_to request_join_path(request.project_id, request.id), :class => "button is-success is-outlined" do
-                %span.icon
-                  %i.fa.fa-check
-              = link_to request_destroy_path(request.project_id, request.id), :class => "button is-danger is-outlined" do
-                %span.icon
-                  %i.fa.fa-remove
-              
-- if @requestamount == 0
-  %article.message.is-success
-    .message-body
-      %p No notifications to show
+// - @requests.each do |request|
+//   - @project = Project.find(request.project_id)
+//   - @user = User.find(request.user_id)
+//   - if current_user.id == @project.users.ids.first
+//     - @requestamount += 1
+//     Project: 
+//     = link_to @project.title, project_path(@project.id)
+//     .box
+//       %article.media
+//         %figure.media-left.requestleft
+//           %p.image.is-64x64
+//             - if @user.avatar_file_name != nil
+//               = image_tag @user.avatar(:medium), :class => "rounded-circle"
+//             - else
+//               %img{:src => "/assets/user.png", :class => "rounded-circle"}
+//         .media-content
+//           .content
+//             %p
+//               %strong
+//                 - if @user.first_name.blank? || @user.last_name.blank?
+//                   = link_to "@#{@user.user_name}", profile_path(@user.user_name), :class => "text-primary"
+//                 - else
+//                   - @fullname = @user.first_name + " " + @user.last_name
+//                   = link_to @fullname, profile_path(@user.user_name), :class => "text-primary"
+//               %small
+//                 = request.role
+//                 •
+//                 sent #{time_ago_in_words(request.created_at)} ago
+//               %br
+//               = request.bio
+//               %br
+//               %br
+//               = link_to request_join_path(request.project_id, request.id), :class => "button is-success is-outlined" do
+//                 %span.icon
+//                   %i.fa.fa-check
+//               = link_to request_destroy_path(request.project_id, request.id), :class => "button is-danger is-outlined" do
+//                 %span.icon
+//                   %i.fa.fa-remove
+    
+// - if @requestamount == 0
+//   %article.message.is-success
+//     .message-body
+//       %p No notifications to show
