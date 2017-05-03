@@ -1,18 +1,19 @@
 - flash.each do |key, value|
-  %div{:class => "notification is-#{key}"}
-    %div
-      %img
-      %div
-        - if key == "notice"
-          %p Welcome to FADE IN, 
-        - elsif key == "success"
-          %p Congratulations!
-        - elsif key == "danger"
-          %p
+  %a.delete{"data-dismiss" => "notification", :href => ""}
+    %div{:class => "notification is-#{key}"}
+      - if key == "notice"
         %p
           = value
-      %a.delete{"data-dismiss" => "notification", :href => "#"}
-// notice
-// info
-// success
-// danger
+      - elsif key == "success"
+        %p
+          = value
+      - elsif key == "danger"
+        %p
+          = value
+      - elsif key == "info"
+        %p
+          = value
+      - elsif key == "alert"
+        %p
+          = value
+      %span.im.im-x-mark-circle-o{"aria-hidden" => "true"}

@@ -111,8 +111,10 @@ function openNav() {
     document.getElementById("sidenav").style.width = "223px";
     toggleNav = 0;
     if (document.documentElement.clientWidth > 1200) {
-      document.getElementById("actionbar").style.marginLeft = "223px";
-      document.getElementById("actionbar").style.paddingRight = "223px";
+      if (document.getElementById("actionbar") != null) {
+        document.getElementById("actionbar").style.marginLeft = "223px";
+        document.getElementById("actionbar").style.paddingRight = "223px";
+      }
       document.getElementById("main").style.marginLeft = "223px";
     } else {
       document.getElementById("overlay").style.width = "100%";

@@ -65,8 +65,6 @@
           %li{:onclick => "openUser()"}
             = image_tag current_user.avatar(:medium)
           #user-dropdown
-            %div
-              = image_tag current_user.avatar(:medium)
             %p
               = current_user.first_name
               = current_user.last_name

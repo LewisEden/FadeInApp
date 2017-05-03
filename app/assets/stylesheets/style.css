@@ -89,7 +89,7 @@ a {
   background: #fff;
   
   display: flex;
-  display: -webkit-box;
+  display: -web6F6D6Bkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -121,6 +121,75 @@ a {
    font-size: 16px;
    height: 34px;
    width: 268px;
+}
+
+/* Message Styles */
+
+.notification {
+  width: 100%;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  box-sizing: border-box;
+  
+  color: #6f6d6b;
+  font-size: 14px;
+  
+  position: fixed;
+  z-index: 10;
+}
+
+.notification p {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  
+  margin: 0;
+  
+  font-weight: 300;
+}
+
+.notification span {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  font-size: 15px;
+}
+
+.is-success {
+  background: #f4f7ed;
+  
+  border: solid 2px #c4d8a6;
+}
+
+.is-danger {
+  background: #fff1f1;
+  
+  border: solid 2px #fbb2b8;
+}
+
+.is-alert {
+  background: #fff1f1;
+  
+  border: solid 2px #fbb2b8;
+  
+  position: fixed;
+  
+  top: 0;
+  right: 0;
+}
+
+.is-info {
+  background: #ecf8f8;
+  
+  border: solid 2px #8fcfd4;
+}
+
+.is-notice {
+  background: #fff5ea;
+  
+  border: solid 2px #fdc88e;
 }
 
 /* Page Header Styles */
