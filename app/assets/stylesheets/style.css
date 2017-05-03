@@ -84,6 +84,8 @@ a {
   height: 71px;
   width: 100%;
   
+  box-sizing: border-box;
+  
   background: #fff;
   
   display: flex;
@@ -94,7 +96,7 @@ a {
   align-items: center;
   -webkit-align-items: center;
   
-  transition: margin-left .5s;
+  transition: all .5s;
 }
 
 #main {

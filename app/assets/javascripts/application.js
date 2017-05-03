@@ -104,6 +104,7 @@ function openNav() {
     document.getElementById("main").style.marginLeft = "0";
     if (document.getElementById("actionbar") != null) {
       document.getElementById("actionbar").style.marginLeft = "0";
+      document.getElementById("actionbar").style.paddingRight = "0";
     }
     toggleNav = 1;
   } else {
@@ -111,6 +112,7 @@ function openNav() {
     toggleNav = 0;
     if (document.documentElement.clientWidth > 1200) {
       document.getElementById("actionbar").style.marginLeft = "223px";
+      document.getElementById("actionbar").style.paddingRight = "223px";
       document.getElementById("main").style.marginLeft = "223px";
     } else {
       document.getElementById("overlay").style.width = "100%";
