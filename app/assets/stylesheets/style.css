@@ -618,9 +618,9 @@ a {
   background-size: cover;
 	background:	#fff;
 	background-repeat:no-repeat;
-	background: -webkit-linear-gradient(72deg, #fff 0%, #fff 50%, #f2694b 50.1%, #f2694b 100%);
-	background: -moz-linear-gradient(72deg, #fff 0%, #fff 50%, #f2694b 50.1%, #f2694b 100%);
-  background: linear-gradient(72deg, #fff 0%, #fff 50%, #f2694b 50.26%, #f2694b 100%);
+	background: -webkit-linear-gradient(72deg, #fff 50%, #f2694b 50.07%);
+	background: -moz-linear-gradient(72deg, #fff 50%, #f2694b 50.07%);
+  background: linear-gradient(72deg, #fff 50%, #f2694b 50.07%);
 }
 
 .login-page img {
