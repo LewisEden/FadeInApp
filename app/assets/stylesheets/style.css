@@ -111,9 +111,23 @@ a {
 }
 
 .styled-select.slate {
-   background: url(https://s3.eu-west-2.amazonaws.com/fadein-assets/chevron-arrow-down.png) no-repeat right center;
-   height: 34px;
-   width: 240px;
+  background: url(https://s3.eu-west-2.amazonaws.com/fadein-assets/chevron-arrow-down.png) no-repeat center;
+  background-position-x: 214px;
+  height: 34px;
+  width: 240px;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  padding-left: 12px;
+  font-size: 16px;
+  color: #787878;
+  
+  font-family: 'Montserrat', sans-serif;
+  
+  border-radius: 4px;
+  
+  border: solid 2px #dcdcdc;
+  
+  cursor: pointer;
 }
 
 .styled-select.slate select {

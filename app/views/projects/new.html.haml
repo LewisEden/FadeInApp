@@ -34,8 +34,35 @@
       .card.film-image
         %div
           %p Header image
-          %input#unsplash
+          %input#unsplash{placeholder: "Search"}
         %div#image-container
+      .card.film-myRole
+        %p Select your role
+        %div
+          %label
+            %input{type: "radio", name: "project[leader_role]", value: "Director"}
+            %img{src: "https://s3.eu-west-2.amazonaws.com/fadein-assets/clapperboard.png"}
+          %label
+            %input{type: "radio", name: "project[leader_role]", value: "Writer"}
+            %img{src: "https://s3.eu-west-2.amazonaws.com/fadein-assets/edit.png"}
+          %label
+            %input{type: "radio", name: "project[leader_role]", value: "Actor"}
+            %img{src: "https://s3.eu-west-2.amazonaws.com/fadein-assets/theater.png"}
+          %label
+            %input{type: "radio", name: "project[leader_role]", value: "Editor"}
+            %img{src: "https://s3.eu-west-2.amazonaws.com/fadein-assets/imac.png"}
+          %label
+            %input{type: "radio", name: "project[leader_role]", value: "Composer"}
+            %img{src: "https://s3.eu-west-2.amazonaws.com/fadein-assets/music-player.png"}
+          %label
+            %input{type: "radio", name: "project[leader_role]", value: "Cinematographer"}
+            %img{src: "https://s3.eu-west-2.amazonaws.com/fadein-assets/photo-camera.png"}
+          %label
+            %input{type: "radio", name: "project[leader_role]", value: "Makeup"}
+            %img{src: "https://s3.eu-west-2.amazonaws.com/fadein-assets/paint-brush.png"}
+          %label
+            %input{type: "radio", name: "project[leader_role]", value: "VFX"}
+            %img{src: "https://s3.eu-west-2.amazonaws.com/fadein-assets/fuse.png"}
       .card.film-roles
         %p Roles needed
         %div
@@ -63,13 +90,9 @@
           %div
             %img.img-fluid{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/fuse.png", :height => "50", :width => "50"}
             = f.input_field :vfx, label: false, default: 0, collection: [0, 1, 2, 3]
-      %div.film-docs
-        .card
-          %p Documents
-        .card
-          %p Information
-          = f.input_field :leader_role, label: false, prompt: "Select your role", collection: ["Actor", "Cinematographer", "Director", "Writer", "Editor", "Makeup", "Composer", "VFX"]
-      %div
+      .card.film-docs
+        %p Documents
+      .film-buttons
         = submit_tag "Create Project", data: { disable_with: "Please wait..." }
         = link_to "Back", root_path
 %script imageSearch()

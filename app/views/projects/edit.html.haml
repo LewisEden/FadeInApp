@@ -1,5 +1,78 @@
 - title "Edit Project - FADE IN"
 %script checkNav()
+%header.projects-new-actionbar#actionbar
+  %div
+    %a Summary
+    %a Roles
+    %a Requirements
+    %a Documents
+%main.projects-new#main
+  = simple_form_for @project do |f|
+    .card.film-type
+      %p Type
+      %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/filmstrip.png", :height => "48", :width => "48"}
+      %p Film
+      %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/info.png", :height => "48", :width => "48"}
+      %p Doc
+      %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/music-player.png", :height => "48", :width => "48"}
+      %p Music
+    .container
+      .card.film-details
+        %div
+          %div
+            %p Genre
+            = f.input_field :genre, label: false, prompt: "Select genre", collection: ["Action", "Adventure", "Comedy", "Crime", "Drama", "Horror", "Sci-fi"], class: "styled-select slate"
+          %div
+            %p Duration
+            = f.input_field :duration, label: false, prompt: "Select duration", collection: ["Very short", "Short", "Medium", "Long", "Feature"], class: "styled-select slate"
+          %p Can't think of any ideas?
+          %a Generate project
+        %p Title
+        = f.input_field :title, id: "title", placeholder: "Enter a title (max 50 characters)", :class => "input", :minlength => "3", :maxlength => 50, :length => "50"
+        %p Synopsis
+        = f.input_field :synopsis, placeholder: "Enter a synopsis (min. 150 characters)", :class => "textarea", :minlength => "150", :maxlength => "800"
+      .card.film-image
+        %div
+          %p Header image
+          %input#unsplash
+        %div#image-container
+      .card.film-roles
+        %p Roles needed
+        %div
+          %div
+            %img.img-fluid{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/clapperboard.png", :height => "50", :width => "50"}
+            = f.input_field :director, label: false, default: 0, collection: [0, 1, 2, 3]
+          %div
+            %img.img-fluid{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/edit.png", :height => "50", :width => "50"}
+            = f.input_field :writer, label: false, default: 0, collection: [0, 1, 2, 3]
+          %div
+            %img.img-fluid{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/theater.png", :height => "50", :width => "50"}
+            = f.input_field :actor, label: false, default: 0, collection: [0, 1, 2, 3]
+          %div
+            %img.img-fluid{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/imac.png", :height => "50", :width => "50"}
+            = f.input_field :editor, label: false, default: 0, collection: [0, 1, 2, 3]
+          %div
+            %img.img-fluid{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/music-player.png", :height => "50", :width => "50"}
+            = f.input_field :composer, label: false, default: 0, collection: [0, 1, 2, 3]
+          %div
+            %img.img-fluid{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/photo-camera.png", :height => "50", :width => "50"}
+            = f.input_field :cinematographer, label: false, default: 0, collection: [0, 1, 2, 3]
+          %div
+            %img.img-fluid{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/paint-brush.png", :height => "50", :width => "50"}
+            = f.input_field :makeup, label: false, default: 0, collection: [0, 1, 2, 3]
+          %div
+            %img.img-fluid{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/fuse.png", :height => "50", :width => "50"}
+            = f.input_field :vfx, label: false, default: 0, collection: [0, 1, 2, 3]
+      %div.film-docs
+        .card
+          %p Documents
+        .card
+          %p Information
+          = f.input_field :leader_role, label: false, prompt: "Select your role", collection: ["Actor", "Cinematographer", "Director", "Writer", "Editor", "Makeup", "Composer", "VFX"]
+      %div
+        = submit_tag "Save Changes", data: { disable_with: "Please wait..." }
+        = link_to "Back", root_path
+%script imageSearch()
 
 
 // - if @project.challenge.blank?

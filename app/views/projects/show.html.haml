@@ -14,10 +14,10 @@
     %p Documents
   = link_to edit_project_path(@project) do
     %span.im.im-gear
-%main.projects-show#main
+%main.projects-show-main#main
   %div
     %p Summary
-    .card
+    .card.project-show-card
       - if @project.completed == true
         - @project.submission[/^.*((v\/)|(embed\/)|(watch\?))\??v?=?([^\&\?]*).*/]
         - @youtube_id = $5
@@ -82,11 +82,16 @@
             %span.teal-text.fa.fa-clock-o
             %p.teal-text
               = @project.duration
-          = time_ago_in_words(@project.created_at) + " ago"
-        = @project.synopsis
+          %p
+            = time_ago_in_words(@project.created_at) + " ago"
+        %p
+          = @project.title
+        %p  
+          = @project.synopsis
     %p Crew
-    .card
+    .card.crew-card
       - @project.users.each do |user|
+        - @userInfo = UserProject.where(user_id: user.id, project_id: @project.id)
         %div
           = image_tag user.avatar(:medium)
           %div
@@ -96,9 +101,88 @@
                   = user.user_name
                 - else
                   = user.first_name + " " + user.last_name
-            %p 
-              // = user.user_role
-            
+            %p
+              = @userInfo.first.user_role
+          - if @userInfo.first.user_role == "Director"
+            .mask{"data-balloon" => "Director", "data-balloon-pos" => "up"}
+              %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/clapperboard.png"}
+          - elsif @userInfo.first.user_role == "Actor"
+            .mask{"data-balloon" => "Actor", "data-balloon-pos" => "up"}
+              %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/theater.png"}
+          - elsif @userInfo.first.user_role == "Writer"
+            .mask{"data-balloon" => "Writer", "data-balloon-pos" => "up"}
+              %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/edit.png"}
+          - elsif @userInfo.first.user_role == "Cinematographer"
+            .mask{"data-balloon" => "Cinematographer", "data-balloon-pos" => "up"}
+              %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/photo-camera.png"}
+          - elsif @userInfo.first.user_role == "Editor"
+            .mask{"data-balloon" => "Editor", "data-balloon-pos" => "up"}
+              %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/imac.png"}
+          - elsif @userInfo.first.user_role == "Composer"
+            .mask{"data-balloon" => "Composer", "data-balloon-pos" => "up"}
+              %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/music-player.png"}
+          - elsif @userInfo.first.user_role == "Makeup"
+            .mask{"data-balloon" => "Makeup Artist", "data-balloon-pos" => "up"}
+              %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/paint-brush.png"}
+          - elsif @userInfo.first.user_role == "VFX"
+            .mask{"data-balloon" => "Vfx Artist", "data-balloon-pos" => "up"}
+              %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/fuse.png"}
+  %div
+    .container
+      %div
+        %p Roles
+        - if @project.director > 0
+          .card
+            .mask{"data-balloon" => "Director", "data-balloon-pos" => "up"}
+              %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/clapperboard.png"}
+            %div
+              %p Requirements
+        - if @project.actor > 0
+          .card
+            .mask{"data-balloon" => "Actor", "data-balloon-pos" => "up"}
+              %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/theater.png"}
+            %div
+              %p Requirements
+        - if @project.writer > 0
+          .card
+            .mask{"data-balloon" => "Writer", "data-balloon-pos" => "up"}
+              %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/edit.png"}
+            %div
+              %p Requirements
+        - if @project.cinematographer > 0
+          .card
+            .mask{"data-balloon" => "Cinematographer", "data-balloon-pos" => "up"}
+              %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/photo-camera.png"}
+            %div
+              %p Requirements
+        - if @project.editor > 0
+          .card
+            .mask{"data-balloon" => "Editor", "data-balloon-pos" => "up"}
+              %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/imac.png"}
+            %div
+              %p Requirements
+        - if @project.composer > 0
+          .card
+            .mask{"data-balloon" => "Composer", "data-balloon-pos" => "up"}
+              %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/music-player.png"}
+            %div
+              %p Requirements
+        - if @project.makeup > 0
+          .card
+            .mask{"data-balloon" => "Makeup Artist", "data-balloon-pos" => "up"}
+              %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/paint-brush.png"}
+            %div
+              %p Requirements
+        - if @project.vfx > 0
+          .card
+            .mask{"data-balloon" => "Vfx Artist", "data-balloon-pos" => "up"}
+              %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/fuse.png"}
+            %div
+              %p Requirements
+      %div
+        %p Equipment
+    %p Stage
+      
         
 // - if @project.completed == true
 //   - @project.submission[/^.*((v\/)|(embed\/)|(watch\?))\??v?=?([^\&\?]*).*/]
