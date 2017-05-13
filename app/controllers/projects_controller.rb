@@ -35,8 +35,8 @@ class ProjectsController < ApplicationController
 		@chat_room.save
 		
 		if @project.save && @chat_room.save
-			flash[:success] = "Project successfully created, please specify what requirements are needed."
-			redirect_to(edit_project_path(@project))
+			flash[:success] = "Project successfully created"
+			redirect_to project_path(@project)
 		else
 			render :new
 			flash[:notice] = "Something went wrong"

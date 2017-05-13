@@ -1,86 +1,147 @@
 - title "New challenge - FADE IN"
 
+%script checkNav()
+%header.projects-new-actionbar#actionbar
+  %div
+    %a Summary
+    // %a Roles
+    // %a Requirements
+    // %a Documents
+%main.projects-new#main
+  = simple_form_for @challenge do |f|
+    .card.film-type
+      %p Type
+      %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/filmstrip.png", :height => "48", :width => "48"}
+      %p Film
+      %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/info.png", :height => "48", :width => "48"}
+      %p Doc
+      %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/music-player.png", :height => "48", :width => "48"}
+      %p Music
+    .container
+      .card.film-details
+        %div
+          %div
+            %p Genre
+            = f.input_field :genre, label: false, prompt: "Select genre", collection: ["Action", "Adventure", "Comedy", "Crime", "Drama", "Horror", "Sci-fi"], class: "styled-select slate"
+          %div
+            %p Duration
+            = f.input_field :duration, label: false, prompt: "Select duration", collection: ["Very short", "Short", "Medium", "Long", "Feature"], class: "styled-select slate"
+          // %p Can't think of any ideas?
+          // %a Generate project
+        %p Title
+        = f.input_field :title, id: "title", placeholder: "Enter a title (max 50 characters)", :class => "input", :minlength => "3", :maxlength => 50, :length => "50"
+        %p Synopsis
+        = f.input_field :synopsis, placeholder: "Enter a synopsis (min. 150 characters)", :class => "textarea", :minlength => "150", :maxlength => "800"
+      .card.film-image
+        %div
+          %p Header image
+          %input#unsplash{placeholder: "Search"}
+        %div#image-container
+      // .card.film-myRole
+      //   %p Select your role
+      //   %div
+      //     %label
+      //       %input{type: "radio", name: "project[leader_role]", value: "Director"}
+      //       %img{src: "https://s3.eu-west-2.amazonaws.com/fadein-assets/clapperboard.png"}
+      //     %label
+      //       %input{type: "radio", name: "project[leader_role]", value: "Writer"}
+      //       %img{src: "https://s3.eu-west-2.amazonaws.com/fadein-assets/edit.png"}
+      //     %label
+      //       %input{type: "radio", name: "project[leader_role]", value: "Actor"}
+      //       %img{src: "https://s3.eu-west-2.amazonaws.com/fadein-assets/theater.png"}
+      //     %label
+      //       %input{type: "radio", name: "project[leader_role]", value: "Editor"}
+      //       %img{src: "https://s3.eu-west-2.amazonaws.com/fadein-assets/imac.png"}
+      //     %label
+      //       %input{type: "radio", name: "project[leader_role]", value: "Composer"}
+      //       %img{src: "https://s3.eu-west-2.amazonaws.com/fadein-assets/music-player.png"}
+      //     %label
+      //       %input{type: "radio", name: "project[leader_role]", value: "Cinematographer"}
+      //       %img{src: "https://s3.eu-west-2.amazonaws.com/fadein-assets/photo-camera.png"}
+      //     %label
+      //       %input{type: "radio", name: "project[leader_role]", value: "Makeup"}
+      //       %img{src: "https://s3.eu-west-2.amazonaws.com/fadein-assets/paint-brush.png"}
+      //     %label
+      //       %input{type: "radio", name: "project[leader_role]", value: "VFX"}
+      //       %img{src: "https://s3.eu-west-2.amazonaws.com/fadein-assets/fuse.png"}
+      // .card.film-roles
+      //   %p Roles needed
+      //   %div
+      //     %div
+      //       %img.img-fluid{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/clapperboard.png", :height => "50", :width => "50"}
+      //       = f.input_field :director, label: false, default: 0, collection: [0, 1, 2, 3]
+      //     %div
+      //       %img.img-fluid{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/edit.png", :height => "50", :width => "50"}
+      //       = f.input_field :writer, label: false, default: 0, collection: [0, 1, 2, 3]
+      //     %div
+      //       %img.img-fluid{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/theater.png", :height => "50", :width => "50"}
+      //       = f.input_field :actor, label: false, default: 0, collection: [0, 1, 2, 3]
+      //     %div
+      //       %img.img-fluid{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/imac.png", :height => "50", :width => "50"}
+      //       = f.input_field :editor, label: false, default: 0, collection: [0, 1, 2, 3]
+      //     %div
+      //       %img.img-fluid{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/music-player.png", :height => "50", :width => "50"}
+      //       = f.input_field :composer, label: false, default: 0, collection: [0, 1, 2, 3]
+      //     %div
+      //       %img.img-fluid{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/photo-camera.png", :height => "50", :width => "50"}
+      //       = f.input_field :cinematographer, label: false, default: 0, collection: [0, 1, 2, 3]
+      //     %div
+      //       %img.img-fluid{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/paint-brush.png", :height => "50", :width => "50"}
+      //       = f.input_field :makeup, label: false, default: 0, collection: [0, 1, 2, 3]
+      //     %div
+      //       %img.img-fluid{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/fuse.png", :height => "50", :width => "50"}
+      //       = f.input_field :vfx, label: false, default: 0, collection: [0, 1, 2, 3]
+      // .card.film-docs
+      //   %p Documents
+      .film-buttons
+        = submit_tag "Create Challenge", data: { disable_with: "Please wait..." }
+        = link_to "Back", root_path
+%script imageSearch()
 
-= simple_form_for @challenge do |f|
-  .tile.is-ancestor
-    .tile.is-2.is-vertical.is-parent.is-type
-      .tile.is-child.box.maxtype
-        .level-item.typepadding
-          %label.label.field-text Type
-        .level-item.typepadding
-          %img{:src => "/assets/types/filmstrip.png", :height => "48", :width => "48"}
-        .level-item
-          %img{:src => "/assets/types/music-headphones.png", :height => "48", :width => "48"}
-    .tile.is-vertical.is-parent
-      .tile.is-child.box
-        .field.display-inline
-          %label.label.field-text Genre
-          %span.select
-            = f.input_field :genre, label: false, prompt: "Select genre", collection: ["Action", "Adventure", "Comedy", "Crime", "Drama", "Horror", "Sci-fi"]
-        .field.display-inline
-          %label.label.field-text Duration
-          %p.control
-            %span.select
-              = f.input_field :duration, label: false, prompt: "Select duration", collection: ["Very short", "Short", "Long", "Feature"]
-        .field
-          %label.label.field-text Title
-          %p.control
-            = f.input_field :title, id: "title", placeholder: "Enter a title", :class => "input", :minlength => "3", :maxlength => 500, :length => "50"
-        .field
-          %label.label.field-text Synopsis
-          %p.control
-            = f.input_field :synopsis, placeholder: "Enter a synopsis", :class => "textarea", :minlength => "100", :maxlength => "500"
-      .tile.is-child.box
-        %label.label.field-text Header image
-        = f.input_field :image
-      .tile.is-child.box
-        %label.label.field-text Additional information
-        .field
-          %label.label.field-text Requirements
-          %p.control
-            = f.input_field :requirements, :class => "input"
-        .field
-          %label.label.field-text Reward
-          %p.control
-            = f.input_field :reward, :class => "input"
-      .tile.is-child
-        %button.button.is-primary Create Challenge
-        = link_to "Cancel", root_path, :class => "button is-danger"
 
+// = simple_form_for @challenge do |f|
+//   .tile.is-ancestor
+//     .tile.is-2.is-vertical.is-parent.is-type
+//       .tile.is-child.box.maxtype
+//         .level-item.typepadding
+//           %label.label.field-text Type
+//         .level-item.typepadding
+//           %img{:src => "/assets/types/filmstrip.png", :height => "48", :width => "48"}
+//         .level-item
+//           %img{:src => "/assets/types/music-headphones.png", :height => "48", :width => "48"}
+//     .tile.is-vertical.is-parent
+//       .tile.is-child.box
+//         .field.display-inline
+//           %label.label.field-text Genre
+//           %span.select
+//             = f.input_field :genre, label: false, prompt: "Select genre", collection: ["Action", "Adventure", "Comedy", "Crime", "Drama", "Horror", "Sci-fi"]
+//         .field.display-inline
+//           %label.label.field-text Duration
+//           %p.control
+//             %span.select
+//               = f.input_field :duration, label: false, prompt: "Select duration", collection: ["Very short", "Short", "Long", "Feature"]
+//         .field
+//           %label.label.field-text Title
+//           %p.control
+//             = f.input_field :title, id: "title", placeholder: "Enter a title", :class => "input", :minlength => "3", :maxlength => 500, :length => "50"
+//         .field
+//           %label.label.field-text Synopsis
+//           %p.control
+//             = f.input_field :synopsis, placeholder: "Enter a synopsis", :class => "textarea", :minlength => "100", :maxlength => "500"
+//       .tile.is-child.box
+//         %label.label.field-text Header image
+//         = f.input_field :image
+//       .tile.is-child.box
+//         %label.label.field-text Additional information
+//         .field
+//           %label.label.field-text Requirements
+//           %p.control
+//             = f.input_field :requirements, :class => "input"
+//         .field
+//           %label.label.field-text Reward
+//           %p.control
+//             = f.input_field :reward, :class => "input"
+//       .tile.is-child
+//         %button.button.is-primary Create Challenge
+//         = link_to "Cancel", root_path, :class => "button is-danger"
 
-// %br
-// .card.card-space
-//   .card-block
-//     .form-header.primary-color
-//       %h3
-//         %i.fa.fa-plus
-//         Create Challenge
-//     = simple_form_for @challenge do |f|
-//       .file-field
-//         .btn.btn-primary.btn-sm
-//           %span Upload header image
-//           = f.input_field :image
-//         .file-path-wrapper
-//           %input.file-path.validate{:placeholder => "Upload your file", :type => "text"}/
-//       %br
-//       %br
-//       .form-inline
-//         = f.input :genre, label: false, prompt: "Select genre", collection: ["Action", "Adventure", "Comedy", "Crime", "Drama", "Horror", "Sci-fi"], input_html: { class: "browser-default" }
-//         = f.input :duration, label: false, prompt: "Select duration", collection: ["Very short", "Short", "Long", "Feature"], input_html: { class: "browser-default" }
-//       .md-form
-//         %i.fa.fa-rocket.prefix
-//         = f.input_field :title, id: "title", :class => "form-control", :minlength => "3", :maxlength => 50, :length => "50"
-//         %label{:for => "title"} Enter a title
-//       .md-form
-//         %i.fa.fa-pencil.prefix
-//         = f.input_field :synopsis, :class => "md-textarea", :minlength => "100", :maxlength => 500, :length => "500"
-//         %label{:for => "synopsis"} Enter a brief synopsis
-//       .md-form
-//         %i.fa.fa-user.prefix
-//         = f.input_field :requirements, :class => "md-textarea"
-//         %label{:for => "requirements"} Enter the requirements
-//       %br
-//       = f.input :reward
-//       = f.input :featured, input_html: { checked: true, checked_value: true, unchecked_value: false}
-//       %button.btn.btn-primary.primary-color.btn-rounded Create Challenge
-//       = link_to "Cancel", root_path, :class => "btn btn-primary btn-rounded"

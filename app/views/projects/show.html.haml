@@ -7,6 +7,7 @@
 
 - title @project.title + " - FADE IN"
 %script checkNav()
+%script documents()
 %header.projects-show-actionbar#actionbar
   %div
     %p Summary
@@ -16,7 +17,7 @@
     %span.im.im-gear
 %main.projects-show-main#main
   %div
-    %p Summary
+    %p.headers Summary
     .card.project-show-card
       - if @project.completed == true
         - @project.submission[/^.*((v\/)|(embed\/)|(watch\?))\??v?=?([^\&\?]*).*/]
@@ -28,67 +29,115 @@
         .genre-duration
           - if @project.genre == "Action"
             //Action
-            %span.red-text.fa.fa-fighter-jet
-            %p.red-text
-              = @project.genre
-            %span.red-text.fa.fa-clock-o
-            %p.red-text
-              = @project.duration
+            .flex-col.genre
+              %p.headers-sm Genre
+              .flex-row
+                %span.red-text.fa.fa-fighter-jet
+                %p.red-text
+                  = @project.genre
+            .flex-col
+              %p.headers-sm Duration
+              .flex-row
+                %span.red-text.fa.fa-clock-o
+                %p.red-text
+                  = @project.duration
           - elsif @project.genre == "Adventure"
             //Adventure
-            %span.green-text.fa.fa-envira
-            %p.green-text
-              = @project.genre
-            %span.green-text.fa.fa-clock-o
-            %p.green-text
-              = @project.duration
+            .flex-col.genre
+              %p.headers-sm Genre
+              .flex-row
+                %span.green-text.fa.fa-envira
+                %p.green-text
+                  = @project.genre
+            .flex-col
+              %p.headers-sm Duration
+              .flex-ro
+                %span.green-text.fa.fa-clock-o
+                %p.green-text
+                  = @project.duration
           - elsif @project.genre == "Comedy"
             //Comedy
-            %span.cyan-text.fa.fa-smile-o
-            %p.cyan-text
-              = @project.genre
-            %span.cyan-text.fa.fa-clock-o
-            %p.cyan-text
-              = @project.duration
+            .flex-col.genre
+              %p.headers-sm Genre
+              .flex-row
+                %span.cyan-text.fa.fa-smile-o
+                %p.cyan-text
+                  = @project.genre
+            .flex-col
+              %p.headers-sm Duration
+              .flex-ro
+                %span.cyan-text.fa.fa-clock-o
+                %p.cyan-text
+                  = @project.duration
           - elsif @project.genre == "Crime"
             //Crime
-            %span.orange-text.fa.fa-gavel
-            %p.orange-text
-              = @project.genre
-            %span.orange-text.fa.fa-clock-o
-            %p.orange-text
-              = @project.duration
+            .flex-col.genre
+              %p.headers-sm Genre
+              .flex-row
+                %span.orange-text.fa.fa-gavel
+                %p.orange-text
+                  = @project.genre
+            .flex-col
+              %p.headers-sm Duration
+              .flex-ro
+                %span.orange-text.fa.fa-clock-o
+                %p.orange-text
+                  = @project.duration
           - elsif @project.genre == "Drama"
             //Drama
-            %span.amber-text.fa.fa-group
-            %p.amber-text
-              = @project.genre
-            %span.amber-text.fa.fa-clock-o
-            %p.amber-text
-              = @project.duration
+            .flex-col.genre
+              %p.headers-sm Genre
+              .flex-row
+                %span.amber-text.fa.fa-group
+                %p.amber-text
+                  = @project.genre
+            .flex-col
+              %p.headers-sm Duration
+              .flex-ro
+                %span.amber-text.fa.fa-clock-o
+                %p.amber-text
+                  = @project.duration
           - elsif @project.genre == "Horror"
             //Horror
-            %span.brown-text.fa.fa-warning
-            %p.brown-text
-              = @project.genre
-            %span.brown-text.fa.fa-clock-o
-            %p.brown-text
-              = @project.duration
+            .flex-col.genre
+              %p.headers-sm Genre
+              .flex-row
+                %span.brown-text.fa.fa-warning
+                %p.brown-text
+                  = @project.genre
+            .flex-col
+              %p.headers-sm Duration
+              .flex-ro
+                %span.brown-text.fa.fa-clock-o
+                %p.brown-text
+                  = @project.duration
           - else
             //Si-fi
-            %span.teal-text.fa.fa-rocket
-            %p.teal-text
-              = @project.genre
-            %span.teal-text.fa.fa-clock-o
-            %p.teal-text
-              = @project.duration
-          %p
-            = time_ago_in_words(@project.created_at) + " ago"
-        %p
-          = @project.title
-        %p  
-          = @project.synopsis
-    %p Crew
+            .flex-col.genre
+              %p.headers-sm Genre
+              .flex-row
+                %span.teal-text.fa.fa-rocket
+                %p.teal-text
+                  = @project.genre
+            .flex-col
+              %p.headers-sm Duration
+              .flex-ro
+                %span.teal-text.fa.fa-clock-o
+                %p.teal-text
+                  = @project.duration
+          .flex-col.created
+            %p.headers-sm Created
+            %p
+              = time_ago_in_words(@project.created_at) + " ago"
+        .flex-col
+          %p.headers-sm Title
+          %p.margin-break.title
+            = @project.title
+        .flex-col
+          %p.headers-sm Synopsis
+          %p.margin-break  
+            = @project.synopsis
+    %p.headers Crew
     .card.crew-card
       - @project.users.each do |user|
         - @userInfo = UserProject.where(user_id: user.id, project_id: @project.id)
@@ -127,61 +176,58 @@
           - elsif @userInfo.first.user_role == "VFX"
             .mask{"data-balloon" => "Vfx Artist", "data-balloon-pos" => "up"}
               %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/fuse.png"}
-  %div
-    .container
-      %div
-        %p Roles
-        - if @project.director > 0
-          .card
-            .mask{"data-balloon" => "Director", "data-balloon-pos" => "up"}
-              %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/clapperboard.png"}
-            %div
-              %p Requirements
-        - if @project.actor > 0
-          .card
-            .mask{"data-balloon" => "Actor", "data-balloon-pos" => "up"}
-              %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/theater.png"}
-            %div
-              %p Requirements
-        - if @project.writer > 0
-          .card
-            .mask{"data-balloon" => "Writer", "data-balloon-pos" => "up"}
-              %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/edit.png"}
-            %div
-              %p Requirements
-        - if @project.cinematographer > 0
-          .card
-            .mask{"data-balloon" => "Cinematographer", "data-balloon-pos" => "up"}
-              %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/photo-camera.png"}
-            %div
-              %p Requirements
-        - if @project.editor > 0
-          .card
-            .mask{"data-balloon" => "Editor", "data-balloon-pos" => "up"}
-              %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/imac.png"}
-            %div
-              %p Requirements
-        - if @project.composer > 0
-          .card
-            .mask{"data-balloon" => "Composer", "data-balloon-pos" => "up"}
-              %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/music-player.png"}
-            %div
-              %p Requirements
-        - if @project.makeup > 0
-          .card
-            .mask{"data-balloon" => "Makeup Artist", "data-balloon-pos" => "up"}
-              %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/paint-brush.png"}
-            %div
-              %p Requirements
-        - if @project.vfx > 0
-          .card
-            .mask{"data-balloon" => "Vfx Artist", "data-balloon-pos" => "up"}
-              %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/fuse.png"}
-            %div
-              %p Requirements
-      %div
-        %p Equipment
-    %p Stage
+  .container
+    %p.headers Roles
+    - if @project.director > 0
+      .card
+        .mask{"data-balloon" => "Director", "data-balloon-pos" => "up"}
+          %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/clapperboard.png"}
+        %div
+          %p.headers-sm Requirements
+          %p 
+            =@project.r_director
+    - if @project.actor > 0
+      .card
+        .mask{"data-balloon" => "Actor", "data-balloon-pos" => "up"}
+          %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/theater.png"}
+        %div
+          %p.headers-sm Requirements
+    - if @project.writer > 0
+      .card
+        .mask{"data-balloon" => "Writer", "data-balloon-pos" => "up"}
+          %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/edit.png"}
+        %div
+          %p.headers-sm Requirements
+    - if @project.cinematographer > 0
+      .card
+        .mask{"data-balloon" => "Cinematographer", "data-balloon-pos" => "up"}
+          %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/photo-camera.png"}
+        %div
+          %p.headers-sm Requirements
+    - if @project.editor > 0
+      .card
+        .mask{"data-balloon" => "Editor", "data-balloon-pos" => "up"}
+          %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/imac.png"}
+        %div
+          %p.headers-sm Requirements
+    - if @project.composer > 0
+      .card
+        .mask{"data-balloon" => "Composer", "data-balloon-pos" => "up"}
+          %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/music-player.png"}
+        %div
+          %p.headers-sm Requirements
+    - if @project.makeup > 0
+      .card
+        .mask{"data-balloon" => "Makeup Artist", "data-balloon-pos" => "up"}
+          %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/paint-brush.png"}
+        %div
+          %p.headers-sm Requirements
+    - if @project.vfx > 0
+      .card
+        .mask{"data-balloon" => "Vfx Artist", "data-balloon-pos" => "up"}
+          %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/fuse.png"}
+        %div
+          %p.headers-sm Requirements
       
         
 // - if @project.completed == true

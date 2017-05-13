@@ -106,6 +106,9 @@ function openNav() {
       document.getElementById("actionbar").style.marginLeft = "0";
       document.getElementById("actionbar").style.paddingRight = "0";
     }
+    if (document.getElementById('profile-card') != null) {
+      document.getElementById('profile-card').style.marginLeft = '0';
+    }
     toggleNav = 1;
   } else {
     document.getElementById("sidenav").style.width = "223px";
@@ -114,6 +117,9 @@ function openNav() {
       if (document.getElementById("actionbar") != null) {
         document.getElementById("actionbar").style.marginLeft = "223px";
         document.getElementById("actionbar").style.paddingRight = "223px";
+      }
+      if (document.getElementById('profile-card') != null) {
+        document.getElementById('profile-card').style.marginLeft = '223px';
       }
       document.getElementById("main").style.marginLeft = "223px";
     } else {
@@ -141,6 +147,9 @@ function checkNav() {
         document.getElementById("actionbar").style.marginLeft = "223px";
         document.getElementById("actionbar").style.paddingRight = "223px";
         document.getElementById("main").style.marginLeft = "223px";
+        if (document.getElementById('profile-card') != null) {
+          document.getElementById('profile-card').style.marginLeft = '223px';
+        }
       } else {
         document.getElementById("overlay").style.width = "100%";
       }
@@ -185,7 +194,6 @@ function imageSearch() {
       var api = "https://api.unsplash.com/search/photos/?client_id=ca5b70a696bb7a2e58811ea474e8171ea0d9669c0bc0efdb034b7daffafe9e42&per_page=30&query=" + input.value;
       console.log(api);
       $.getJSON(api, function(data) {
-        console.log(data);
         for (var i = 0; i < data.results.length; i++) {
           var elem = document.createElement("img");
           elem.setAttribute("src", data.results[i].urls.regular);
@@ -197,7 +205,11 @@ function imageSearch() {
           var radio = document.createElement("input");
           radio.setAttribute("type", "radio");
           radio.setAttribute("value", data.results[i].urls.regular);
-          radio.setAttribute("name", "project[header_url]");
+          if(window.location.href.indexOf('projects') != -1) {
+            radio.setAttribute("name", "project[header_url]");
+          } else {
+            radio.setAttribute("name", "challenge[header_url]");
+          }
           document.getElementById("label" + i).appendChild(radio);
           
           document.getElementById("label" + i).appendChild(elem);
@@ -206,13 +218,51 @@ function imageSearch() {
     }
   }
 }
-// $(document).on('turbolinks:load', function() {
-//   $(function () {
-//     $('[data-toggle="tooltip"]').tooltip()
-//   })
 
-//   // Material Select Initialization
-//   $(document).ready(function() {
-//     $('.mdb-select').material_select();
-//   });
-// })
+function documents() {
+  gapi.load("auth:client,drive-realtime,drive-share", insertFile());
+}
+
+function insertFile(fileData, callback) {
+  const boundary = '-------314159265358979323846';
+  const delimiter = "\r\n--" + boundary + "\r\n";
+  const close_delim = "\r\n--" + boundary + "--";
+
+  var reader = new FileReader();
+  reader.readAsBinaryString(fileData);
+  reader.onload = function(e) {
+    var contentType = fileData.type || 'application/octet-stream';
+    var metadata = {
+      'title': fileData.fileName,
+      'mimeType': contentType
+    };
+
+    var base64Data = btoa(reader.result);
+    var multipartRequestBody =
+        delimiter +
+        'Content-Type: application/json\r\n\r\n' +
+        JSON.stringify(metadata) +
+        delimiter +
+        'Content-Type: ' + contentType + '\r\n' +
+        'Content-Transfer-Encoding: base64\r\n' +
+        '\r\n' +
+        base64Data +
+        close_delim;
+
+    var request = gapi.client.request({
+        'path': '/upload/drive/v2/files',
+        'method': 'POST',
+        'params': {'uploadType': 'multipart'},
+        'headers': {
+          'Content-Type': 'multipart/mixed; boundary="' + boundary + '"'
+        },
+        'body': multipartRequestBody});
+    if (!callback) {
+      callback = function(file) {
+        console.log(file)
+      };
+    }
+    request.execute(callback);
+  }
+}
+

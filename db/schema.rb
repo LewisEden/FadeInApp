@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170429151424) do
+ActiveRecord::Schema.define(version: 20170509121021) do
 
   create_table "challenges", force: :cascade do |t|
     t.string   "genre"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20170429151424) do
     t.datetime "image_updated_at"
     t.boolean  "featured"
     t.string   "requirements"
+    t.string   "header_url"
   end
 
   create_table "chat_rooms", force: :cascade do |t|

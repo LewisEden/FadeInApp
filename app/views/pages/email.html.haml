@@ -1,6 +1,16 @@
-// - @photo = Unsplash::Photo.random
-- @search_results = Unsplash::Photo.search("cats")
-
-// %img{:src => "#{@photo.urls.small}"}
-- @search_results.each do |image|
-  %img{:src => "#{image.urls.small}", :class => "item"}
+.container-fluid
+  .row-fluid
+    .hero-unit(style='margin-top: 20px;')
+      %h1 Real-time CodeMirror By Lewis Drayton-Corbin
+      %p Real-time collaborative markdown editor for Google Drive using CodeMirror and Google Drive Real-time API.
+  .row-fluid
+    .span8.input-prepend
+      %span.add-on Filename
+      %input#doc-name.span6{type: 'text', disabled: 'true'}
+    .span4(style='text-align: right;')
+      %button#btn-auth.btn.btn-primary.disabled Authorize
+      %button#btn-create.btn.btn-success.disabled Create
+      %button#btn-open.btn.btn-primary.disabled Open
+      %button#btn-share.btn.btn-danger.disabled Share
+  .row-fluid
+    #editor.span12

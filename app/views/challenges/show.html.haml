@@ -1,26 +1,39 @@
 - title "#{@challenge.title} - FADE IN"
+%script checkNav()
+%header.challenges-show-actionbar#actionbar
+  = link_to "Start Challenge", user_challenge_new_path
+%main.challenges-show-main#main
+  %img.header-img{src: @challenge.header_url}
+  .container
+    .card
+    %div
+      .card.stepone
+      .card.steptwo
+      .card.stepthree
+      .card.stepfour
 
-= link_to "Start Challenge", user_challenge_new_path, :class => "button is-primary is-wide"
-.jumbo
-  = image_tag @challenge.image(:medium)
-.tile.box.img-card-overlay
-  %div
-    %p
-      = @challenge.genre
-    %p
-      = @challenge.duration
-  %p
-    = @challenge.title
-  %p
-    = @challenge.synopsis
 
-.tile.is-ancestor
-  .tile.is-parent
-    .tile.is-child.box
-      NUMBO 1
-    .tile.is-child.box
-      NUMBO 2
-    .tile.is-child.box
-      NUMBO 3
-    .tile.is-child.box
-      NUMBO 4
+// = link_to "Start Challenge", user_challenge_new_path, :class => "button is-primary is-wide"
+// .jumbo
+//   = image_tag @challenge.image(:medium)
+// .tile.box.img-card-overlay
+//   %div
+//     %p
+//       = @challenge.genre
+//     %p
+//       = @challenge.duration
+//   %p
+//     = @challenge.title
+//   %p
+//     = @challenge.synopsis
+
+// .tile.is-ancestor
+//   .tile.is-parent
+//     .tile.is-child.box
+//       NUMBO 1
+//     .tile.is-child.box
+//       NUMBO 2
+//     .tile.is-child.box
+//       NUMBO 3
+//     .tile.is-child.box
+//       NUMBO 4

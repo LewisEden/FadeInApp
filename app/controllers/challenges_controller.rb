@@ -54,7 +54,8 @@ class ChallengesController < ApplicationController
 		end
 	
 	  def challenge_params
-	    params.require(:challenge).permit(:image, :genre, :duration, :title, :synopsis, :reward, :featured, :requirements)
+	    # params.require(:challenge).permit(:header_url, :genre, :duration, :title, :synopsis, :reward, :featured, :requirements)
+	    params.require(:challenge).permit(:header_url, :genre, :duration, :title, :synopsis)
 	  end
 	  
 	  def admin_rights

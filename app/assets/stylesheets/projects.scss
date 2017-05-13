@@ -23,6 +23,10 @@
     margin-right: 21px;
     
     display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     
     label {
       margin-right: 29px;
@@ -53,8 +57,11 @@
   input {
     border: none;
     
-    background-image: url('searchicon.png');
+    background-image: url(https://s3.eu-west-2.amazonaws.com/fadein-assets/searchicon.png);
+    background-position: center left;
     background-repeat: no-repeat;
+    
+    padding-left: 25px;
     
     font-size: 16px;
   }
@@ -136,7 +143,12 @@
   width: 24%;
   
   display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   flex-direction: column;
+  -webkit-flex-direction: column;
   
   margin-right: 0.5%;
   margin-bottom: 10px;
@@ -154,7 +166,12 @@
       margin: 14px 22px 16px 26px;
       
       display: flex;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
       flex-direction: column;
+      -webkit-flex-direction: column;
       flex: 1;
     
       .genre-duration {
@@ -300,6 +317,10 @@
     width: 50%;
     
     display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     justify-content: space-around;
     
     a {
@@ -316,6 +337,10 @@
   
   form {
     display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     
     margin-top: 50px;
     margin-left: 64px;
@@ -323,12 +348,21 @@
   
   .container {
     display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     flex-direction: column;
+    -webkit-flex-direction: column;
     
     width: 85%;
     
     .card:first-child > div {
       display: flex;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
       align-items: flex-end;
       
       > p {
@@ -357,7 +391,12 @@
     min-width: 100px;
     
     display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     flex-direction: column;
+    -webkit-flex-direction: column;
     align-items: center;
     
     p:first-child {
@@ -425,7 +464,7 @@
       border: solid 2px #dcdcdc;
       
       font-size: 16px;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Arial', sans-serif;
       
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
@@ -449,7 +488,8 @@
       border: solid 2px #dcdcdc;
       
       font-size: 16px;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Arial', sans-serif;
+      font-weight: 300;
       
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
@@ -464,6 +504,10 @@
   .film-image {
     div {
       display: flex;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
       align-items: center;
       
       margin-bottom: 30px;
@@ -498,6 +542,10 @@
     
     #image-container {
       display: flex;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
       height: 300px;
       
       overflow: auto;
@@ -565,6 +613,10 @@
     
     div {
       display: flex;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
       justify-content: space-between;
       
       margin-bottom: 20px;
@@ -574,13 +626,22 @@
   .film-roles {
     > div {
       display: flex;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
       justify-content: space-between;
       
       margin-bottom: 20px;
       
       div {
         display: flex;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
         flex-direction: column;
+        -webkit-flex-direction: column;
       }
     }
     
@@ -593,6 +654,10 @@
   
   .film-docs {
     display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     
     p {
       font-size: 16px;
@@ -602,6 +667,10 @@
   
   .film-buttons {
     display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     align-items: center;
     margin-bottom: 20px;
     
@@ -642,6 +711,10 @@
   
   div {
     display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     justify-content: space-around;
     
     width: 40%;
@@ -669,42 +742,111 @@
 
 .projects-show-main {
   display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   
-  padding: 33px 64px 0 71px;
+  padding: 33px 64px 20px 71px;
+  
+  font-family: Arial;
+  
+  .title {
+    font-weight: 600;
+  }
+  
+  .headers {
+    font-size: 16px;
+    color: #787878;
+  }
+  
+  .headers-sm {
+    font-size: 10px !important;
+    color: #a1a1a1 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  .margin-break {
+    margin: 0;
+  }
+  
+  .flex-col {
+    display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    align-items: flex-start !important;
+  }
+  
+  .flex-row {
+    display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    align-items: center;
+  }
+  
+  .created {
+    margin-left: auto;
+    align-items: flex-end !important;
+  }
+  
+  .genre-duration {
+    .genre {
+      margin-right: 20px;
+    }
+    
+    .headers-sm {
+      margin-bottom: 2px !important;
+    }
+    
+    span {
+      margin-right: 5px;
+    }
+  }
+  
+  .container {
+    
+    .card {
+      display: flex;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      align-items: center;
+      
+      padding: 24px 20px;
+      
+      margin-bottom: 10px;
+      
+      div {
+        margin-left: 20px;
+        
+        display: flex;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        flex-direction: column;
+        -webkit-flex-direction: column;
+      }
+      
+      .mask {
+        height: 59px;
+        width: 59px;
+      }
+    }
+  }
   
   > div {
     width: 48%;
     
     margin-right: 2%;
-    
-    .container {
-      display: flex;
-      
-      div:first-child {
-        width: 70%;
-      }
-      
-      .card {
-        display: flex;
-        align-items: center;
-        
-        padding: 24px 20px;
-        
-        margin-bottom: 10px;
-        
-        div {
-          margin-left: 20px;
-          
-          display: flex;
-          flex-direction: column;
-        }
-        
-        .mask {
-          height: 59px;
-          width: 59px;
-        }
-      }
-    }
     
     > .card {
       width: 100%;
@@ -712,13 +854,22 @@
     
     .project-show-card {
       display: flex;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
       flex-direction: column;
+      -webkit-flex-direction: column;
       
       > div {
         margin: 14px 22px 16px 26px;
         
         div {
           display: flex;
+          display: -webkit-box;
+          display: -moz-box;
+          display: -ms-flexbox;
+          display: -webkit-flex;
           align-items: center;
         }
         
@@ -748,6 +899,10 @@
     .crew-card {
       > div {
         display: flex;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
         align-items: center;
         
         height: 107px;
@@ -759,8 +914,13 @@
         
         > div {
           display: flex;
+          display: -webkit-box;
+          display: -moz-box;
+          display: -ms-flexbox;
+          display: -webkit-flex;
           justify-content: center;
           flex-direction: column;
+          -webkit-flex-direction: column;
           
           p {
             margin-left: 20px;
