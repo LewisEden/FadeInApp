@@ -11,8 +11,9 @@
 %header.projects-show-actionbar#actionbar
   %div
     %p Summary
-    %p Chat
-    %p Documents
+    - if @project.users.map(&:id).include? current_user.id
+      %p Chat
+      %p Documents
   = link_to edit_project_path(@project) do
     %span.im.im-gear
 %main.projects-show-main#main
@@ -150,6 +151,8 @@
                   = user.user_name
                 - else
                   = user.first_name + " " + user.last_name
+              = link_to remove_user_path(@project.id, user.id), method: :removeuser, data: { confirm: "Are you sure you want to remove this person?" } do
+                %span.fa.fa-times-circle
             %p
               = @userInfo.first.user_role
           - if @userInfo.first.user_role == "Director"

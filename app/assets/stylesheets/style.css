@@ -527,7 +527,6 @@ a {
   left: 0;
   
   background: #fff;
-  border-right: solid 1px #ececec;
   
   transition: 0.5s;
 }
@@ -546,6 +545,10 @@ a {
   height: 71px;
   
   background: #f2694b;
+}
+
+.sidenav-border {
+  border-right: solid 1px #ececec;
 }
 
 .sidenav ul {

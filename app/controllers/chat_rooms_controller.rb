@@ -5,7 +5,7 @@ class ChatRoomsController < ApplicationController
     @projects = current_user.projects
     @chat_rooms = ChatRoom.where(project_id: @projects.ids)
     if @projects.count > 0
-      redirect_to chat_room_path(@projects.first.id)
+      redirect_to chat_show_path(@projects.first.id)
     end
   end
   

@@ -100,6 +100,7 @@ var toggleNav = 1;
 function openNav() {
   if (toggleNav == 0) {
     document.getElementById("sidenav").style.width = "0";
+    document.getElementById("sidenav").classList.toggle('sidenav-border');
     document.getElementById("overlay").style.width = "0";
     document.getElementById("main").style.marginLeft = "0";
     if (document.getElementById("actionbar") != null) {
@@ -112,6 +113,7 @@ function openNav() {
     toggleNav = 1;
   } else {
     document.getElementById("sidenav").style.width = "223px";
+    document.getElementById("sidenav").classList.toggle('sidenav-border');
     toggleNav = 0;
     if (document.documentElement.clientWidth > 1200) {
       if (document.getElementById("actionbar") != null) {
@@ -132,6 +134,7 @@ function openNav() {
 
 function closeNav() {
   document.getElementById("sidenav").style.width = "0";
+  document.getElementById("sidenav").classList.toggle('sidenav-border');
   document.getElementById("overlay").style.width = "0";
   document.getElementById("actionbar").style.marginLeft = "0";
   document.body.style.overflowY = "visible"
@@ -142,10 +145,13 @@ function closeNav() {
 function checkNav() {
   if (toggleNav == 0) {
       document.getElementById("sidenav").style.width = "223px";
+      document.getElementById("sidenav").classList.toggle('sidenav-border');
       document.body.style.overflowY = "hidden"
       if (document.documentElement.clientWidth > 768) {
-        document.getElementById("actionbar").style.marginLeft = "223px";
-        document.getElementById("actionbar").style.paddingRight = "223px";
+        if (document.getElementById("actionbar") != null) {
+          document.getElementById("actionbar").style.marginLeft = "223px";
+          document.getElementById("actionbar").style.paddingRight = "223px";
+        }
         document.getElementById("main").style.marginLeft = "223px";
         if (document.getElementById('profile-card') != null) {
           document.getElementById('profile-card').style.marginLeft = '223px';

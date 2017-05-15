@@ -1,4 +1,5 @@
 - title "#{@chat_room.title} Chat - FADE IN"
+%script checkNav()
 - @cpid = @chat_room.project_id.to_i
 - @current_project = Project.find(@cpid)
 - @totalmessages = @chat_room.messages.count
@@ -6,47 +7,68 @@
 - @members = 0
 - @current_project.users.each do |it|
   - @members += 1
-
-.tile.is-ancestor
-  .tile.is-chat.is-vertical.is-parent.is-chat-list
-    .tile.is-child.box
-      %aside.menu
-        %p.menu-label
-          Project Chats
-        %ul.menu-list
-          = render @chat_rooms
-  .tile.is-vertical.is-parent
-    .tile.is-child.box.is-chat-title
-      .field.display-inline
-        %p.menu-label
-          = @chat_room.title + " chat"
-          •
-          = @members
-          Members
-    .tile.is-child.box
+%main.chat-main#main
+  .chat-select
+    %p.title Projects
+    %ul
+      = render @chat_rooms
+    %p.title Direct Messages
+  .container
+    .messages-container#messages{"data-chat-room-id" => @chat_room.id}
       - if @chat_room.messages.count == 0
-        .article.media.is-message
-          %figure.image.is-64x64.fuck-u-lewis
-            %img{:src => "/assets/icon.png", :class => "is-chat-avatar"}/
-          .media-content
-            .content
+        .message
+          %img.user-avi{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/icon.png"}
+          %div
+            %div
               %p
-                %strong 
-                  FADE IN
-                  %span.tag.is-primary Bot
-                %small
-                  •
-                  The beginning of time
-                %br
-                No messages have been sent yet - be the first!
-      #messages{"data-chat-room-id" => @chat_room.id}
-        = render @chat_room.messages
-    .tile.is-child
-      = form_for @message, url: '#' do |f|
-        .field.has-addons
-          %p.control.is-expanded
-            = f.text_field :body, class: "input", placeholder: "Message ##{@chat_room.title}", autocomplete: "off"
-          %p.field
-            %button.button
-              %span.icon.is-small
-                %i.fa.fa-paper-plane
+                FADEIN Bot
+            %p.message-body
+              No messages have been set yet. Be the first!
+      = render @chat_room.messages
+    = form_for @message, url: '#' do |f|
+      = f.text_field :body, class: "input", placeholder: "Message ##{@chat_room.title}", autocomplete: "off"
+    
+
+// .tile.is-ancestor
+//   .tile.is-chat.is-vertical.is-parent.is-chat-list
+//     .tile.is-child.box
+//       %aside.menu
+//         %p.menu-label
+//           Project Chats
+//         %ul.menu-list
+//           = render @chat_rooms
+//   .tile.is-vertical.is-parent
+//     .tile.is-child.box.is-chat-title
+//       .field.display-inline
+//         %p.menu-label
+//           = @chat_room.title + " chat"
+//           •
+//           = @members
+//           Members
+//     .tile.is-child.box
+//       - if @chat_room.messages.count == 0
+//         .article.media.is-message
+//           %figure.image.is-64x64.fuck-u-lewis
+//             %img{:src => "/assets/icon.png", :class => "is-chat-avatar"}/
+//           .media-content
+//             .content
+//               %p
+//                 %strong 
+//                   FADE IN
+//                   %span.tag.is-primary Bot
+//                 %small
+//                   •
+//                   The beginning of time
+//                 %br
+//                 No messages have been sent yet - be the first!
+//       #messages{"data-chat-room-id" => @chat_room.id}
+//         = render @chat_room.messages
+//     .tile.is-child
+//       = form_for @message, url: '#' do |f|
+//         .field.has-addons
+//           %p.control.is-expanded
+//             = f.text_field :body, class: "input", placeholder: "Message ##{@chat_room.title}", autocomplete: "off"
+//           %p.field
+//             %button.button
+//               %span.icon.is-small
+//                 %i.fa.fa-paper-plane

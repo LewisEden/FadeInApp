@@ -4,11 +4,11 @@
 - if @active == true
   - @active = false
   %li
-    = link_to chat_room_path(chat_room), :class => "is-active" do
+    = link_to chat_show_path(chat_room), :class => "is-active" do
       = truncate(chat_room.title, length: 20)
 - else
   %li
-    = link_to chat_room_path(chat_room) do
+    = link_to chat_show_path(chat_room) do
       = truncate(chat_room.title, length: 20)
       // %span.tag.is-danger
       //   = chat_room.messages.count
