@@ -90,12 +90,15 @@
           %div
             %img.img-fluid{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/fuse.png", :height => "50", :width => "50"}
             = f.input_field :vfx, label: false, default: 0, collection: [0, 1, 2, 3]
+      .card.role-requirements.requirements-hide#role-requirements
+        %p Role requirements
       .card.film-docs
         %p Documents
       .film-buttons
         = submit_tag "Create Project", data: { disable_with: "Please wait..." }
         = link_to "Back", root_path
 %script imageSearch()
+%script roleSelected()
 // = simple_form_for @project do |f|
 //   .tile.is-ancestor
 //     .tile.is-2.is-vertical.is-parent.is-type

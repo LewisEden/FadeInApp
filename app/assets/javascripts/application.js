@@ -224,6 +224,136 @@ function imageSearch() {
     }
   }
 }
+function roleSelected() {
+  document.getElementById("project_director").onchange = function() {
+    if (this.value == 0) {
+      // document.getElementById("role-requirements").classList.add("requirements-hide");
+      document.getElementById("role-requirements").removeChild(document.getElementById("project_r_director"));
+    } else {
+      if (document.getElementById("project_r_director") == null) {
+        document.getElementById("role-requirements").classList.remove("requirements-hide");
+        var input = document.createElement("input");
+        input.setAttribute("type", "text");
+        input.setAttribute("id", "project_r_director");
+        input.setAttribute("placeholder", "Enter the requirements for the director(s)");
+        input.setAttribute("name", "project[r_director]");
+        document.getElementById("role-requirements").appendChild(input);
+      }
+    }
+  };
+  
+  document.getElementById("project_writer").onchange = function() {
+    if (this.value == 0) {
+      document.getElementById("role-requirements").removeChild(document.getElementById("project_r_writer"));
+    } else {
+      if (document.getElementById("project_r_writer") == null) {
+        document.getElementById("role-requirements").classList.remove("requirements-hide");
+        var input = document.createElement("input");
+        input.setAttribute("type", "text");
+        input.setAttribute("id", "project_r_writer");
+        input.setAttribute("placeholder", "Enter the requirements for the writer(s)");
+        input.setAttribute("name", "project[r_writer]");
+        document.getElementById("role-requirements").appendChild(input);
+      }
+    }
+  };
+  
+  document.getElementById("project_actor").onchange = function() {
+    if (this.value == 0) {
+      document.getElementById("role-requirements").removeChild(document.getElementById("project_r_actor"));
+    } else {
+      if (document.getElementById("project_r_actor") == null) {
+        document.getElementById("role-requirements").classList.remove("requirements-hide");
+        var input = document.createElement("input");
+        input.setAttribute("type", "text");
+        input.setAttribute("id", "project_r_actor");
+        input.setAttribute("placeholder", "Enter the requirements for the actor(s)");
+        input.setAttribute("name", "project[r_actor]");
+        document.getElementById("role-requirements").appendChild(input);
+      }
+    }
+  };
+  
+  document.getElementById("project_editor").onchange = function() {
+    if (this.value == 0) {
+      document.getElementById("role-requirements").removeChild(document.getElementById("project_r_editor"));
+    } else {
+      if (document.getElementById("project_r_editor") == null) {
+        document.getElementById("role-requirements").classList.remove("requirements-hide");
+        var input = document.createElement("input");
+        input.setAttribute("type", "text");
+        input.setAttribute("id", "project_r_editor");
+        input.setAttribute("placeholder", "Enter the requirements for the editor(s)");
+        input.setAttribute("name", "project[r_editor]");
+        document.getElementById("role-requirements").appendChild(input);
+      }
+    }
+  };
+  
+  document.getElementById("project_composer").onchange = function() {
+    if (this.value == 0) {
+      document.getElementById("role-requirements").removeChild(document.getElementById("project_r_composer"));
+    } else {
+      if (document.getElementById("project_r_composer") == null) {
+        document.getElementById("role-requirements").classList.remove("requirements-hide");
+        var input = document.createElement("input");
+        input.setAttribute("type", "text");
+        input.setAttribute("id", "project_r_composer");
+        input.setAttribute("placeholder", "Enter the requirements for the composer(s)");
+        input.setAttribute("name", "project[r_composer]");
+        document.getElementById("role-requirements").appendChild(input);
+      }
+    }
+  };
+  
+  document.getElementById("project_cinematographer").onchange = function() {
+    if (this.value == 0) {
+      document.getElementById("role-requirements").removeChild(document.getElementById("project_r_cinematographer"));
+    } else {
+      if (document.getElementById("project_r_cinematographer") == null) {
+        document.getElementById("role-requirements").classList.remove("requirements-hide");
+        var input = document.createElement("input");
+        input.setAttribute("type", "text");
+        input.setAttribute("id", "project_r_cinematographer");
+        input.setAttribute("placeholder", "Enter the requirements for the cinematographer(s)");
+        input.setAttribute("name", "project[r_cinematographer]");
+        document.getElementById("role-requirements").appendChild(input);
+      }
+    }
+  };
+  
+  document.getElementById("project_makeup").onchange = function() {
+    if (this.value == 0) {
+      document.getElementById("role-requirements").removeChild(document.getElementById("project_r_makeup"));
+    } else {
+      if (document.getElementById("project_r_makeup") == null) {
+        document.getElementById("role-requirements").classList.remove("requirements-hide");
+        var input = document.createElement("input");
+        input.setAttribute("type", "text");
+        input.setAttribute("id", "project_r_makeup");
+        input.setAttribute("placeholder", "Enter the requirements for the makeup(s)");
+        input.setAttribute("name", "project[r_makeup]");
+        document.getElementById("role-requirements").appendChild(input);
+      }
+    }
+  };
+  
+  document.getElementById("project_vfx").onchange = function() {
+    if (this.value == 0) {
+      document.getElementById("role-requirements").removeChild(document.getElementById("project_r_vfx"));
+    } else {
+      if (document.getElementById("project_r_vfx") == null) {
+        document.getElementById("role-requirements").classList.remove("requirements-hide");
+        var input = document.createElement("input");
+        input.setAttribute("type", "text");
+        input.setAttribute("id", "project_r_vfx");
+        input.setAttribute("placeholder", "Enter the requirements for the vfx(s)");
+        input.setAttribute("name", "project[r_vfx]");
+        document.getElementById("role-requirements").appendChild(input);
+      }
+    }
+  };
+}
 
 function documents() {
   gapi.load("auth:client,drive-realtime,drive-share", insertFile());

@@ -14,8 +14,9 @@
     - if @project.users.map(&:id).include? current_user.id
       %p Chat
       %p Documents
-  = link_to edit_project_path(@project) do
-    %span.im.im-gear
+  - if @project.users.first.id == current_user.id
+    = link_to edit_project_path(@project) do
+      %span.im.im-gear
 %main.projects-show-main#main
   %div
     %p.headers Summary
