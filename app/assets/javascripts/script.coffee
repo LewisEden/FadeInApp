@@ -29,6 +29,11 @@ $ ->
     $('#btn-share').addClass 'disabled'
     _client.createNewFileAndRedirect()
     
+  $('#submitButton').click ->
+    console.log 'it worked fam'
+    return      
+    _client.createNewFileAndRedirect()
+    
   # Open button click
   $('#btn-open').click ->
     return      if $('#btn-open').hasClass 'disabled'
@@ -139,11 +144,3 @@ synchronize = (editor, markdown) ->
     console.log "editor.replaceRange('', #{pos2str from}, #{pos2str to})"
     editor.replaceRange("", from, to)
     ignore_change = false
-    
-createDocument = ->
-
-  document.getElementById('submitButton').onclick = ->
-    console.log 'Wokred fam'
-    _client.createNewFileAndRedirect()
-
-  return
