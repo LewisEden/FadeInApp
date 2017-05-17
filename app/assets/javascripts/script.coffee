@@ -139,3 +139,11 @@ synchronize = (editor, markdown) ->
     console.log "editor.replaceRange('', #{pos2str from}, #{pos2str to})"
     editor.replaceRange("", from, to)
     ignore_change = false
+    
+createDocument = ->
+
+  document.getElementById('submitButton').onclick = ->
+    console.log 'Wokred fam'
+    _client.createNewFileAndRedirect()
+
+  return
