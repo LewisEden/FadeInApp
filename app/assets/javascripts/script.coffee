@@ -17,7 +17,7 @@ $ ->
     clientId:               CLIENTID
     authButtonElementId:    'btn-auth'
     autoCreate:             false
-    defaultTitle:           "New real-time code-mirror session"
+    defaultTitle:           "Testing123"
     initializeModel:        initializeModel
     onFileLoaded:           loadModel
   

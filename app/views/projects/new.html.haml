@@ -95,10 +95,11 @@
       .card.film-docs
         %p Documents
       .film-buttons
-        = submit_tag "Create Project", data: { disable_with: "Please wait..." }
+        = submit_tag "Create Project", data: { disable_with: "Please wait..." }, id: "submitButton"
         = link_to "Back", root_path
 %script imageSearch()
 %script roleSelected()
+%script createDocument()
 // = simple_form_for @project do |f|
 //   .tile.is-ancestor
 //     .tile.is-2.is-vertical.is-parent.is-type
