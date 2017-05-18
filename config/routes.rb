@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   resources :redeem
   resources :dashboard
   
+  get 'projects/:id/docs', to: 'documents#show', as: :document
+  
   get 'challenges/:id/enter', to: 'user_challenges#new', as: :user_challenge_new
   
   mount ActionCable.server => '/cable'

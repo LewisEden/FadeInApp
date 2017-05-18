@@ -30,8 +30,7 @@ $ ->
     _client.createNewFileAndRedirect()
     
   $('#submitButton').click ->
-    console.log 'it worked fam'
-    return      
+    console.log 'yees'
     _client.createNewFileAndRedirect()
     
   # Open button click

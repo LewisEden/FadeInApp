@@ -26,7 +26,7 @@
             %p Duration
             = f.input_field :duration, label: false, prompt: "Select duration", collection: ["Very short", "Short", "Medium", "Long", "Feature"], class: "styled-select slate"
           %p Can't think of any ideas?
-          %a Generate project
+          %a#auth.disabled Generate project
         %p Title
         = f.input_field :title, id: "title", placeholder: "Enter a title (max 50 characters)", :class => "input", :minlength => "3", :maxlength => 50, :length => "50"
         %p Synopsis
@@ -94,6 +94,11 @@
         %p Role requirements
       .card.film-docs
         %p Documents
+        %div
+          %p screenplay
+          %input{type: "checkbox", name: "docs", value: "screenplay", id: "screenplay"}
+          %p call_sheet
+          %input{type: "checkbox", name: "docs", value: "call-sheet", id: "call-sheet"}
       .film-buttons
         = submit_tag "Create Project", data: { disable_with: "Please wait..." }, id: "submitButton"
         = link_to "Back", root_path

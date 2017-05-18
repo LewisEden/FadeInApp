@@ -1,0 +1,16 @@
+- title "Projects - FADE IN"
+%script checkNav()
+%script documents()
+%header.projects-show-actionbar#actionbar
+  %div
+    %p Summary
+    - if @project.users.map(&:id).include? current_user.id
+      %p Chat
+      = link_to document_path(@project.id) do
+        Documents
+  - if @project.users.first.id == current_user.id
+    = link_to edit_project_path(@project) do
+      %span.im.im-gear
+%main.projects-main#main
+  %button#btn-open.btn.btn-primary.disabled Open
+  #editor.span12

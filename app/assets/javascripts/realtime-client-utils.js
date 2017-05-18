@@ -364,7 +364,8 @@ rtclient.RealtimeLoader.prototype.createNewFileAndRedirect = function() {
   var _this = this;
   rtclient.createRealtimeFile(this.defaultTitle, function(file) {
     if (file.id) {
-      rtclient.redirectTo(file.id, _this.authorizer.userId);
+      console.log('woop woop')
+      window.location.replace('https://www.fadeinapp.com')
     }
     // File failed to be created, log why and do not attempt to redirect.
     else {
