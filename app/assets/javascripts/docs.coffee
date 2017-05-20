@@ -36,8 +36,6 @@ $(document).on "turbolinks:load", ->
     
   # Open button click
   $('#btn-open').click ->
-    _client = new rtclient.RealtimeLoader
-    _client.start ->
     return      if $('#btn-open').hasClass 'disabled'
     $('#btn-auth').addClass 'disabled'
     $('#btn-create').addClass 'disabled'
