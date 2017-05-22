@@ -282,7 +282,7 @@ rtclient.RealtimeLoader = function(options) {
   this.registerTypes = rtclient.getOption(options, 'registerTypes', function(){})
   this.autoCreate = rtclient.getOption(options, 'autoCreate', false); // This tells us if need to we automatically create a file after auth.
   this.defaultTitle = rtclient.getOption(options, 'defaultTitle', 'New Realtime File');
-  if (this.defaultTitle == "Screenplay") {
+  if (this.defaultTitle == "Screenplay") { // fix this shit lewis thanks
     console.log('screenplay do the dirt')
     this.initializeScreenplay = rtclient.getOption(options, 'initializeScreenplay'); 
   } else if (this.defaultTitle == "Call Sheet") {
@@ -371,7 +371,7 @@ rtclient.RealtimeLoader.prototype.createNewFileAndRedirect = function() {
   rtclient.createRealtimeFile(this.defaultTitle, function(file) {
     if (file.id) {
       console.log('woop woop')
-      window.location.replace('https://www.fadeinapp.com')
+      // window.location.replace('https://www.fadeinapp.com')
     }
     // File failed to be created, log why and do not attempt to redirect.
     else {
