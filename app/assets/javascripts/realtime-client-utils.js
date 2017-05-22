@@ -279,10 +279,14 @@ rtclient.redirectTo = function(fileId, userId) {
 rtclient.RealtimeLoader = function(options) {
   // Initialize configuration variables.
   this.onFileLoaded = rtclient.getOption(options, 'onFileLoaded');
-  this.initializeModel = rtclient.getOption(options, 'initializeModel');
   this.registerTypes = rtclient.getOption(options, 'registerTypes', function(){})
   this.autoCreate = rtclient.getOption(options, 'autoCreate', false); // This tells us if need to we automatically create a file after auth.
   this.defaultTitle = rtclient.getOption(options, 'defaultTitle', 'New Realtime File');
+  if (this.defaultTitle == "Screenplay") {
+    this.initializeModel = rtclient.getOption(options, 'initializeScreenplay'); 
+  } else if (this.defaultTitle == "Call Sheet") {
+    this.initializeModel = rtclient.getOption(options, 'initializeCallsheet');
+  }
   this.authorizer = new rtclient.Authorizer(options);
 }
 
