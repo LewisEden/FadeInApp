@@ -283,9 +283,9 @@ rtclient.RealtimeLoader = function(options) {
   this.autoCreate = rtclient.getOption(options, 'autoCreate', false); // This tells us if need to we automatically create a file after auth.
   this.defaultTitle = rtclient.getOption(options, 'defaultTitle', 'New Realtime File');
   if (this.defaultTitle == "Screenplay") {
-    this.initializeModel = rtclient.getOption(options, 'initializeScreenplay'); 
+    this.initializeScreenplay = rtclient.getOption(options, 'initializeScreenplay'); 
   } else if (this.defaultTitle == "Call Sheet") {
-    this.initializeModel = rtclient.getOption(options, 'initializeCallsheet');
+    this.initializeCallsheet = rtclient.getOption(options, 'initializeCallsheet');
   }
   this.authorizer = new rtclient.Authorizer(options);
 }
