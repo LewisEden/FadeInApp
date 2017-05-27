@@ -289,6 +289,7 @@ rtclient.RealtimeLoader = function(options) {
     console.log('hopefiuly this do the call sheet')
     this.initializeCallsheet = rtclient.getOption(options, 'initializeCallsheet');
   }
+  console.log(document.getElementById('title').value)
   this.authorizer = new rtclient.Authorizer(options);
 }
 
