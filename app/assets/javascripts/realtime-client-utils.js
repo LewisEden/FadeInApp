@@ -281,15 +281,17 @@ rtclient.RealtimeLoader = function(options) {
   this.onFileLoaded = rtclient.getOption(options, 'onFileLoaded');
   this.registerTypes = rtclient.getOption(options, 'registerTypes', function(){})
   this.autoCreate = rtclient.getOption(options, 'autoCreate', false); // This tells us if need to we automatically create a file after auth.
+  var title = document.getElementById('title').value;
   this.defaultTitle = rtclient.getOption(options, 'defaultTitle', 'New Realtime File');
   if (this.defaultTitle == "Screenplay") { // fix this shit lewis thanks
-    console.log('screenplay do the dirt')
+    this.defaultTitle = title + ' Screenplay';
+    console.log('screenplay do the dirt');
     this.initializeScreenplay = rtclient.getOption(options, 'initializeScreenplay'); 
   } else if (this.defaultTitle == "Call Sheet") {
-    console.log('hopefiuly this do the call sheet')
+    this.defaultTitle = title + ' Call Sheet';
+    console.log('hopefiuly this do the call sheet');
     this.initializeCallsheet = rtclient.getOption(options, 'initializeCallsheet');
   }
-  console.log(document.getElementById('title').value)
   this.authorizer = new rtclient.Authorizer(options);
 }
 
