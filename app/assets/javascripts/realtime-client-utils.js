@@ -284,11 +284,11 @@ rtclient.RealtimeLoader = function(options) {
   var title = document.getElementById('title').value;
   this.defaultTitle = rtclient.getOption(options, 'defaultTitle', 'New Realtime File');
   if (this.defaultTitle == "Screenplay") { // fix this shit lewis thanks
-    this.defaultTitle = title + ' Screenplay';
+    this.defaultTitle = title + ' - Screenplay';
     console.log('screenplay do the dirt');
     this.initializeScreenplay = rtclient.getOption(options, 'initializeScreenplay'); 
   } else if (this.defaultTitle == "Call Sheet") {
-    this.defaultTitle = title + ' Call Sheet';
+    this.defaultTitle = title + ' - Call Sheet';
     console.log('hopefiuly this do the call sheet');
     this.initializeCallsheet = rtclient.getOption(options, 'initializeCallsheet');
   }

@@ -14,12 +14,22 @@
     - if @project.users.map(&:id).include? current_user.id
       %p Chat
       = link_to document_path(@project.id) do
-        Documents
+        %p Documents(BETA)
   - if @project.users.first.id == current_user.id
     = link_to edit_project_path(@project) do
       %span.im.im-gear
 %main.projects-show-main#main
   %div
+    - if @project.completed == true
+      - @project.submission[/^.*((v\/)|(embed\/)|(watch\?))\??v?=?([^\&\?]*).*/]
+      - @youtube_id = $5
+      %h2
+        = @project.title
+      .video-container
+        %iframe{:allowfullscreen => "", :frameborder => "0", :src => "https://www.youtube.com/embed/#{@youtube_id}"}
+      %br
+      .notification.is-success
+        This project has been completed
     %p.headers Summary
     .card.project-show-card
       - if @project.completed == true
@@ -153,8 +163,8 @@
                   = user.user_name
                 - else
                   = user.first_name + " " + user.last_name
-              = link_to remove_user_path(@project.id, user.id), method: :removeuser, data: { confirm: "Are you sure you want to remove this person?" } do
-                %span.fa.fa-times-circle
+              // = link_to remove_user_path(@project.id, user.id), method: :removeuser, data: { confirm: "Are you sure you want to remove this person?" } do
+              //   %span.fa.fa-times-circle
             %p
               = @userInfo.first.user_role
           - if @userInfo.first.user_role == "Director"
@@ -184,56 +194,95 @@
   .container
     %p.headers Roles
     - if @project.director > 0
-      .card
-        .mask{"data-balloon" => "Director", "data-balloon-pos" => "up"}
-          %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/clapperboard.png"}
-        %div
-          %p.headers-sm Requirements
-          %p 
-            =@project.r_director
+      = link_to request_request_path(@project.id) do
+        .card
+          .mask{"data-balloon" => "Director", "data-balloon-pos" => "up"}
+            %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/clapperboard.png"}
+          %div
+            %p.headers-sm Requirements
+            - if @project.r_director.blank?
+              No requirements specified.
+            - else
+              =@project.r_director
     - if @project.actor > 0
-      .card
-        .mask{"data-balloon" => "Actor", "data-balloon-pos" => "up"}
-          %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/theater.png"}
-        %div
-          %p.headers-sm Requirements
+      = link_to request_request_path(@project.id) do
+        .card
+          .mask{"data-balloon" => "Actor", "data-balloon-pos" => "up"}
+            %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/theater.png"}
+          %div
+            %p.headers-sm Requirements
+            - if @project.r_actor.blank?
+              No requirements specified.
+            - else
+              =@project.r_actor
     - if @project.writer > 0
-      .card
-        .mask{"data-balloon" => "Writer", "data-balloon-pos" => "up"}
-          %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/edit.png"}
-        %div
-          %p.headers-sm Requirements
+      = link_to request_request_path(@project.id) do
+        .card
+          .mask{"data-balloon" => "Writer", "data-balloon-pos" => "up"}
+            %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/edit.png"}
+          %div
+            %p.headers-sm Requirements
+            - if @project.r_writer.blank?
+              No requirements specified.
+            - else
+              =@project.r_writer
     - if @project.cinematographer > 0
-      .card
-        .mask{"data-balloon" => "Cinematographer", "data-balloon-pos" => "up"}
-          %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/photo-camera.png"}
-        %div
-          %p.headers-sm Requirements
+      = link_to request_request_path(@project.id) do
+        .card
+          .mask{"data-balloon" => "Cinematographer", "data-balloon-pos" => "up"}
+            %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/photo-camera.png"}
+          %div
+            %p.headers-sm Requirements
+            - if @project.r_cinematographer.blank?
+              No requirements specified.
+            - else
+              =@project.r_cinematographer
     - if @project.editor > 0
-      .card
-        .mask{"data-balloon" => "Editor", "data-balloon-pos" => "up"}
-          %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/imac.png"}
-        %div
-          %p.headers-sm Requirements
+      = link_to request_request_path(@project.id) do
+        .card
+          .mask{"data-balloon" => "Editor", "data-balloon-pos" => "up"}
+            %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/imac.png"}
+          %div
+            %p.headers-sm Requirements
+            - if @project.r_editor.blank?
+              No requirements specified.
+            - else
+              =@project.r_editor
     - if @project.composer > 0
-      .card
-        .mask{"data-balloon" => "Composer", "data-balloon-pos" => "up"}
-          %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/music-player.png"}
-        %div
-          %p.headers-sm Requirements
+      = link_to request_request_path(@project.id) do
+        .card
+          .mask{"data-balloon" => "Composer", "data-balloon-pos" => "up"}
+            %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/music-player.png"}
+          %div
+            %p.headers-sm Requirements
+            - if @project.r_composer.blank?
+              No requirements specified.
+            - else
+              =@project.r_composer
     - if @project.makeup > 0
-      .card
-        .mask{"data-balloon" => "Makeup Artist", "data-balloon-pos" => "up"}
-          %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/paint-brush.png"}
-        %div
-          %p.headers-sm Requirements
+      = link_to request_request_path(@project.id) do
+        .card
+          .mask{"data-balloon" => "Makeup Artist", "data-balloon-pos" => "up"}
+            %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/paint-brush.png"}
+          %div
+            %p.headers-sm Requirements
+            - if @project.r_makeup.blank?
+              No requirements specified.
+            - else
+              =@project.r_makeup
     - if @project.vfx > 0
-      .card
-        .mask{"data-balloon" => "Vfx Artist", "data-balloon-pos" => "up"}
-          %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/fuse.png"}
-        %div
-          %p.headers-sm Requirements
-      
+      = link_to request_request_path(@project.id) do
+        .card
+          .mask{"data-balloon" => "Vfx Artist", "data-balloon-pos" => "up"}
+            %img{:src => "https://s3.eu-west-2.amazonaws.com/fadein-assets/fuse.png"}
+          %div
+            %p.headers-sm Requirements
+            - if @project.r_vfx.blank?
+              No requirements specified.
+            - else
+              =@project.r_vfx
+    // - if @project.users.ids.first == current_user.id
+    //   = render 'projects/submission'
         
 // - if @project.completed == true
 //   - @project.submission[/^.*((v\/)|(embed\/)|(watch\?))\??v?=?([^\&\?]*).*/]

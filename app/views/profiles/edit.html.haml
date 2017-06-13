@@ -1,108 +1,222 @@
 - title @user.user_name + " - FADE IN"
 
 = simple_form_for @user, url: {action: "update"}, html: {multipart: true} do |f|
-	.tile.is-vertical.box.user-sidebar
-		- if @user.avatar_file_name.blank?
-			%img{:src => "/assets/user.png", :class => "rounded-circle center-circle", :width => "168"}
-		- else
-			= image_tag @user.avatar(:medium), :class => "rounded-circle center-circle", :width => "168"
-		.field
-			%p.control
-				= f.input_field :avatar
-		%p.portfolio-username
-			.field.is-horizontal
+	%header.profile-actionbar#actionbar
+		= link_to edit_profile_path(@user.user_name) do
+			%span.im.im-gear
+	%main.profile#main
+		.card.user-info#profile-card
+			= image_tag @user.avatar(:medium)
+			= f.input_field :avatar
+			%p.title
 				= f.input_field :first_name, id: "first_name", :placeholder => "First name", :class => "input", :minlength => "3", :maxlength => 20
 				= f.input_field :last_name, id: "last_name", :placeholder => "Last name", :class => "input", :minlength => "3", :maxlength => 25
-		%p.portfolio-bio
-			.field
+			%p.sm-text
 				= f.input_field :bio, :class => "textarea", :placeholder => "Short bio", :minlength => "30", :maxlength => 50, :length => "50"
-		%button.button.is-primary Update Profile
-	.tile.is-ancestor
-		.tile.is-2.is-vertical.is-parent.spacefix
-		.tile.is-vertical.fit-screen
-			.tile
-				.tile.is-parent
-					.tile.is-child.portfolio-topbar
-						%p
-							All work
-						.playlist-buttons
-							%a.button.is-primary Add New Playlist
-							%a.button.is-primary
-								%span.fa.fa-th-list
-							%a.button.is-primary
-								%span.fa.fa-th
-			.tile
-				.tile.is-parent
-					.tile.is-child.currentprojects-row
-						%p
-							My current projects
-						.add-button
-							%p
-								Add
-							%a.button.is-primary.rounded-circle
-								%span.fa.fa-plus
-			.tile.display-projects
-				-@user.projects.each do |project|
-					.tile.is-4.is-parent.portfolio-projects
-						.tile.is-child.box
-							= image_tag project.image.url(:medium), :class => "vidthumbnail"
-							- if project.genre == "Action"
-								//Action
-								%span.red-text.fa.fa-fighter-jet
-								%h5.red-text.display-inline
-									= project.genre
-								%span.red-text.fa.fa-clock-o.icon
-								%h5.red-text.display-inline
-									= project.duration
-							- elsif project.genre == "Adventure"
-								//Adventure
-								%span.green-text.fa.fa-envira
-								%h5.green-text.display-inline
-									= project.genre
-								%span.green-text.fa.fa-clock-o
-								%h5.green-text.display-inline
-									= project.duration
-							- elsif project.genre == "Comedy"
-								//Comedy
-								%span.cyan-text.fa.fa-smile-o
-								%h5.cyan-text.display-inline
-									= project.genre
-								%span.cyan-text.fa.fa-clock-o
-								%h5.cyan-text.display-inline
-									= project.duration
-							- elsif project.genre == "Crime"
-								//Crime
-								%span.orange-text.fa.fa-gavel
-								%h5.orange-text.display-inline
-									= project.genre
-								%span.orange-text.fa.fa-clock-o
-								%h5.orange-text.display-inline
-									= project.duration
-							- elsif project.genre == "Drama"
-								//Drama
-								%span.amber-text.fa.fa-group
-								%h5.amber-text.display-inline
-									= project.genre
-								%span.amber-text.fa.fa-clock-o
-								%h5.amber-text.display-inline
-									= project.duration
-							- elsif project.genre == "Horror"
-								//Horror
-								%span.brown-text.fa.fa-warning
-								%h5.brown-text.display-inline
-									= project.genre
-								%span.brown-text.fa.fa-clock-o
-								%h5.brown-text.display-inline
-									= project.duration
-							- else
-								//Si-fi
-								%span.teal-text.fa.fa-rocket
-								%h5.teal-text.display-inline
-									= project.genre
-								%span.teal-text.fa.fa-clock-o
-								%h5.teal-text.display-inline
-									= project.duration
-							= project.title
+			.projects-counter
+				%span
+				%div
+					%p Projects
+					%p
+			.Tickets-counter
+				%span
+				%div
+					%p Tickets
+					%p
+			.Awards-counter
+				%span
+				%div
+					%p Awards
+					%p
+			.collaborators-counter
+				%span
+				%div
+					%p Collaborators
+					%p
+			%button.button.is-primary Update Profile
+		.container
+			.profile-header
+				%p.title All work
+				%a 
+					%p Add new playlist
+					%span
+				%a
+					%span
+				%a
+					%span
+			.playlist
+				.playlist-header
+					%p.title My best films
+					%a 
+						%p.sm-text Add
+						%span
+				.playlist-projects
+					-@user.projects.each do |project|
+						.card.playlist-project
+							%img{src: project.header_url}
+							.text-container
+								.genre-duration
+									- if project.genre == "Action"
+										//Action
+										%span.red-text.fa.fa-fighter-jet
+										%p.red-text
+											= project.genre
+										%span.red-text.fa.fa-clock-o.icon
+										%p.red-text
+											= project.duration
+									- elsif project.genre == "Adventure"
+										//Adventure
+										%span.green-text.fa.fa-envira
+										%p.green-text
+											= project.genre
+										%span.green-text.fa.fa-clock-o
+										%p.green-text
+											= project.duration
+									- elsif project.genre == "Comedy"
+										//Comedy
+										%span.cyan-text.fa.fa-smile-o
+										%p.cyan-text
+											= project.genre
+										%span.cyan-text.fa.fa-clock-o
+										%p.cyan-text
+											= project.duration
+									- elsif project.genre == "Crime"
+										//Crime
+										%span.orange-text.fa.fa-gavel
+										%p.orange-text
+											= project.genre
+										%span.orange-text.fa.fa-clock-o
+										%p.orange-text
+											= project.duration
+									- elsif project.genre == "Drama"
+										//Drama
+										%span.amber-text.fa.fa-group
+										%p.amber-text
+											= project.genre
+										%span.amber-text.fa.fa-clock-o
+										%p.amber-text
+											= project.duration
+									- elsif project.genre == "Horror"
+										//Horror
+										%span.brown-text.fa.fa-warning
+										%p.brown-text
+											= project.genre
+										%span.brown-text.fa.fa-clock-o
+										%p.brown-text
+											= project.duration
+									- else
+										//Si-fi
+										%span.teal-text.fa.fa-rocket
+										%p.teal-text
+											= project.genre
+										%span.teal-text.fa.fa-clock-o
+										%p.teal-text
+											= project.duration
+								%p.title
+									= truncate(project.title, length: 22)
+// = simple_form_for @user, url: {action: "update"}, html: {multipart: true} do |f|
+// 	.tile.is-vertical.box.user-sidebar
+// 		- if @user.avatar_file_name.blank?
+// 			%img{:src => "/assets/user.png", :class => "rounded-circle center-circle", :width => "168"}
+// 		- else
+// 			= image_tag @user.avatar(:medium), :class => "rounded-circle center-circle", :width => "168"
+// 		.field
+// 			%p.control
+// 				= f.input_field :avatar
+// 		%p.portfolio-username
+// 			.field.is-horizontal
+// 				= f.input_field :first_name, id: "first_name", :placeholder => "First name", :class => "input", :minlength => "3", :maxlength => 20
+// 				= f.input_field :last_name, id: "last_name", :placeholder => "Last name", :class => "input", :minlength => "3", :maxlength => 25
+// 		%p.portfolio-bio
+// 			.field
+// 				= f.input_field :bio, :class => "textarea", :placeholder => "Short bio", :minlength => "30", :maxlength => 50, :length => "50"
+// 		%button.button.is-primary Update Profile
+// 	.tile.is-ancestor
+// 		.tile.is-2.is-vertical.is-parent.spacefix
+// 		.tile.is-vertical.fit-screen
+// 			.tile
+// 				.tile.is-parent
+// 					.tile.is-child.portfolio-topbar
+// 						%p
+// 							All work
+// 						.playlist-buttons
+// 							%a.button.is-primary Add New Playlist
+// 							%a.button.is-primary
+// 								%span.fa.fa-th-list
+// 							%a.button.is-primary
+// 								%span.fa.fa-th
+// 			.tile
+// 				.tile.is-parent
+// 					.tile.is-child.currentprojects-row
+// 						%p
+// 							My current projects
+// 						.add-button
+// 							%p
+// 								Add
+// 							%a.button.is-primary.rounded-circle
+// 								%span.fa.fa-plus
+// 			.tile.display-projects
+// 				-@user.projects.each do |project|
+// 					.tile.is-4.is-parent.portfolio-projects
+// 						.tile.is-child.box
+// 							= image_tag project.image.url(:medium), :class => "vidthumbnail"
+// 							- if project.genre == "Action"
+// 								//Action
+// 								%span.red-text.fa.fa-fighter-jet
+// 								%h5.red-text.display-inline
+// 									= project.genre
+// 								%span.red-text.fa.fa-clock-o.icon
+// 								%h5.red-text.display-inline
+// 									= project.duration
+// 							- elsif project.genre == "Adventure"
+// 								//Adventure
+// 								%span.green-text.fa.fa-envira
+// 								%h5.green-text.display-inline
+// 									= project.genre
+// 								%span.green-text.fa.fa-clock-o
+// 								%h5.green-text.display-inline
+// 									= project.duration
+// 							- elsif project.genre == "Comedy"
+// 								//Comedy
+// 								%span.cyan-text.fa.fa-smile-o
+// 								%h5.cyan-text.display-inline
+// 									= project.genre
+// 								%span.cyan-text.fa.fa-clock-o
+// 								%h5.cyan-text.display-inline
+// 									= project.duration
+// 							- elsif project.genre == "Crime"
+// 								//Crime
+// 								%span.orange-text.fa.fa-gavel
+// 								%h5.orange-text.display-inline
+// 									= project.genre
+// 								%span.orange-text.fa.fa-clock-o
+// 								%h5.orange-text.display-inline
+// 									= project.duration
+// 							- elsif project.genre == "Drama"
+// 								//Drama
+// 								%span.amber-text.fa.fa-group
+// 								%h5.amber-text.display-inline
+// 									= project.genre
+// 								%span.amber-text.fa.fa-clock-o
+// 								%h5.amber-text.display-inline
+// 									= project.duration
+// 							- elsif project.genre == "Horror"
+// 								//Horror
+// 								%span.brown-text.fa.fa-warning
+// 								%h5.brown-text.display-inline
+// 									= project.genre
+// 								%span.brown-text.fa.fa-clock-o
+// 								%h5.brown-text.display-inline
+// 									= project.duration
+// 							- else
+// 								//Si-fi
+// 								%span.teal-text.fa.fa-rocket
+// 								%h5.teal-text.display-inline
+// 									= project.genre
+// 								%span.teal-text.fa.fa-clock-o
+// 								%h5.teal-text.display-inline
+// 									= project.duration
+// 							= project.title
 // = simple_form_for @user, url: {action: "update"}, html: { multipart: true} do |f|
 // 	.file-field
 // 		.btn.btn-primary.btn-sm

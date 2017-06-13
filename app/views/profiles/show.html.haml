@@ -5,9 +5,9 @@
   - @hasprojects = true
   - if project.completed == true
     - @hascompleted = true
-// %header.profile-actionbar#actionbar
-//   = link_to edit_profile_path(@user.user_name) do
-//     %span.im.im-gear
+%header.profile-actionbar#actionbar
+  = link_to edit_profile_path(@user.user_name) do
+    %span.im.im-gear
 %main.profile#main
   .card.user-info#profile-card
     = image_tag @user.avatar(:medium)
@@ -17,108 +17,119 @@
       - else
         = @user.first_name + " " + @user.last_name
     %p.sm-text
-      = @user.bio
-    .projects-counter
-      %span
-      %div
-        %p Projects
-        %p
-    .Tickets-counter
-      %span
-      %div
-        %p Tickets
-        %p
-    .Awards-counter
-      %span
-      %div
-        %p Awards
-        %p
-    .collaborators-counter
-      %span
-      %div
-        %p Collaborators
-        %p
+      - if @user.bio == nil
+        I'm a new FADEIN user. I can edit my profile settings by clicking the cog on the actionbar.
+      - else
+        = @user.bio
+    .user-stats
+      .stats-projects
+        %span.fa.fa-rocket
+        .stats-col
+          %p.stat-name
+            Projects
+          %p.stat-number
+            = @user.projects.count
+      .stats-tickets
+        %span.fa.fa-ticket
+        .stats-col
+          %p.stat-name
+            Earned
+          %p.stat-number
+            - if @user.tickets.blank?
+              0
+            - else
+              = @user.tickets
+      .stats-awards
+        %span.fa.fa-trophy
+        .stats-col
+          %p.stat-name
+            Awards
+          %p.stat-number
+            1
   .container
     .profile-header
       %p.title All work
-      %a 
-        %p Add new playlist
-        %span
-      %a
-        %span
-      %a
-        %span
     .playlist
-      .playlist-header
-        %p.title My best films
-        %a 
-          %p.sm-text Add
-          %span
-      .playlist-projects
-        -@user.projects.each do |project|
-          .card.playlist-project
-            %img{src: project.header_url}
-            .text-container
-              .genre-duration
-                - if project.genre == "Action"
-                  //Action
-                  %span.red-text.fa.fa-fighter-jet
-                  %p.red-text
-                    = project.genre
-                  %span.red-text.fa.fa-clock-o.icon
-                  %p.red-text
-                    = project.duration
-                - elsif project.genre == "Adventure"
-                  //Adventure
-                  %span.green-text.fa.fa-envira
-                  %p.green-text
-                    = project.genre
-                  %span.green-text.fa.fa-clock-o
-                  %p.green-text
-                    = project.duration
-                - elsif project.genre == "Comedy"
-                  //Comedy
-                  %span.cyan-text.fa.fa-smile-o
-                  %p.cyan-text
-                    = project.genre
-                  %span.cyan-text.fa.fa-clock-o
-                  %p.cyan-text
-                    = project.duration
-                - elsif project.genre == "Crime"
-                  //Crime
-                  %span.orange-text.fa.fa-gavel
-                  %p.orange-text
-                    = project.genre
-                  %span.orange-text.fa.fa-clock-o
-                  %p.orange-text
-                    = project.duration
-                - elsif project.genre == "Drama"
-                  //Drama
-                  %span.amber-text.fa.fa-group
-                  %p.amber-text
-                    = project.genre
-                  %span.amber-text.fa.fa-clock-o
-                  %p.amber-text
-                    = project.duration
-                - elsif project.genre == "Horror"
-                  //Horror
-                  %span.brown-text.fa.fa-warning
-                  %p.brown-text
-                    = project.genre
-                  %span.brown-text.fa.fa-clock-o
-                  %p.brown-text
-                    = project.duration
-                - else
-                  //Si-fi
-                  %span.teal-text.fa.fa-rocket
-                  %p.teal-text
-                    = project.genre
-                  %span.teal-text.fa.fa-clock-o
-                  %p.teal-text
-                    = project.duration
-              %p.title
-                = truncate(project.title, length: 22)
-                
+      - if @hasprojects == nil
+        .is-center
+          - if current_user.id == @user.id
+            %h1 You have no projects
+            = link_to new_project_path, :class => "button is-primary is-outlined" do
+              %span Create a project
+          - else
+            %h1
+              %strong @#{@user.user_name} 
+              has no projects
+            %p When they do, they will show up here.
+      - else
+        .playlist-header
+          %p.title My current projects
+        .playlist-projects
+          -@user.projects.each do |project|
+            = link_to project_path(project) do
+              .card.playlist-project
+                %img{src: project.header_url}
+                .text-container
+                  .genre-duration
+                    - if project.genre == "Action"
+                      //Action
+                      %span.red-text.fa.fa-fighter-jet
+                      %p.red-text
+                        = project.genre
+                      %span.red-text.fa.fa-clock-o.icon
+                      %p.red-text
+                        = project.duration
+                    - elsif project.genre == "Adventure"
+                      //Adventure
+                      %span.green-text.fa.fa-envira
+                      %p.green-text
+                        = project.genre
+                      %span.green-text.fa.fa-clock-o
+                      %p.green-text
+                        = project.duration
+                    - elsif project.genre == "Comedy"
+                      //Comedy
+                      %span.cyan-text.fa.fa-smile-o
+                      %p.cyan-text
+                        = project.genre
+                      %span.cyan-text.fa.fa-clock-o
+                      %p.cyan-text
+                        = project.duration
+                    - elsif project.genre == "Crime"
+                      //Crime
+                      %span.orange-text.fa.fa-gavel
+                      %p.orange-text
+                        = project.genre
+                      %span.orange-text.fa.fa-clock-o
+                      %p.orange-text
+                        = project.duration
+                    - elsif project.genre == "Drama"
+                      //Drama
+                      %span.amber-text.fa.fa-group
+                      %p.amber-text
+                        = project.genre
+                      %span.amber-text.fa.fa-clock-o
+                      %p.amber-text
+                        = project.duration
+                    - elsif project.genre == "Horror"
+                      //Horror
+                      %span.brown-text.fa.fa-warning
+                      %p.brown-text
+                        = project.genre
+                      %span.brown-text.fa.fa-clock-o
+                      %p.brown-text
+                        = project.duration
+                    - else
+                      //Si-fi
+                      %span.teal-text.fa.fa-rocket
+                      %p.teal-text
+                        = project.genre
+                      %span.teal-text.fa.fa-clock-o
+                      %p.teal-text
+                        = project.duration
+                  %p.title
+                    = truncate(project.title, length: 22)
+                  
   
 // - if @user.vip?
 //   .tile.is-vertical.box.user-sidebar.vip-background
@@ -429,14 +440,14 @@
 //                           = project.duration
 //                     %p
 //                       = truncate(project.title, length: 22)
+// - else
+//   .column.has-text-centered
+//     - if current_user.id == @user.id
+//       %h1 You have no projects
+//       = link_to new_project_path, :class => "button is-primary is-outlined" do
+//         %span Create a project
 //     - else
-//       .column.has-text-centered
-//         - if current_user.id == @user.id
-//           %h1 You have no projects
-//           = link_to new_project_path, :class => "button is-primary is-outlined" do
-//             %span Create a project
-//         - else
-//           %h1 
-//             %strong @#{@user.user_name} 
-//             has no projects
-//           %p When they do, they will show up here.
+//       %h1 
+//         %strong @#{@user.user_name} 
+//         has no projects
+//       %p When they do, they will show up here.
